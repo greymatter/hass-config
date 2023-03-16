@@ -15,7 +15,7 @@ Themes used (slightly adjusted):
 
  
 
-![](https://github.com/greymatter/hass-config/blob/master/images/Network.png)
+![](https://github.com/greymatter/hass-config/images/Network.png)
 
 
 ## Backend ##
