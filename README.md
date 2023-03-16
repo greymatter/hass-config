@@ -18,16 +18,19 @@ I recently and am actually still in the process of implmenting most of the piece
 
 
 Themes used (slightly adjusted):
-- Metrogolgy - Based on vX.XX and then further Customized by myself, I've renamed to prevent wiping out any changes on future upgrades.
+- Metrology - Based on vX.XX and then further Customized by myself, I've renamed to prevent wiping out any changes on future upgrades.
 
  
  Some Screenshots of the work in progress...
  
 
-![](https://github.com/greymatter/hass-config/blob/main/images/Network.png)
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Network.png)
 
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Astrometrics.png)
 
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Neighborhood.png)
 
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Travel.png)
 
 # Backend #
 
