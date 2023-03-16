@@ -14,29 +14,101 @@ Themes used (slightly adjusted):
 - Metrogolgy - Based on vX.XX and then further Customized by myself, I've renamed to prevent wiping out any changes on future upgrades.
 
  
+ Some Screenshots of the work in progress...
+ 
 
-![](https://github.com/greymatter/hass-config/images/Network.png)
+![](https://github.com/greymatter/hass-config/blob/main/images/Network.png)
+
+
 
 
 ## Backend ##
 
-### Addons ###
+### Addons - Production ###
+
+#### HA-Admin ####
 - [Samba Share](https://github.com/home-assistant/hassio-addons/tree/master/samba)
 - [SSH & Web Terminal](https://github.com/home-assistant/hassio-addons/tree/master/ssh)
-- [Unifi Network Application](https://github.com/hassio-addons/addon-unifi)
-- [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home)
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup)
 - [Check HA Configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)
-- [Mosquitto Broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
-- [Deconz](https://github.com/home-assistant/hassio-addons/tree/master/deconz)
-- [TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
-- [DSMR Reader](https://github.com/sanderdw/hassio-addons)
-- [pgAdmin 4](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Eufy Security Addon](https://github.com/bropat/eufy-security-ws/tree/master/docker)
-- [RTSP Simple Server Addon](http://192.168.99.3:8123/hassio)
-- [Duck DNS](https://github.com/home-assistant/addons/tree/master/duckdns)
-- [Nginx Proxy Manager](https://github.com/hassio-addons/addon-nginx-proxy-manager)
+- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer)
+- [Portainer](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+#### Automation ####
+- [Simple Scheduler](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Node-RED](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Dev ####
+- [Studio Code Server](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [JupyterLab](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Backup ####
+- [Home Assistant NextCloud Backup](https://github.com/Sebclem/hassio-nextcloud-backup)
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup)
+
+
+#### Device MGMT ####
+- [Mosquitto Broker / MQTT](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
+- [ESPHome](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Z-Wave JS UI](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Database ####
+- [PostgreSQL / TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
+- [InfluxDB](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Grafana](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Maria DB](https://mariadb.com/)
+- [phpMyAdmin](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Monitoring ####
+- [Telegraf](https://mariadb.com/)
+- [Uptime Kuma](https://mariadb.com/)
+- [Netbox](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Comms ####
+- [Matrix](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Synapse Admin](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Chore & Tasks / Inventory ####
+- [Grocy](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Recipes ####
+- [ESMealie](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+#### Self Hosted Apps ####
+- [Vaultwarden](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Bookstack](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Paperless-ngx](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Addons - Experimental ###
+
 
 ### Integrations ###
 - Adguard
