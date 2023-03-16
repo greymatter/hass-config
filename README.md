@@ -3,12 +3,13 @@
 This is my Home Assistant installation.
 
 
+I will eventually write a summary here but this is just some text to take up space in the meantime.
 
 
 
 
 
-## Frontend ##
+# Frontend #
 
 I recently and am actually still in the process of implmenting most of the pieces of the Maximalist Front End by Madelena Mak.
 
@@ -28,7 +29,8 @@ Themes used (slightly adjusted):
 
 
 
-## Backend ##
+# Backend #
+
 
 ### Addons - Production ###
 
@@ -38,11 +40,18 @@ Themes used (slightly adjusted):
 - [Check HA Configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer)
 - [Portainer](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Chrony](https://github.com/Expaso/hassos-addon-pgadmin4)
+- AirCast
+- AirSonos
+- Network UPS Tools
 
 #### Automation ####
 - [Simple Scheduler](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Node-RED](https://github.com/Expaso/hassos-addon-pgadmin4)
-
+- AppDaemon
+- Assistant Relay
+- RPC Shutdown
+- Traccar
 
 #### Dev ####
 - [Studio Code Server](https://github.com/Expaso/hassos-addon-pgadmin4)
@@ -64,7 +73,7 @@ Themes used (slightly adjusted):
 - [PostgreSQL / TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
 - [InfluxDB](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Grafana](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Maria DB](https://mariadb.com/)
+- [MariaDB](https://mariadb.com/)
 - [phpMyAdmin](https://github.com/Expaso/hassos-addon-pgadmin4)
 
 
@@ -72,7 +81,7 @@ Themes used (slightly adjusted):
 - [Telegraf](https://mariadb.com/)
 - [Uptime Kuma](https://mariadb.com/)
 - [Netbox](https://github.com/Expaso/hassos-addon-pgadmin4)
-
+- Glances  - DISABLED
 
 #### Comms ####
 - [Matrix](https://github.com/Expaso/hassos-addon-pgadmin4)
@@ -94,54 +103,14 @@ Themes used (slightly adjusted):
 - [Paperless-ngx](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
 
-### FULL LIST ###
-## My installed extensions: ##
 
-### Add-ons ###
-- AirCast
-- AirSonos
-- AppDaemon
-- Assistant Relay
+
+### Addons - Experimental ###
 - Asterisk
-- Bookstack
 - Cedalo-Mgmt-Center
-- chrony
-- ESPHome
 - Firefly iii
 - Firefly iii FinTS Importer
-- Glances
-- Grafana
-- Grocy
-- InfluxDB
-- Joplin Server
-- JupyterLab
-- Log Viewer
-- MariaDB
-- Matrix
-- Mealie (Omni):
-- Mosquitto broker
 - n8n
-- Netbox
-- Network UPS Tools
-- Nextcloud Backup
-- Node-RED
-- Paperless-ngx
-- pgAdmin4
-- phpMyAdmin
-- Portainer
-- RPC Shutdown
-- Samba share
-- Simple Scheduler
-- SSH & Web Terminal
-- Studio Code Server
-- synapse-admin
-- Telegraf
-- TimescaleDB
-- Traccar
-- Uptime Kuma
-- Vaultwarden (Bitwarden)
-- vlmcsd
-- Z-Wave JS UI
 
 
 
@@ -216,6 +185,8 @@ Themes used (slightly adjusted):
 - [Variables+History](https://github.com/Wibias/hass-variables)
 - [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule)
 - [Yahoo Finance](https://github.com/iprak/yahoofinance)
+
+
 
 ### Lovelace plugins
 - [Air Visual Card](https://github.com/dnguyen800/air-visual-card)
@@ -331,110 +302,46 @@ Themes used (slightly adjusted):
 
 
 
+## System Hardware ##
+
+### System ###
+My system is an Intel NUC i3 with 16GB memory and 160GB m2 SSD
+
+- Aeotec Z-Wave Stick 6
+- SkyLink zigbee thingie ordered
+
+Its connected to IP KVM and run other wise headless in a server cabinet
+ - USB devices are routed via USB extensions out of cabinet to minimize inteference with both cabinet and USB 3.0 ports
 
 
 
+## Network ##
 
+### Wired ###
+- Cisco 3750G/E-48-POE Stack (x2)
+- Cisco 3750X-48-POE Edge
+- Cisco 3560G-48-POE Edge
 
+### Wireless ###
+- Cisco vWLC
+- Cisco 37xx AP's (x6)
+- Cisco 36XX AP's with AC Modules (x5)
 
-
-
-
-
-
-
-
-
-
-
-### Addons - Experimental ###
-
-
-### Integrations ###
-- Adguard
-- Browser_mod
-- CO2 Signal
-- DeCONZ
-- Eufy Security
-- Google Cast
-- Google Home
-- HACS
-- Supervisor
-- Roomba
-- Kodi
-- Meteorologisk Institutt
-- Mobile App
-- MQTT
-- Risco
-- Shelly
-- Speedtest
-- Spotify
-- Unifi Network
-- WebRTC Camera
-
-
-### HACS (Home Assistant Community Store) ###
-
-Integrations: 
-
-- HACS
-- Anniversaries
-- WebRTC Camera
-- Google Home
-- Browser Mod
-- Afvalbeheer
-- Spotcast
-- Sensor.Unifigateway
-- Eufy Security
-- Feedparser
-
-
-Plugins:
-
-- Battery State Card
-- Button Card
-- Atomic Calendar Revive
-- Layout-card
-- Vertical-stack-in-card
-- Card-mod
-- Homekit panel card
-- Mini media player
-- Check button card
-- Swipe card
-- Decluttering card
-- Kiosk mode
-- Stack-in-card
-- Config-template-card
-- Custom-ui
-- ApexCharts
-- More-info-card
-- Multiple-entity-row
-- Shutter Card
-- Text Element
-- Weather Card
-- Media player popup card
-- Sidebar card
-- List card
 
 ## Devices ##
 
-### Network ###
-- [Unifi USG](https://www.ui.com/unifi-routing/usg/)
-- [Unifi 16 PoE Switch](https://www.ui.com/unifi-switching/unifi-switch-16-150w/)
-- [Unifi Access Points](https://www.ui.com/unifi/unifi-ap-ac-lite/)
-
-### System ###
-My system is a [Raspberry Pi 4B+ with 4 gig RAM](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) running [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
-All data is on a SSD.
-
-
 ### Gateways ###
-- [ConBee II](https://phoscon.de/en/conbee2)
-- [Velux KLF200](https://www.velux.be/nl-be/producten/smart-home/integra-accessoires?consent=preferences,statistics,marketing&ref-original=https%3A%2F%2Fwww.google.com%2F)
+- Aeotec Z-Wave Stick 6
+- Hue Hub
+- SkyConnect Zigbee / Matter
+- Elk M1
+  - UPB GW
+- ISY99i 
+  - Insteon GW
 
 ### Tablet ###
+- 2x Windows Tablets
 
-- Running [Fully Kiosk Browser](https://www.fully-kiosk.com/) on a samsung galaxy Tab S3 as central point in my living room. Screen comes on when i'm in front of it. It automatically switches off, as soon as i walk away. Powered with [this](https://www.robbshop.nl/scharge-oplader-voor-inbouwdoos-met-usb-c-12w-aansluiting-voor-ipad-pro?sqr=scharge%20usb&) attached to the wall with a  [Vogel mount](https://www.vogels.com/nl-be/c/tms-1010-muurpakket-voor-tablets).
 
 ### Smart Speakers ###
 - [1x Google Nest Hub Max](https://store.google.com/us/product/google_nest_hub_max?hl=en-US)
@@ -490,9 +397,10 @@ Number of sensors | 1787
 ## Inspiration ##
 
 Inspiration and code was taken from many different sources:
+- [Madelena](https://github.com/Madelena/hass-config-public)
+- [Basnijholt](https://github.com/basnijholt/home-assistant-config)
 
 - [Troetelbeer](https://github.com/ddhatablet/hass-config)
 - [Duboisph](https://github.com/duboisph/home-assistant-config)
 - [Hmmbob](https://github.com/hmmbob/HomeAssistantConfig)
-- [Basnijholt](https://github.com/basnijholt/home-assistant-config)
 - [Pinkywafer](https://github.com/pinkywafer/Home-Assistant_Config)
