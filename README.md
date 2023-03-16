@@ -1,5 +1,11 @@
 # Welcome to my home assistant configuration #
 
+This is my Home Assistant installation.
+
+
+
+
+
 
 
 ## Frontend ##
@@ -88,6 +94,240 @@ Themes used (slightly adjusted):
 - [Paperless-ngx](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
 
+### FULL LIST ###
+## My installed extensions: ##
+
+### Add-ons ###
+- AirCast
+- AirSonos
+- AppDaemon
+- Assistant Relay
+- Asterisk
+- Bookstack
+- Cedalo-Mgmt-Center
+- chrony
+- ESPHome
+- Firefly iii
+- Firefly iii FinTS Importer
+- Glances
+- Grafana
+- Grocy
+- InfluxDB
+- Joplin Server
+- JupyterLab
+- Log Viewer
+- MariaDB
+- Matrix
+- Mealie (Omni):
+- Mosquitto broker
+- n8n
+- Netbox
+- Network UPS Tools
+- Nextcloud Backup
+- Node-RED
+- Paperless-ngx
+- pgAdmin4
+- phpMyAdmin
+- Portainer
+- RPC Shutdown
+- Samba share
+- Simple Scheduler
+- SSH & Web Terminal
+- Studio Code Server
+- synapse-admin
+- Telegraf
+- TimescaleDB
+- Traccar
+- Uptime Kuma
+- Vaultwarden (Bitwarden)
+- vlmcsd
+- Z-Wave JS UI
+
+
+
+
+
+### Custom integrations
+- [Adaptive Lighting](https://github.com/basnijholt/adaptive-lighting)
+- [Anniversaries](https://github.com/pinkywafer/Anniversaries)
+- [Asterisk Hass Integration](https://github.com/TECH7Fox/asterisk-hass-integration)
+- [Astroweather](https://github.com/mawinkler/astroweather)
+- [Auto Backup](https://github.com/jcwillox/hass-auto-backup)
+- [Blitzortung.Org Lightning Detector](https://github.com/mrk-its/homeassistant-blitzortung)
+- [Blueiris Nvr](https://github.com/elad-bar/ha-blueiris)
+- [Browser Mod](https://github.com/thomasloven/hass-browser_mod)
+- [Car Wash](https://github.com/Limych/ha-car_wash)
+- [Couchpotato](https://github.com/youdroid/home-assistant-couchpotato)
+- [Crypto Tracker](https://github.com/BigNocciolino/CryptoTracker)
+- [Cryptoinfo](https://github.com/heyajohnny/cryptoinfo)
+- [Email Sensor](https://github.com/ljmerza/ha-email-sensor)
+- [Emsc Earthquake Rss Feed](https://github.com/msekoranja/emsc-hacs-repository)
+- [Esxi Stats](https://github.com/wxt9861/esxi_stats)
+- [Event Sensor](https://github.com/azogue/eventsensor)
+- [Fedex](https://github.com/custom-components/fedex)
+- [Feedparser](https://github.com/custom-components/feedparser)
+- [Fontawesome](https://github.com/thomasloven/hass-fontawesome)
+- [Garbage Collection](https://github.com/bruxy70/Garbage-Collection)
+- [Generate Readme](https://github.com/custom-components/readme)
+- [Google Home](https://github.com/leikoilja/ha-google-home)
+- [Grocy Custom Component](https://github.com/custom-components/grocy)
+- [Ha Meural](https://github.com/GuySie/ha-meural)
+- [HACS](https://github.com/hacs/integration)
+- [Ham Radio Propagation](https://github.com/emics/ham_radio_propagation)
+- [Hass Custom Alarm](https://github.com/akasma74/Hass-Custom-Alarm)
+- [Hass Favicon](https://github.com/thomasloven/hass-favicon)
+- [Hass.Agent](https://github.com/LAB02-Research/HASS.Agent-Integration)
+- [Hdhomerun](https://github.com/burnnat/ha-hdhomerun)
+- [Hdhomerun](https://github.com/uvjim/hass_hdhomerun)
+- [Helium Blockchain](https://github.com/rsnodgrass/hass-helium)
+- [Hifiberry](https://github.com/willholdoway/hifiberry)
+- [Holidays](https://github.com/bruxy70/Holidays)
+- [Hp Printers Integration](https://github.com/elad-bar/ha-hpprinter)
+- [Icloud3 Device Tracker](https://github.com/gcobb321/icloud3)
+- [Ics Calendar (Icalendar)](https://github.com/franc6/ics_calendar)
+- [Kodi Media Sensors](https://github.com/jtbgroup/kodi-media-sensors)
+- [Kodi Recently Added Media](https://github.com/boralyl/kodi-recently-added)
+- [Ltss](https://github.com/freol35241/ltss)
+- [Mail And Packages](https://github.com/moralmunky/Home-Assistant-Mail-And-Packages)
+- [Monitor Docker](https://github.com/ualex73/monitor_docker)
+- [Multiscrape](https://github.com/danieldotnl/ha-multiscrape)
+- [Nest Protect](https://github.com/nicoinch/ha-nest-protect)
+- [Noaa Space Weather](https://github.com/tcarwash/home-assistant_noaa-space-weather)
+- [Node Red Companion](https://github.com/zachowj/hass-node-red)
+- [Nws Alerts](https://github.com/finity69x2/nws_alerts)
+- [Office 365 Integration](https://github.com/RogerSelwyn/O365-HomeAssistant)
+- [Openweathermap All](https://github.com/viktak/ha-cc-openweathermap_all)
+- [Opnsense Integration For Home Assistant](https://github.com/travisghansen/hass-opnsense)
+- [Pirate Weather](https://github.com/alexander0042/pirate-weather-ha)
+- [Powercalc](https://github.com/bramstroker/homeassistant-powercalc)
+- [Redfin](https://github.com/dreed47/redfin)
+- [Remote Home Assistant](https://github.com/custom-components/remote_homeassistant)
+- [Satellite Tracker (N2Yo)](https://github.com/djtimca/hasatellitetracker)
+- [Scheduler Component](https://github.com/nielsfaber/scheduler-component)
+- [Sensor.Ssh](https://github.com/custom-components/sensor.ssh)
+- [Simpleicons](https://github.com/vigonotion/hass-simpleicons)
+- [Skyfield Panel With Sun, Moon, And Planets](https://github.com/partofthething/ha_skyfield)
+- [Snowtire Sensor](https://github.com/Limych/ha-snowtire)
+- [Sonoff Lan](https://github.com/AlexxIT/SonoffLAN)
+- [Spacex Next Launch And Starman](https://github.com/djtimca/HASpaceX)
+- [Spotcast](https://github.com/fondberg/spotcast)
+- [Thermal Comfort](https://github.com/dolezsa/thermal_comfort)
+- [Uptime Kuma](https://github.com/meichthys/uptime_kuma)
+- [Variables+History](https://github.com/Wibias/hass-variables)
+- [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule)
+- [Yahoo Finance](https://github.com/iprak/yahoofinance)
+
+### Lovelace plugins
+- [Air Visual Card](https://github.com/dnguyen800/air-visual-card)
+- [Apexcharts Card](https://github.com/RomRider/apexcharts-card)
+- [Astroweather Card](https://github.com/mawinkler/astroweather-card)
+- [Atomic Calendar Revive](https://github.com/totaldebug/atomic-calendar-revive)
+- [Auto Entities](https://github.com/thomasloven/lovelace-auto-entities)
+- [Bar Card](https://github.com/custom-cards/bar-card)
+- [Battery Entity Row](https://github.com/benct/lovelace-battery-entity-row)
+- [Bha Icon Pack](https://github.com/hulkhaugen/hass-bha-icons)
+- [Big Slider Card](https://github.com/nicufarmache/lovelace-big-slider-card)
+- [Button Card](https://github.com/custom-cards/button-card)
+- [Canary](https://github.com/jcwillox/lovelace-canary)
+- [Card Mod](https://github.com/thomasloven/lovelace-card-mod)
+- [Card Tools](https://github.com/thomasloven/lovelace-card-tools)
+- [Circle Sensor Card](https://github.com/custom-cards/circle-sensor-card)
+- [Clock Weather Card](https://github.com/pkissling/clock-weather-card)
+- [Config Template Card](https://github.com/iantrich/config-template-card)
+- [Custom Brand Icons](https://github.com/elax46/custom-brand-icons)
+- [Custom Icons](https://github.com/Mariusthvdb/custom-icons)
+- [Custom Sidebar](https://github.com/Villhellm/custom-sidebar)
+- [Daily Schedule Card](https://github.com/amitfin/lovelace-daily-schedule-card)
+- [Dark Thermostat](https://github.com/ciotlosm/lovelace-thermostat-dark-card)
+- [Datetime Card](https://github.com/a-p-z/datetime-card)
+- [Decluttering Card](https://github.com/custom-cards/decluttering-card)
+- [Dual Gauge Card](https://github.com/custom-cards/dual-gauge-card)
+- [Energy Overview Card](https://github.com/Sese-Schneider/ha-energy-overview-card)
+- [Entity Attributes Card](https://github.com/custom-cards/entity-attributes-card)
+- [Fan Percent Button Row](https://github.com/finity69x2/fan-percent-button-row)
+- [Flex Table   Highly Customizable, Data Visualization](https://github.com/custom-cards/flex-table-card)
+- [Flexible Horseshoe Card For Lovelace](https://github.com/AmoebeLabs/flex-horseshoe-card)
+- [Fluid Level Background Card](https://github.com/swingerman/lovelace-fluid-level-background-card)
+- [Fold Entity Row](https://github.com/thomasloven/lovelace-fold-entity-row)
+- [Garbage Collection Card](https://github.com/amaximus/garbage-collection-card)
+- [Github Entity Row](https://github.com/benct/lovelace-github-entity-row)
+- [Ha (Lovelace) Card Waze Travel Time](https://github.com/r-renato/ha-card-waze-travel-time)
+- [Ha (Lovelace) Card Weather Conditions](https://github.com/r-renato/ha-card-weather-conditions)
+- [Ha Floorplan](https://github.com/ExperienceLovelace/ha-floorplan)
+- [Harmony Card](https://github.com/sbryfcz/harmony-card)
+- [Hass Hue Icons](https://github.com/arallsopp/hass-hue-icons)
+- [History Explorer Card](https://github.com/alexarch21/history-explorer-card)
+- [Home Assistant Swipe Navigation](https://github.com/zanna-37/hass-swipe-navigation)
+- [Honeycomb Menu](https://github.com/Sian-Lee-SA/honeycomb-menu)
+- [Hourly Weather Card](https://github.com/decompil3d/lovelace-hourly-weather)
+- [Hue Like Light Card](https://github.com/Gh61/lovelace-hue-like-light-card)
+- [Hui Element](https://github.com/thomasloven/lovelace-hui-element)
+- [Kiosk Mode](https://github.com/NemesisRE/kiosk-mode)
+- [Knx User Forum Icon Set](https://github.com/mampfes/ha-knx-uf-iconset)
+- [Kodi Playlist Card](https://github.com/jtbgroup/kodi-playlist-card)
+- [Kodi Search Card](https://github.com/jtbgroup/kodi-search-card)
+- [Layout Card](https://github.com/thomasloven/lovelace-layout-card)
+- [List Card](https://github.com/iantrich/list-card)
+- [Logbook Card](https://github.com/royto/logbook-card)
+- [Lovelace Animated Background](https://github.com/Villhellm/lovelace-animated-background)
+- [Lovelace Card Templater](https://github.com/gadgetchnnel/lovelace-card-templater)
+- [Lovelace Grocy Chores Card](https://github.com/isabellaalstrom/lovelace-grocy-chores-card)
+- [Lovelace Home Feed Card](https://github.com/gadgetchnnel/lovelace-home-feed-card)
+- [Lovelace Html Card](https://github.com/PiotrMachowski/lovelace-html-card)
+- [Lovelace Media Art Background](https://github.com/TheLastProject/lovelace-media-art-background)
+- [Lovelace Theme Maker](https://github.com/thomasloven/lovelace-theme-maker)
+- [Mini Climate Card](https://github.com/artem-sedykh/mini-climate-card)
+- [Mini Graph Card](https://github.com/kalkih/mini-graph-card)
+- [Mini Media Player](https://github.com/kalkih/mini-media-player)
+- [Minimalistic Area Card](https://github.com/junalmeida/homeassistant-minimalistic-area-card)
+- [More Info Card](https://github.com/thomasloven/lovelace-more-info-card)
+- [Multiline Entity Card](https://github.com/jampez77/Multiline-Entity-Card)
+- [Multiple Entity Row](https://github.com/benct/lovelace-multiple-entity-row)
+- [Mushroom](https://github.com/piitaya/lovelace-mushroom)
+- [Notify Card](https://github.com/bernikr/lovelace-notify-card)
+- [Only Lock Lock Row](https://github.com/frozenwizard/onlylocklock)
+- [Platinum Weather Card](https://github.com/Makin-Things/platinum-weather-card)
+- [Plotly Graph Card](https://github.com/dbuezas/lovelace-plotly-graph-card)
+- [Podcast Card](https://github.com/iantrich/podcast-card)
+- [Power Distribution Card](https://github.com/JonahKr/power-distribution-card)
+- [Power Flow Card](https://github.com/ulic75/power-flow-card)
+- [Power Wheel Card](https://github.com/gurbyz/power-wheel-card)
+- [Restriction Card](https://github.com/iantrich/restriction-card)
+- [Rgb Light Card](https://github.com/bokub/rgb-light-card)
+- [Room Card](https://github.com/marcokreeft87/room-card)
+- [Rpi Monitor Card](https://github.com/ironsheep/lovelace-rpi-monitor-card)
+- [Sankey Chart Card](https://github.com/MindFreeze/ha-sankey-chart)
+- [Scheduler Card](https://github.com/nielsfaber/scheduler-card)
+- [Secondaryinfo Entity Row](https://github.com/custom-cards/secondaryinfo-entity-row)
+- [Simple Weather Card](https://github.com/kalkih/simple-weather-card)
+- [Sip Card](https://github.com/TECH7Fox/sip-hass-card)
+- [Slider Button Card](https://github.com/custom-cards/slider-button-card)
+- [Slider Entity Row](https://github.com/thomasloven/lovelace-slider-entity-row)
+- [Sonos Card](https://github.com/johanfrick/custom-sonos-card)
+- [Spotify Lovelace Card](https://github.com/custom-cards/spotify-card)
+- [Stack In Card](https://github.com/custom-cards/stack-in-card)
+- [State Switch](https://github.com/thomasloven/lovelace-state-switch)
+- [Sun Card](https://github.com/AitorDB/home-assistant-sun-card)
+- [Swipe Card](https://github.com/bramkragten/swipe-card)
+- [Swiss Army Knife Custom Card](https://github.com/AmoebeLabs/swiss-army-knife-card)
+- [Tabbed Card](https://github.com/kinghat/tabbed-card)
+- [Template Entity Row](https://github.com/thomasloven/lovelace-template-entity-row)
+- [Tempometer Gauge Card](https://github.com/SNoof85/lovelace-tempometer-gauge-card-deprecated)
+- [Text Divider Row](https://github.com/iantrich/text-divider-row)
+- [Thermal Comfort Icons](https://github.com/rautesamtr/thermal_comfort_icons)
+- [Timer Bar Card](https://github.com/rianadon/timer-bar-card)
+- [Tv Remote Card (With Touchpad And Haptic Feedback)](https://github.com/usernein/tv-card)
+- [Ultimate Tv Remote Card With Touchpad And More](https://github.com/iablon/HomeAssistant-Touchpad-Card)
+- [Upcoming Media Card](https://github.com/NemesisRE/upcoming-media-card)
+- [Update Time Card](https://github.com/itobey/update-time-card)
+- [Uptime Card](https://github.com/dylandoamaral/uptime-card)
+- [Vacuum Card](https://github.com/denysdovhan/vacuum-card)
+- [Vertical Stack In Card](https://github.com/ofekashery/vertical-stack-in-card)
+- [Vpd Chart Card](https://github.com/vpdchart/vpdchart-card)
+- [Weather Card](https://github.com/bramkragten/weather-card)
+- [Weather Chart Card](https://github.com/Yevgenium/weather-chart-card)
+- [Weather Radar Card](https://github.com/Makin-Things/weather-radar-card)
+- [Zigbee2Mqtt Networkmap Card](https://github.com/azuwis/zigbee2mqtt-networkmap)
 
 
 
@@ -239,7 +479,12 @@ Nothing
 
 Coming
 
+## Some statistics about my installation:
 
+Description | value
+-- | --
+Number of entities | 2750
+Number of sensors | 1787
 
 
 ## Inspiration ##
