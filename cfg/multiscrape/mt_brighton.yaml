@@ -1,0 +1,28 @@
+## scrape mt brighton ski conditions ###########################################################
+
+- name: OTS MT Brighton Snow Report
+  resource: https://www.onthesnow.com/michigan/mount-brighton/skireport
+  scan_interval: 3600
+  #log_response: true
+  sensor:
+    - name: ots_mt_brighton_open_closed
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_header__2KhvH > span > span"
+    - name: ots_mt_brighton_7day_snowfall
+      select: "#snow_report_1 > div.snow_report__content.row > ul > li:nth-child(4) > div > h5"
+    - name: ots_mt_brighton_base_depth
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(1) > figure > div:nth-child(2) > figcaption"
+    - name: ots_mt_brighton_base_state
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(1) > figure > div:nth-child(2) > div"
+    - name: ots_mt_brighton_summit_depth
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(2) > figure > div:nth-child(2) > figcaption"
+    - name: ots_mt_brighton_summit_state
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(2) > figure > div:nth-child(2) > div"
+    - name: ots_mt_brighton_open_runs
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(4) > figure > div:nth-child(2) > figcaption"
+    - name: ots_mt_brighton_open_lifts
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(2) > div > div.styles_box__3xo2X > div.styles_info__3F7Vv > div > div:nth-child(3) > figure > div:nth-child(2) > figcaption"
+    - name: ots_mt_brighton_open_runs_green
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(8) > div.styles_box__1sXJN > div > div.styles_box__3XF8j.slopesColors_fillGreen__25hpD > div:nth-child(2) > div.styles_value__fB0LV"
+    - name: ots_mt_brighton_terrain_parks_open
+      select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(9) > div.styles_box__1sXJN > div > div > div:nth-child(2) > div.styles_value__fB0LV"
+
