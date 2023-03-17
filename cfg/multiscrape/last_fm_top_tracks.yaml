@@ -1,0 +1,156 @@
+# Get Last.FM top track data.
+
+- name: Last.fm Top Tracks
+  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
+  scan_interval: 600
+  sensor:
+    - unique_id: last_fm_top_tracks_01
+      name: Last.fm Top Tracks 01
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[0].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[0].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[0].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[0].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[0].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[0].mbid }}"
+    - unique_id: last_fm_top_tracks_02
+      name: Last.fm Top Tracks 02
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[1].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[1].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[1].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[1].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[1].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[1].mbid }}"
+    - unique_id: last_fm_top_tracks_03
+      name: Last.fm Top Tracks 03
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[2].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[2].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[2].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[2].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[2].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[2].mbid }}"
+    - unique_id: last_fm_top_tracks_04
+      name: Last.fm Top Tracks 04
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[3].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[3].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[3].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[3].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[3].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[3].mbid }}"
+    - unique_id: last_fm_top_tracks_05
+      name: Last.fm Top Tracks 05
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[4].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[4].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[4].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[4].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[4].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[4].mbid }}"
+    - unique_id: last_fm_top_tracks_06
+      name: Last.fm Top Tracks 06
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[5].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[5].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[5].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[5].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[5].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[5].mbid }}"
+    - unique_id: last_fm_top_tracks_07
+      name: Last.fm Top Tracks 07
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[6].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[6].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[6].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[6].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[6].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[6].mbid }}"
+    - unique_id: last_fm_top_tracks_08
+      name: Last.fm Top Tracks 08
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[7].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[7].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[7].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[7].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[7].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[7].mbid }}"
+    - unique_id: last_fm_top_tracks_09
+      name: Last.fm Top Tracks 09
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[8].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[8].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[8].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[8].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[8].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[8].mbid }}"
+    - unique_id: last_fm_top_tracks_10
+      name: Last.fm Top Tracks 10
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.toptracks.track[9].name }}"
+      attributes:
+        - name: Track Name
+          value_template: "{{ value_json.toptracks.track[9].name }}"
+        - name: Artist Name
+          value_template: "{{ value_json.toptracks.track[9].artist.name }}"
+        - name: Play Count
+          value_template: "{{ value_json.toptracks.track[9].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.toptracks.track[9].image[3]['#text'] }}"
+        - name: MBID
+          value_template: "{{ value_json.toptracks.track[9].mbid }}"
