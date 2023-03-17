@@ -1,0 +1,116 @@
+# Get Last.FM top artist data.
+
+- name: Last.fm Top Artists
+  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
+  scan_interval: 3600
+  sensor:
+    - unique_id: last_fm_top_artists_01
+      name: Last.fm Top Artists 01
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[0].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[0].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[0].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[0].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_02
+      name: Last.fm Top Artists 02
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[1].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[1].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[1].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[1].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_03
+      name: Last.fm Top Artists 03
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[2].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[2].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[2].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[2].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_04
+      name: Last.fm Top Artists 04
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[3].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[3].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[3].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[3].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_05
+      name: Last.fm Top Artists 05
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[4].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[4].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[4].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[4].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_06
+      name: Last.fm Top Artists 06
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[5].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[5].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[5].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[5].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_07
+      name: Last.fm Top Artists 07
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[6].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[6].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[6].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[6].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_08
+      name: Last.fm Top Artists 08
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[7].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[7].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[7].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[7].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_09
+      name: Last.fm Top Artists 09
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[8].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[8].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[8].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[8].image[3]['#text'] }}"
+    - unique_id: last_fm_top_artists_10
+      name: Last.fm Top Artists 10
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topartists.artist[9].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topartists.artist[9].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topartists.artist[9].playcount }}"
+        - name: Art
+          value_template: "{{ value_json.topartists.artist[9].image[3]['#text'] }}"
