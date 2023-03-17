@@ -1,8 +1,8 @@
 # Get Last.FM top track data.
 
 - name: Last.fm Top Tracks
-  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
-  scan_interval: 600
+  resource: !secret last_fm_api_url_top_tracks
+  scan_interval: 3600
   sensor:
     - unique_id: last_fm_top_tracks_01
       name: Last.fm Top Tracks 01
