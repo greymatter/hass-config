@@ -1,7 +1,7 @@
 # Get Last.FM top artist data.
 
 - name: Last.fm Top Artists
-  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
+  resource: resource: !secret last_fm_api_url_top_artists
   scan_interval: 3600
   sensor:
     - unique_id: last_fm_top_artists_01
