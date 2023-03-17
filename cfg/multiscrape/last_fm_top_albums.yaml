@@ -1,7 +1,7 @@
 # Get Last.FM album data.
 
 - name: Last.fm Top Albums
-  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
+  resource: !secret last_fm_api_url_top_albums
   scan_interval: 3600
   sensor:
     - unique_id: last_fm_top_albums_01
