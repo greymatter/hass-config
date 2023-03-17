@@ -1,0 +1,29 @@
+## scrape alpine valley ski conditions ###########################################################
+
+- name: Alpine Valley Snow Report
+  resource: https://skialpinevalley.com/snow-conditions/
+  scan_interval: 3600
+  #log_response: true
+  sensor:
+    - name: alpine_valley_runs_ambush_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(6) > td:nth-child(2) > span'
+    - name: alpine_valley_terrain_parks_feature_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(3) > td:nth-child(3) > span'
+    - name: alpine_valley_runs_yodelers_run_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(5) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_rendezvous_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(7) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_hogs_back_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(9) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_sunset_ridge_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-2.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-first > div > div.table-1 > table > tbody > tr:nth-child(10) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_snow_cross_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-3.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-last > div > div.table-1 > table > tbody > tr:nth-child(2) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_rumpelstiltskin_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-3.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-last > div > div.table-1 > table > tbody > tr:nth-child(4) > td:nth-child(2) > span'
+    - name: alpine_valley_runs_glacier_open
+      select: '#post-7 > div > div.fusion-fullwidth.fullwidth-box.fusion-builder-row-2.nonhundred-percent-fullwidth.non-hundred-percent-height-scrolling > div > div.fusion-layout-column.fusion_builder_column.fusion-builder-column-3.fusion_builder_column_1_2.\31 _2.fusion-one-half.fusion-column-last > div > div.table-1 > table > tbody > tr:nth-child(5) > td:nth-child(2) > span'
+    #- name: alpine_valley_runs_hogs_back_open
+    #  select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(8) > div.styles_box__1sXJN > div > div.styles_box__3XF8j.slopesColors_fillGreen__25hpD > div:nth-child(2) > div.styles_value__fB0LV"
+    #- name: alpine_valley_runs_hogs_back_open
+    #  select: "#__next > div.container > div.styles_layout__2aTIJ.layout_layoutContainer__27fok.pt-3 > div > article:nth-child(9) > div.styles_box__1sXJN > div > div > div:nth-child(2) > div.styles_value__fB0LV"
