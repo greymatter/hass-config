@@ -1,0 +1,136 @@
+# Get Last.FM album data.
+
+- name: Last.fm Top Albums
+  resource: https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=s4biturbo&api_key=539a04ebe23de9e19fbcfe47b44b0e73&format=json
+  scan_interval: 3600
+  sensor:
+    - unique_id: last_fm_top_albums_01
+      name: Last.fm Top Albums 01
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[0].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[0].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[0].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[0].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[0].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_02
+      name: Last.fm Top Albums 02
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[1].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[1].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[1].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[1].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[1].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_03
+      name: Last.fm Top Albums 03
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[2].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[2].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[2].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[2].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[2].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_04
+      name: Last.fm Top Albums 04
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[3].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[3].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[3].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[3].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[3].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_05
+      name: Last.fm Top Albums 05
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[4].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[4].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[4].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[4].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[4].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_06
+      name: Last.fm Top Albums 06
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[5].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[5].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[5].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[5].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[5].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_07
+      name: Last.fm Top Albums 07
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[6].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[6].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[6].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[6].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[6].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_08
+      name: Last.fm Top Albums 08
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[7].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[7].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[7].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[7].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[7].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_09
+      name: Last.fm Top Albums 09
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[8].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[8].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[8].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[8].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[8].image[3]['#text'] }}"
+    - unique_id: last_fm_top_albums_10
+      name: Last.fm Top Albums 10
+      icon: fab:lastfm-square
+      value_template: "{{ value_json.topalbums.album[9].name }}"
+      attributes:
+        - name: Artist Name
+          value_template: "{{ value_json.topalbums.album[9].artist.name }}"
+        - name: Album Name
+          value_template: "{{ value_json.topalbums.album[9].name }}"
+        - name: Play Count
+          value_template: "{{ value_json.topalbums.album[9].playcount }}"
+        - name: Album Art
+          value_template: "{{ value_json.topalbums.album[9].image[3]['#text'] }}"
