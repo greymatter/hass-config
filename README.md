@@ -51,23 +51,23 @@ I am actually still in the process of implmenting pieces of the Maximalist Dashb
 - [SSH & Web Terminal](https://github.com/home-assistant/hassio-addons/tree/master/ssh)
 - [Check HA Configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer)
-- [Portainer](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Chrony](https://github.com/Expaso/hassos-addon-pgadmin4)
 - AirCast
 - AirSonos
 - Network UPS Tools
+https://github.com/hassio-addons/addon-appdaemon
 
 #### Automation ####
-- [Simple Scheduler](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Node-RED](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Simple Scheduler](https://github.com/arthurdent75/SimpleScheduler)
+- [Node-RED](https://github.com/hassio-addons/addon-node-red)
 - AppDaemon
 - Assistant Relay
 - RPC Shutdown
 - Traccar
 
+
 #### Dev ####
-- [Studio Code Server](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [JupyterLab](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Studio Code Server](https://github.com/hassio-addons/addon-vscode)
+- [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab)
 
 
 #### Backup ####
@@ -77,52 +77,52 @@ I am actually still in the process of implmenting pieces of the Maximalist Dashb
 
 
 #### Device MGMT ####
-- [EMQX / MQTT](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
-- [ESPHome](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Z-Wave JS UI](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [EMQX / MQTT](https://github.com/hassio-addons/addon-emqx)
+- [ESPHome](https://esphome.io/)
+- [Z-Wave JS UI](https://github.com/hassio-addons/addon-zwave-js-ui)
+
 
 
 #### Database ####
 - [PostgreSQL / TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
-- [InfluxDB](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Grafana](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [MariaDB](https://mariadb.com/)
-- [phpMyAdmin](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb)
+- [Grafana](https://github.com/hassio-addons/addon-grafana)
+- [MariaDB](https://github.com/home-assistant/addons/tree/master/mariadb)
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin)
 
 
 #### Monitoring ####
-- [Telegraf](https://mariadb.com/)
-- [Uptime Kuma](https://mariadb.com/)
-- [Netbox](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Telegraf](https://github.com/Sabuto/hassio-telegraf)
+- [Uptime Kuma](https://github.com/hassio-addons/addon-uptime-kuma)
+- [Netbox](https://github.com/casperklein/homeassistant-addons/tree/master/netbox)
 
 
 #### Comms ####
-- [Matrix](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Matrix](https://github.com/hassio-addons/addon-matrix)
+- [Synapse-Admin](https://github.com/Awesome-Technologies/synapse-admin)
+- [Asterisk](https://github.com/TECH7Fox/asterisk-hass-addons)
 
 
 #### Chore & Tasks / Inventory ####
-- [Grocy](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Grocy](https://github.com/hassio-addons/addon-grocy)
 
 
 #### Recipes ####
-- [ESMealie](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Mealie](https://github.com/alexbelgium/hassio-addons)
+
+
+#### Network / Server Admin tools ####
+- [Portainer](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [noVNC](https://github.com/Poeschl/Hassio-Addons/tree/main/vnc-viewer)
+- [Chrony](https://github.com/hassio-addons/addon-chrony)
 
 
 #### Self Hosted Apps ####
-- [Vaultwarden](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Bookstack](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Paperless-ngx](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Joplin](https://github.com/Expaso/hassos-addon-pgadmin4)
+- [Vaultwarden](https://github.com/hassio-addons/addon-bitwarden)
+- [Bookstack](https://github.com/hassio-addons/addon-bookstack)
+- [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
+- [Joplin](https://github.com/alexbelgium/hassio-addons)
 
-
-
-### Addons - Experimental ###
-- Asterisk
-- Cedalo-Mgmt-Center
-- Firefly iii
-- Firefly iii FinTS Importer
-- n8n
 
 
 
@@ -322,7 +322,7 @@ My system is an Intel NUC i3 with 8GB memory and 160GB m2 SSD
 - Aeotec Z-Wave Stick 6
 - SkyConnect (ordered)
 
-Its connected to IP KVM and run other wise headless in a server cabinet
+Its connected to IP KVM and runs headless in a server cabinet
  - USB devices are routed via USB extensions out of cabinet to minimize inteference with both cabinet and USB 3.0 ports
 
 
@@ -330,13 +330,13 @@ Its connected to IP KVM and run other wise headless in a server cabinet
 ## Network ##
 
 ### Wired ###
-- Cisco 3750G/E-48-POE Stack (x2)
-- Cisco 3750X-48-POE Edge
-- Cisco 3560G-48-POE Edge
+- Cisco 3750G/E-48-POE Stack (x2) CORE L2
+- Cisco 3750X-48-POE
+- Cisco 3560G-48-POE
 
 ### Wireless ###
 - Cisco vWLC
-- Cisco 37xx AP's (x6)
+- Cisco 37xx AP's (x8)
 - Cisco 36XX AP's with AC Modules (x5)
 
 
@@ -388,10 +388,8 @@ Its connected to IP KVM and run other wise headless in a server cabinet
 - UPB Plugs (x2)
 
 ### Other ###
-- [Unipi Neuron M203](https://www.unipi.technology/unipi-neuron-m203-p97)
-- [Unipi Extension xS11](https://www.unipi.technology/unipi-extension-xs11-p336?categoryId=40)
-- [1 x Shelly EM to monitor solarpanels](https://shelly.cloud/products/shelly-em-smart-home-automation-device/)
 
+Coming...
 
 ## Ordered ##
 
@@ -401,7 +399,7 @@ Its connected to IP KVM and run other wise headless in a server cabinet
 
 ## Automations ##
 
-Coming
+Coming...
 
 
 
