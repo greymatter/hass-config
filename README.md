@@ -11,21 +11,19 @@ I will eventually write a summary here but this is just some text to take up spa
 
 # Frontend #
 
-I recently and am actually still in the process of implmenting most of the pieces of the Maximalist Front End by Madelena Mak.
+I am actually still in the process of implmenting pieces of the Maximalist Dashboard
+
+
+- ####  [Maximalist Dashboard   By MMAK.ES](https://github.com/Madelena/hass-config-public)
 
 
 
+### Themes used (slightly adjusted):
 
 
-Themes used (slightly adjusted):
-- Metrology - Based on vX.XX and then further Customized by myself, I've renamed to prevent wiping out any changes on future upgrades.
+- ####  [Metrology   Metro + Fluent + Windows Themes   By MMAK.ES](https://github.com/Madelena/Metrology-for-Hass)
 
-###  [Metrology   Metro + Fluent + Windows Themes   By Mmak.Es](https://github.com/Madelena/Metrology-for-Hass)
 
-_🎨 Give your Home Assistant a modern and clean facelift. 🟥🟧🟩🟦🟪 24 Variations with 2 Styles + 6 Colors (Magenta Red / Orange / Green / Blue / Purple) + 🌞 Light and 🌚 Dark modes included. Based on Metro and Fluent UI Design Systems from Microsoft Windows._
-
-**Version** | v.1.9.1
---|--
 
 
 
@@ -41,7 +39,7 @@ _🎨 Give your Home Assistant a modern and clean facelift. 🟥🟧🟩🟦🟪
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Neighborhood.png)
 
-![](https://github.com/greymatter/hass-config/blob/main/screenshots/Travel.png)
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Lighting_shop.png)
 
 # Backend #
 
@@ -73,12 +71,13 @@ _🎨 Give your Home Assistant a modern and clean facelift. 🟥🟧🟩🟦🟪
 
 
 #### Backup ####
+- [Home Assistant Samba Backup](https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup)
 - [Home Assistant NextCloud Backup](https://github.com/Sebclem/hassio-nextcloud-backup)
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup)
 
 
 #### Device MGMT ####
-- [Mosquitto Broker / MQTT](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
+- [EMQX / MQTT](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
 - [ESPHome](https://github.com/Expaso/hassos-addon-pgadmin4)
 - [Z-Wave JS UI](https://github.com/Expaso/hassos-addon-pgadmin4)
 
@@ -95,11 +94,10 @@ _🎨 Give your Home Assistant a modern and clean facelift. 🟥🟧🟩🟦🟪
 - [Telegraf](https://mariadb.com/)
 - [Uptime Kuma](https://mariadb.com/)
 - [Netbox](https://github.com/Expaso/hassos-addon-pgadmin4)
-- Glances  - DISABLED
+
 
 #### Comms ####
 - [Matrix](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [Synapse Admin](https://github.com/Expaso/hassos-addon-pgadmin4)
 
 
 #### Chore & Tasks / Inventory ####
@@ -319,10 +317,10 @@ _🎨 Give your Home Assistant a modern and clean facelift. 🟥🟧🟩🟦🟪
 ## System Hardware ##
 
 ### System ###
-My system is an Intel NUC i3 with 16GB memory and 160GB m2 SSD
+My system is an Intel NUC i3 with 8GB memory and 160GB m2 SSD
 
 - Aeotec Z-Wave Stick 6
-- SkyLink zigbee thingie ordered
+- SkyConnect (ordered)
 
 Its connected to IP KVM and run other wise headless in a server cabinet
  - USB devices are routed via USB extensions out of cabinet to minimize inteference with both cabinet and USB 3.0 ports
@@ -351,39 +349,43 @@ Its connected to IP KVM and run other wise headless in a server cabinet
 - Elk M1
   - UPB GW
 - ISY99i 
-  - Insteon GW
+  - Insteon Gateway
+- DTE Energy Bridge
 
 ### Tablet ###
 - 2x Windows Tablets
 
 
 ### Smart Speakers ###
-- [1x Google Nest Hub Max](https://store.google.com/us/product/google_nest_hub_max?hl=en-US)
-- [4x Google Nest Hub](https://store.google.com/be/product/google_nest_hub?hl=nl-BE)
-- [1x Google Home Mini](https://store.google.com/be/product/google_nest_mini?hl=nl-BE)
-- [1x JBL Link Music](https://be.jbl.com/smart-speaker/LINK+MUSIC.html?dwvar_LINK%20MUSIC_color=Brown-EMEA-Current&cgid=smart-speaker#start=1)
-- [1x JBL Bar 9.1](https://be.jbl.com/soundbars/JBL+BAR+9.1+TWS-.html?dwvar_JBL%20BAR%209.1%20TWS-_color=Black-EMEA-Current&cgid=Soundbars#start=1)
+- 1x Google Nest Hub
+- 1x OG Google Home
+- 4x Google Home Mini
 
 
-### Lights ###
-- [Philips Hue GU10](https://www2.meethue.com/nl-be/p/hue-white-ambiance-2-pack-gu10/8718699629298)
-- [Philips Hue E14](https://www2.meethue.com/nl-be/p/hue-white-ambiance-losse-kaarslamp-e14-duopak/8718696695265)
-- [Philips Hue E27](https://www2.meethue.com/nl-be/p/hue-white-1-pack-e27/8718696785317)
-- [Icasa Zigbee Dimmer](https://www.beaumotica.nl/icasa-iczb-iw11d-ac-dimmer-7061257407014)
-- [Icasa Zigbee Switch](https://www.beaumotica.nl/icasa-iczb-iw11sw-ac-switch-7104389273352)
-- [1x 0-10V Zigbee Dimmer](https://nl.aliexpress.com/item/10000015907761.html?spm=a2g0s.9042311.0.0.5e474c4dpS99hs)
 
+### Light Bulbs ###
+- Philips Hue A19 White/Color Bulb (6x)
+- Sonoff A05 (Testing)
+
+### Switches ###
+- Insteon 6 button (x2)
+- Inston single gang (x2)
+- UPB Switch (x8)
+- UPB High Amp Fan Switch (x1)
 
 
 ### Sensors ###
-- [4x Aqara door/window sensors](https://www.xiaomiproducts.nl/xiaomi-aqara-deur-en-raam-sensor-104834619.html)
-- [3x Hue Motion Sensors](https://www.philips-hue.com/nl-be/p/hue-bewegingssensor/8718696743171)
+- Aeotec Multisensor 6
+- Aeotec Door/Window Sensor
+- Aeotech Power Monitors (x2)
 
 ### Plugs ###
-- [5x Blitzwolf Smart Plugs](https://m.blitzwolf.com/ZigBee-3.0-Smart-Socket-EU-p-518.html)
-- [2x Innr SP120 Plugs](https://www.beaumotica.nl/innr-smart-plug-aan-uit-schakelaar-doorsteek-stekker)
-- [1x Silvercrest outdoor smart socket](https://evergreenproductinfo.com/2021/09/28/silvercrest-garden-spike-with-2-zigbee-smart-home-socketsfunctions-control-with-lidl-home-appwireless-connection-protocol-zigbee-3-0-output-16-a-230-v-3680-w-max/)
-
+- Aeotec Smart Switch
+- Aeotec Smart Switch 6
+- Aeotec Smart Switch 7
+- Sonoff S31 Pro (x3)
+- Insteon Plugs (x8)
+- UPB Plugs (x2)
 
 ### Other ###
 - [Unipi Neuron M203](https://www.unipi.technology/unipi-neuron-m203-p97)
@@ -393,7 +395,8 @@ Its connected to IP KVM and run other wise headless in a server cabinet
 
 ## Ordered ##
 
-Nothing
+- [SkyConnect](https://www.home-assistant.io/skyconnect/)
+- Second DTE Energy Bridge for Workshop
 
 
 ## Automations ##
@@ -455,7 +458,4 @@ Inspiration and code was taken from many different sources:
 - [Madelena](https://github.com/Madelena/hass-config-public)
 - [Basnijholt](https://github.com/basnijholt/home-assistant-config)
 
-
-- [Duboisph](https://github.com/duboisph/home-assistant-config)
-- [Hmmbob](https://github.com/hmmbob/HomeAssistantConfig)
-- [Pinkywafer](https://github.com/pinkywafer/Home-Assistant_Config)
+more to come... there are a lot!
