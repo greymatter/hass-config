@@ -44,28 +44,16 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 # Backend #
 
 
-### Addons - Production ###
-
-#### HA-Admin ####
-- [Samba Share](https://github.com/home-assistant/hassio-addons/tree/master/samba)
-- [SSH & Web Terminal](https://github.com/home-assistant/hassio-addons/tree/master/ssh)
-- [Check HA Configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)
-- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer)
-
-
+### Addons - Noteworthy ### 
+[view complete list](https://github.com/greymatter/hass-config/wiki/All-AddOns)
 
 #### Automation ####
 - [Simple Scheduler](https://github.com/arthurdent75/SimpleScheduler)
 - [Node-RED](https://github.com/hassio-addons/addon-node-red)
 - [AppDaemon](https://github.com/hassio-addons/addon-appdaemon)
-- RPC Shutdown
-
-
 
 #### Dev ####
 - [Studio Code Server](https://github.com/hassio-addons/addon-vscode)
-- [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab)
-
 
 #### Backup ####
 - [Home Assistant Samba Backup](https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup)
@@ -79,13 +67,10 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [Z-Wave JS UI](https://github.com/hassio-addons/addon-zwave-js-ui)
 
 
-
 #### Database ####
 - [PostgreSQL / TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb)
 - [Grafana](https://github.com/hassio-addons/addon-grafana)
-- [MariaDB](https://github.com/home-assistant/addons/tree/master/mariadb)
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin)
 
 
 #### Monitoring ####
@@ -96,8 +81,6 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 #### Comms ####
 - [Matrix](https://github.com/hassio-addons/addon-matrix)
-- [Synapse-Admin](https://github.com/Awesome-Technologies/synapse-admin)
-- [Asterisk](https://github.com/TECH7Fox/asterisk-hass-addons)
 
 
 #### Chore & Tasks / Inventory ####
@@ -108,58 +91,22 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [Mealie](https://github.com/alexbelgium/hassio-addons)
 
 
-#### Network / Server Admin tools ####
-- [Portainer](https://github.com/Expaso/hassos-addon-pgadmin4)
-- [noVNC](https://github.com/Poeschl/Hassio-Addons/tree/main/vnc-viewer)
-- [Chrony](https://github.com/hassio-addons/addon-chrony)
-
-
-#### Self Hosted Apps ####
-- [Vaultwarden](https://github.com/hassio-addons/addon-bitwarden)
-- [Bookstack](https://github.com/hassio-addons/addon-bookstack)
-- [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
-- [Joplin](https://github.com/alexbelgium/hassio-addons)
-
 
 
 
 
 
 ### Custom integrations
-- [Adaptive Lighting](https://github.com/basnijholt/adaptive-lighting)
-- [Anniversaries](https://github.com/pinkywafer/Anniversaries)
-- [Asterisk Hass Integration](https://github.com/TECH7Fox/asterisk-hass-integration)
+[view complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
 - [Astroweather](https://github.com/mawinkler/astroweather)
-- [Auto Backup](https://github.com/jcwillox/hass-auto-backup)
-- [Blitzortung.Org Lightning Detector](https://github.com/mrk-its/homeassistant-blitzortung)
 - [Blueiris Nvr](https://github.com/elad-bar/ha-blueiris)
 - [Browser Mod](https://github.com/thomasloven/hass-browser_mod)
-- [Car Wash](https://github.com/Limych/ha-car_wash)
-- [Couchpotato](https://github.com/youdroid/home-assistant-couchpotato)
-- [Crypto Tracker](https://github.com/BigNocciolino/CryptoTracker)
-- [Cryptoinfo](https://github.com/heyajohnny/cryptoinfo)
-- [Email Sensor](https://github.com/ljmerza/ha-email-sensor)
-- [Emsc Earthquake Rss Feed](https://github.com/msekoranja/emsc-hacs-repository)
 - [Esxi Stats](https://github.com/wxt9861/esxi_stats)
 - [Event Sensor](https://github.com/azogue/eventsensor)
-- [Fedex](https://github.com/custom-components/fedex)
-- [Feedparser](https://github.com/custom-components/feedparser)
-- [Fontawesome](https://github.com/thomasloven/hass-fontawesome)
-- [Garbage Collection](https://github.com/bruxy70/Garbage-Collection)
-- [Generate Readme](https://github.com/custom-components/readme)
 - [Google Home](https://github.com/leikoilja/ha-google-home)
 - [Grocy Custom Component](https://github.com/custom-components/grocy)
-- [Ha Meural](https://github.com/GuySie/ha-meural)
 - [HACS](https://github.com/hacs/integration)
 - [Ham Radio Propagation](https://github.com/emics/ham_radio_propagation)
-- [Hass Custom Alarm](https://github.com/akasma74/Hass-Custom-Alarm)
-- [Hass Favicon](https://github.com/thomasloven/hass-favicon)
-- [Hass.Agent](https://github.com/LAB02-Research/HASS.Agent-Integration)
-- [Hdhomerun](https://github.com/burnnat/ha-hdhomerun)
-- [Hdhomerun](https://github.com/uvjim/hass_hdhomerun)
-- [Helium Blockchain](https://github.com/rsnodgrass/hass-helium)
-- [Hifiberry](https://github.com/willholdoway/hifiberry)
-- [Holidays](https://github.com/bruxy70/Holidays)
 - [Hp Printers Integration](https://github.com/elad-bar/ha-hpprinter)
 - [Icloud3 Device Tracker](https://github.com/gcobb321/icloud3)
 - [Ics Calendar (Icalendar)](https://github.com/franc6/ics_calendar)
@@ -173,31 +120,19 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [Noaa Space Weather](https://github.com/tcarwash/home-assistant_noaa-space-weather)
 - [Node Red Companion](https://github.com/zachowj/hass-node-red)
 - [Nws Alerts](https://github.com/finity69x2/nws_alerts)
-- [Office 365 Integration](https://github.com/RogerSelwyn/O365-HomeAssistant)
 - [Openweathermap All](https://github.com/viktak/ha-cc-openweathermap_all)
 - [Opnsense Integration For Home Assistant](https://github.com/travisghansen/hass-opnsense)
-- [Pirate Weather](https://github.com/alexander0042/pirate-weather-ha)
 - [Powercalc](https://github.com/bramstroker/homeassistant-powercalc)
-- [Redfin](https://github.com/dreed47/redfin)
-- [Remote Home Assistant](https://github.com/custom-components/remote_homeassistant)
-- [Satellite Tracker (N2Yo)](https://github.com/djtimca/hasatellitetracker)
 - [Scheduler Component](https://github.com/nielsfaber/scheduler-component)
-- [Sensor.Ssh](https://github.com/custom-components/sensor.ssh)
-- [Simpleicons](https://github.com/vigonotion/hass-simpleicons)
 - [Skyfield Panel With Sun, Moon, And Planets](https://github.com/partofthething/ha_skyfield)
-- [Snowtire Sensor](https://github.com/Limych/ha-snowtire)
 - [Sonoff Lan](https://github.com/AlexxIT/SonoffLAN)
-- [Spacex Next Launch And Starman](https://github.com/djtimca/HASpaceX)
-- [Spotcast](https://github.com/fondberg/spotcast)
 - [Thermal Comfort](https://github.com/dolezsa/thermal_comfort)
 - [Uptime Kuma](https://github.com/meichthys/uptime_kuma)
-- [Variables+History](https://github.com/Wibias/hass-variables)
-- [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule)
-- [Yahoo Finance](https://github.com/iprak/yahoofinance)
 
 
 
 ### Lovelace plugins
+[view complete list](https://github.com/greymatter/hass-config/wiki/Lovelace-Plugins)
 - [Air Visual Card](https://github.com/dnguyen800/air-visual-card)
 - [Apexcharts Card](https://github.com/RomRider/apexcharts-card)
 - [Astroweather Card](https://github.com/mawinkler/astroweather-card)
