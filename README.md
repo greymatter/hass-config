@@ -51,18 +51,15 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [SSH & Web Terminal](https://github.com/home-assistant/hassio-addons/tree/master/ssh)
 - [Check HA Configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer)
-- AirCast
-- AirSonos
-- Network UPS Tools
-https://github.com/hassio-addons/addon-appdaemon
+
+
 
 #### Automation ####
 - [Simple Scheduler](https://github.com/arthurdent75/SimpleScheduler)
 - [Node-RED](https://github.com/hassio-addons/addon-node-red)
-- AppDaemon
-- Assistant Relay
+- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon)
 - RPC Shutdown
-- Traccar
+
 
 
 #### Dev ####
