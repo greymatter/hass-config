@@ -1,0 +1,502 @@
+#########################################################
+#                        MQTT                           #
+#########################################################
+sensor:
+  ###########################################################################
+  #                               telegraf                                  #
+  ###########################################################################
+
+  - name: "hassio Uptime"
+    state_topic: "telegraf/hassio/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "hassio Disk Freespace"
+    state_topic: "telegraf/hassio/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'sda8' %}
+      {{ float(value_json.fields.free / 1073741824) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.hassio_disk_freespace') | round(2)) }}
+      {% endif %}
+
+  - name: "hassio CPU"
+    state_topic: "telegraf/hassio/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "Pihole1 Uptime"
+    state_topic: "telegraf/pihole1/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+    #json_attributes_topic: "telegraf/pihole1/system"
+    #json_attributes_template: "{{ value_json.fields | tojson }}"
+
+  - name: "Pihole1 Disk Freespace"
+    state_topic: "telegraf/pihole1/disk"
+    unit_of_measurement: "GB"
+    #value_template: "{{ value_json.fields.free }}"
+    #value_template: "{{ value_json.fields.free if value_json.tags.path == '/' }}"
+    value_template: >
+      {% if value_json.tags.device == 'mmcblk0p2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.pihole1_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "Pihole1 CPU"
+    state_topic: "telegraf/pihole1/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "Pihole1 Memory Used"
+    state_topic: "telegraf/pihole1/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "Pihole2 Uptime"
+    state_topic: "telegraf/pihole2/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "Pihole2 Disk Freespace"
+    state_topic: "telegraf/pihole2/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'mmcblk0p2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.pihole2_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "Pihole2 CPU"
+    state_topic: "telegraf/pihole2/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "Pihole2 Memory Used"
+    state_topic: "telegraf/pihole2/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "Docker1 Uptime"
+    state_topic: "telegraf/docker1/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "Docker1 Disk Freespace"
+    state_topic: "telegraf/docker1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'dm-0' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.docker1_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "Docker1 CPU"
+    state_topic: "telegraf/docker1/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "Docker1 Memory Used"
+    state_topic: "telegraf/docker1/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "iPBX Uptime"
+    state_topic: "telegraf/ipbx2/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "iPBX Disk Freespace"
+    state_topic: "telegraf/ipbx2/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'mmcblk0p2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.ipbx_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "iPBX CPU"
+    state_topic: "telegraf/ipbx2/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "iPBX Memory Used"
+    state_topic: "telegraf/ipbx2/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "SDRpi Uptime"
+    state_topic: "telegraf/SDRpi/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "SDRpi Disk Freespace"
+    state_topic: "telegraf/SDRpi/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'mmcblk0p2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.SDRpi_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "SDRpi CPU"
+    state_topic: "telegraf/SDRpi/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "SDRpi Memory Used"
+    state_topic: "telegraf/SDRpi/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "loki Uptime"
+    state_topic: "telegraf/loki/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "loki Disk Freespace"
+    state_topic: "telegraf/loki/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'gpt/rootfs' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.loki_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "loki CPU"
+    state_topic: "telegraf/loki/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "loki Memory Used"
+    state_topic: "telegraf/loki/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "GMHQUR1 Uptime"
+    state_topic: "telegraf/GMHQUR1/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "GMHQUR1 Disk Freespace Array"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/user' %}
+      {{ float(value_json.fields.free / 1073741824) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqur1_disk_freespace_array') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace cache"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/cache' %}
+      {{ float(value_json.fields.free / 1073741824) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqur1_disk_freespace_cache') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 1"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk1' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_1') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 2"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_2') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 3"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk3' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_3') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 4"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk4' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_4') | round(2) }}
+      {% endif %}
+
+  #- name: "GMHQUR1 Disk Freespace Disk 5"
+  #  state_topic: "telegraf/GMHQUR1/disk"
+  #  unit_of_measurement: "GB"
+  #  value_template: >
+  #    {% if value_json.tags.path == '/rootfs/mnt/disk5' %}
+  #    {{ value_json.fields.free / 1073741824 | round(2) }}
+  #    {% else %}
+  #    {{ states('sensor.gmhqur1_disk_freespace_disk_5') | round(2) }}
+  #    {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 6"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk6' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_6') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQUR1 Disk Freespace Disk 7"
+    state_topic: "telegraf/GMHQUR1/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.path == '/rootfs/mnt/disk7' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqur1_disk_freespace_disk_7') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQUR1 CPU"
+    state_topic: "telegraf/GMHQUR1/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "GMHQUR1 Memory Used"
+    state_topic: "telegraf/GMHQUR1/mem"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.used_percent ) | round(2) }}"
+
+  - name: "GMHQESXi04 Uptime"
+    state_topic: "telegraf/GMHQESXi04/system"
+    value_template: "{{ value_json.fields.uptime_format }}"
+
+  - name: "GMHQESXi04 Disk Freespace"
+    state_topic: "telegraf/GMHQESXi04/disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.device == 'mmcblk0p2' %}
+      {{ value_json.fields.free / 1073741824 | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqesxi04_disk_freespace') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQESXi04 CPU"
+    state_topic: "telegraf/GMHQESXi04/cpu"
+    unit_of_measurement: "%"
+    value_template: "{{ float(value_json.fields.usage_user + value_json.fields.usage_system) | round(2) }}"
+
+  - name: "GMHQDC3 Uptime"
+    state_topic: "telegraf/GMHQDC3/win_system"
+    value_template: "{{ value_json.fields.System_Up_Time }}"
+
+  - name: "GMHQDC3 Disk Freespace"
+    state_topic: "telegraf/GMHQDC3/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'C:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqdc3_disk_freespace') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQDC3 CPU"
+    state_topic: "telegraf/GMHQDC3/win_cpu"
+    unit_of_measurement: "%"
+    value_template: >
+      {% if value_json.tags.instance == '_Total' %}                                                          
+      {{ float(100 - value_json.fields.Percent_Idle_Time) | round(2) }}                                        
+      {% else %}                                                                                         
+      {{ states('sensor.gmhqdc3_cpu') | round(2) }}                                           
+      {% endif %}
+
+  - name: "GMHQDC4 Uptime"
+    state_topic: "telegraf/GMHQDC4/win_system"
+    value_template: "{{ value_json.fields.System_Up_Time}}"
+
+  - name: "GMHQDC4 Disk Freespace"
+    state_topic: "telegraf/GMHQDC4/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'C:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqdc4_disk_freespace') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQDC4 CPU"
+    state_topic: "telegraf/GMHQDC4/win_cpu"
+    unit_of_measurement: "%"
+    value_template: >
+      {% if value_json.tags.instance == '_Total' %}
+      {{ float(100 - value_json.fields.Percent_Idle_Time) | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqdc4_cpu') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQBI1 Uptime"
+    state_topic: "telegraf/GMHQBI1/win_system"
+    value_template: "{{ value_json.fields.System_Up_Time }}"
+
+  - name: "GMHQBI1 Disk Freespace C"
+    state_topic: "telegraf/GMHQBI1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'C:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqbi1_disk_freespace_c') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQBI1 Disk Freespace D"
+    state_topic: "telegraf/GMHQBI1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'D:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqbi1_disk_freespace_d') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQBI1 CPU"
+    state_topic: "telegraf/GMHQBI1/win_cpu"
+    unit_of_measurement: "%"
+    value_template: >
+      {% if value_json.tags.instance == '_Total' %}
+      {{ float(100 - value_json.fields.Percent_Idle_Time) | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqbi1_cpu') | round(2) }}
+      {% endif %}
+
+  - name: "GMHQCM1 Uptime"
+    state_topic: "telegraf/GMHQCM1/win_system"
+    value_template: "{{ value_json.fields.System_Up_Time }}"
+
+  - name: "GMHQCM1 Disk Freespace C"
+    state_topic: "telegraf/GMHQCM1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'C:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqcm1_disk_freespace_c') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQCM1 Disk Freespace D"
+    state_topic: "telegraf/GMHQCM1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'D:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqcm1_disk_freespace_d') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQCM1 Disk Freespace E"
+    state_topic: "telegraf/GMHQCM1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'E:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqcm1_disk_freespace_e') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQCM1 Disk Freespace F"
+    state_topic: "telegraf/GMHQCM1/win_disk"
+    unit_of_measurement: "GB"
+    value_template: >
+      {% if value_json.tags.instance == 'F:' and value_json.tags.objectname == 'LogicalDisk' %}
+      {{ float(value_json.fields.Free_Megabytes / 1024) | round(2) }}
+      {% else %}
+      {{ float(states('sensor.gmhqcm1_disk_freespace_f') | round(2)) }}
+      {% endif %}
+
+  - name: "GMHQCM1 CPU"
+    state_topic: "telegraf/GMHQCM1/win_cpu"
+    unit_of_measurement: "%"
+    value_template: >
+      {% if value_json.tags.instance == '_Total' %}
+      {{ float(100 - value_json.fields.Percent_Idle_Time) | round(2) }}
+      {% else %}
+      {{ states('sensor.gmhqcm1_cpu') | round(2) }}
+      {% endif %}
+
+  ###########################################################################
+  #                             ENERGY MGMT                                 #
+  ###########################################################################
+  - name: "Metermon Status"
+    state_topic: "metermon/status"
+    qos: 0
+    #value_template: "{{ value_json.status }}"
+
+  - name: "Gas Meter Reading"
+    state_topic: "metermon/96990904"
+    qos: 0
+    value_template: "{{ value_json.Consumption }}"
+    unit_of_measurement: ft^3
+    device_class: "gas"
+
+  - name: "Gas Meter Reading 2"
+    state_topic: "metermon/9808250"
+    qos: 0
+    value_template: "{{ value_json.Consumption }}"
+    unit_of_measurement: ft^3
+    device_class: "gas"
+
+  # new energy stuffs for both addresses
+  - name: "DTE Energy Bridge Summary 8xx1"
+    unique_id: sensor.dte_energy_bridge_summary_8xx1
+    state_topic: "dte/8xx1/event/metering/summation/minute"
+    qos: 0
+    value_template: "{{ value_json.value | round(4) }}"
+    unit_of_measurement: "W"
+    device_class: "energy"
+
+  #- name: "DTE Energy Bridge Summary 8051"
+  #  unique_id: sensor.dte_energy_bridge_summary_8051
+  #  state_topic: "8051"
+  #  qos: 0
+  #  value_template: "{{ value_json.time | round(6) }}"
+  #  unit_of_measurement: "W"
+  #  device_class: "energy"
+
+  - name: "DTE Energy Bridge Demand 8xx1"
+    unique_id: sensor.dte_energy_bridge_demand_8xx1
+    state_topic: "dte/8xx1/event/metering/instantaneous_demand"
+    qos: 0
+    value_template: "{{ value_json.demand | round(4) }}"
+    unit_of_measurement: "W"
+    device_class: "energy"
+
+  #- name: "DTE Energy Bridge Demand 8051"
+  #  unique_id: sensor.dte_energy_bridge_demand_8051
+  #  state_topic: "8051"
+  #  qos: 0
+  #  value_template: "{{ value_json.demand | round(6) }}"
+  #  unit_of_measurement: "W"
+  #  device_class: "energy"
+
+  - name: "DTE Energy Bridge Summary 8xx5"
+    state_topic: "8xx5/event/metering/summation/minute"
+    qos: 0
+    value_template: "{{ value_json.value | round(4) }}"
+    unit_of_measurement: "W"
+    device_class: "energy"
+
+  - name: "DTE Energy Bridge Demand 8xx5"
+    state_topic: "8xx5/event/metering/instantaneous_demand"
+    qos: 0
+    value_template: "{{ value_json.demand | round(4) }}"
+    unit_of_measurement: "W"
+    device_class: "energy"
