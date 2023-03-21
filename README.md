@@ -266,6 +266,7 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Cisco 3750X-48-POE
 - Cisco 3560G-48-POE
 
+
 ### Wireless ###
 - Cisco vWLC
 - Cisco 37xx AP's (x8)
@@ -277,12 +278,13 @@ Its connected to IP KVM and runs headless in a server cabinet
 ### Gateways ###
 - Aeotec Z-Wave Stick 6
 - Hue Hub
-- SkyConnect Zigbee / Matter
+- SkyConnect Zigbee / Matter (Ordered)
 - Elk M1
   - UPB GW
 - ISY99i 
   - Insteon Gateway
 - DTE Energy Bridge
+
 
 ### Tablet ###
 - 2x Windows Tablets
@@ -294,10 +296,16 @@ Its connected to IP KVM and runs headless in a server cabinet
 - 4x Google Home Mini
 
 
+### Media Players ###
+- RPi 3b+ - OSMC (x4)
+- OSMC Vera4k+
+- RPi 3b+ - Volumio (x2)
+
 
 ### Light Bulbs ###
 - Philips Hue A19 White/Color Bulb (6x)
 - Sonoff A05 (Testing)
+
 
 ### Switches ###
 - Insteon 6 button (x2)
