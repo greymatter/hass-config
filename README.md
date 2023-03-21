@@ -96,7 +96,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 
 
-### Custom integrations
+### Custom integrations ### -   [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
 
   [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
 
