@@ -1,0 +1,49 @@
+  snow_day:
+    name: Notify when snow day is announced
+    icon: 'mdi:snowflake-alert'
+
+  panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: 'mdi:shield-outline'
+
+  ecobee_away:
+    name: Ecobee Away Mode
+    icon: 'mdi:exit-run'
+
+  vacation_mode:
+    name: Vacation Mode
+    icon: 'mdi:airplane'
+
+  spring_mode:
+    name: Spring Mode
+    icon: 'mdi:leaf'
+
+  summer_mode:
+    name: Summer Mode
+    icon: 'mdi:white-balance-sunny'
+
+  fall_mode:
+    name: Fall Mode
+    icon: 'mdi:leaf'
+
+  winter_mode:
+    name: Winter Mode
+    icon: 'mdi:snowman'
+
+  disable_startup_notifications:
+    name: Disable Startup Notifications
+    icon: 'mdi:bell-off'
+
+  garage_door_1_open:
+    name: Garage Door 1 Open
+    icon: mdi:garage-open-variant
+
+  garage_door_2_open:
+    name: Garage Door 2 Open
+    icon: mdi:garage-open-variant
+
+  nws_multi_alert:
+    name: NWS Multiple Alerts At Once
+    #icon: mdi:alert
+
