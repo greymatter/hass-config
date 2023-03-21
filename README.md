@@ -96,7 +96,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 
 
-### Custom integrations ### -   [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
+### Custom integrations
 
   [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
 
@@ -135,7 +135,9 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 
 ### Lovelace plugins
-[view complete list](https://github.com/greymatter/hass-config/wiki/Lovelace-Plugins)
+
+[complete list](https://github.com/greymatter/hass-config/wiki/Lovelace-Plugins)
+
 - [Air Visual Card](https://github.com/dnguyen800/air-visual-card)
 - [Apexcharts Card](https://github.com/RomRider/apexcharts-card)
 - [Astroweather Card](https://github.com/mawinkler/astroweather-card)
