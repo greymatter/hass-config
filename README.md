@@ -346,6 +346,8 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Aeotec Smart Switch 6
 - Aeotec Smart Switch 7
 - Sonoff S31 Pro (x3)
+- Sonoff S40 Pro
+- Sonoff Micro (x6)
 - Insteon Plugs (x8)
 - Insteon HD plug (x2)
 - UPB Plugs (x2)
@@ -355,20 +357,31 @@ Its connected to IP KVM and runs headless in a server cabinet
 - UPB Phase Coupler
 - aeotec Siren
 - aeotec Repeater 7
+- Nest Wired Doorbell
+- Nest Protect (x4)
 
 
+### ESPHome Devices ###
 
 Coming...
+
 
 ## Ordered ##
 
 - [SkyConnect](https://www.home-assistant.io/skyconnect/)
 - Second DTE Energy Bridge for Workshop
+- [WiCAN Wifi ODB2 HA bridfe](https://www.crowdsupply.com/meatpi-electronics/wican)
 
 
 ## Automations ##
 
 Coming...
+
+
+### Planned Upgrades ###
+- implement Zigbee/Matter via SkyConnect
+- Upgrade Core switch stack to 3750x to be able to run ios 15.2+
+- Move vWLC to physical WLC controller
 
 
 
