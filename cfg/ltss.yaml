@@ -1,0 +1,8 @@
+db_url: !secret psql_ltss_db_url
+chunk_time_interval: 2592000000000
+include:
+  #domains:
+  #  - sensor
+  entities:
+    - sensor.cc_temperture
+    - sensor.cc_humidity
