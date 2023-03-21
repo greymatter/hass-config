@@ -1,0 +1,73 @@
+###########################################################
+#                      scrapes                            #
+###########################################################
+
+#  - resource: "https://flockpool.com/miners/rtm/RV3kwVxzM2CAF3VgdHmeaoEQjqbuti4tMd"
+#    scan_interval: 60
+#    sensor:
+#      - name: FlockPool Workers Online
+#        select: "#root > div > div > main > div > div > div.undefined.CardRow_row__vLl08.CardRow_grow__xur5F.CardRow_wrap__mvUY7 > div:nth-child(1) > div > div > div:nth-child(1) > p"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Low
+        select: "#spanLowPrice"
+        #value_template: '{{ value[1:].replace(",", "") | float | round(5) }}'
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Avg
+        select: "#spanAvgPrice"
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker High
+        select: "#spanHighPrice"
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Low USD
+        select: "#divLowPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Avg USD
+        select: "#divAvgPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker High USD
+        select: "#divHighPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+## monero pool ##################################################
+
+  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
+    sensor:
+      - name: XMR-Current-Hashrate
+        select: "#st-hr-total-2"
+
+  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
+    scan_interval: 60
+    sensor:
+      - name: XMR-Hashrate-Total
+        select: ".bs-ht-top"
+
+  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
+    verify_ssl: false
+    scan_interval: 60
+    sensor:
+      - name: XMR-Active-Workers
+        select: "span#st-workers-active"
+
