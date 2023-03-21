@@ -1,0 +1,97 @@
+  air_filter_lifespan:
+    name: Air Filter Lifespan
+    initial: 90
+    min: 0
+    max: 365
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  humid_pad_lifespan:
+    name: Humidifer Pad Lifespan
+    initial: 90
+    min: 0
+    max: 365
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  h20_fridge_filter_lifespan:
+    name: Air Filter Lifespan
+    initial: 180
+    min: 0
+    max: 365
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  h20_spindown_filter_lifespan:
+    name: Air Filter Lifespan
+    initial: 14
+    min: 0
+    max: 365
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  septic_pit_filter_lifespan:
+    name: Septic Tank Filter Lifespan
+    initial: 365
+    min: 0
+    max: 365
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  septic_pit_cleanout_lifespan:
+    name: Septic Tank Cleanout Lifespan
+    initial: 1095
+    min: 0
+    max: 1095
+    step: 1
+    mode: box
+    unit_of_measurement: days
+    icon: mdi:history
+
+  internet_traffic_delta_wanin:
+    name: "Traffic WanIN Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+  internet_traffic_delta_wanout:
+    name: "Traffic WanOUT Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+    
+  internet_traffic_delta_lanin:
+    name: "Traffic LanIN Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+  internet_traffic_delta_lanout:
+    name: "Traffic LanOUT Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+  uplink_traffic_delta_s2h_in:
+    name: "Uplink Traffic s2h IN Delta"
+    initial: 0                 
+    min: 0                     
+    max: 1000000000000             
+                      
+  uplink_traffic_delta_s2h_out:
+    name: "Uplink Traffic s2h OUT Delta"
+    initial: 0                  
+    min: 0                      
+    max: 1000000000000
+
+
