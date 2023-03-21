@@ -1,0 +1,22 @@
+  show_trending_icon: true
+  symbols:
+    - AAPL
+    - GOOGL
+    - ORCL
+    - DXC
+    - IBM
+    - TSLA
+    - MSFT
+    - CSCO
+    - F
+    - GM
+    - VWAGY
+    - GME
+    - AMC
+    - PAAS
+    - SLV
+    - CDE
+    - AJRD
+    - FSMAX
+  scan_interval:
+    hours: 4
