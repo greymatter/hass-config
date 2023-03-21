@@ -1,0 +1,27 @@
+pihole1_time:
+  name: PiHole1 Disable Time (seconds)
+  options:
+    - Select Time
+    - "10"
+    - "30"
+    - "60"
+    - "300"
+    - "600"
+    - "900"
+    - "1800"
+    - "3600"
+  initial: Select Time
+
+pihole2_time:
+  name: PiHole2 Disable Time (seconds)
+  options:
+    - Select Time
+    - "10"
+    - "30"
+    - "60"
+    - "300"
+    - "600"
+    - "900"
+    - "1800"
+    - "3600"
+  initial: Select Time
