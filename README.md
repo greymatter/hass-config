@@ -375,7 +375,7 @@ Coming...
 
 - [SkyConnect](https://www.home-assistant.io/skyconnect/)
 - Second DTE Energy Bridge for Workshop
-- [WiCAN Wifi ODB2 HA bridfe](https://www.crowdsupply.com/meatpi-electronics/wican)
+- [WiCAN Wifi ODB2 HA bridge](https://www.crowdsupply.com/meatpi-electronics/wican)
 
 
 ## Automations ##
