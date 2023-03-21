@@ -53,21 +53,4 @@
 
 ## monero pool ##################################################
 
-  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
-    sensor:
-      - name: XMR-Current-Hashrate
-        select: "#st-hr-total-2"
-
-  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
-    scan_interval: 60
-    sensor:
-      - name: XMR-Hashrate-Total
-        select: ".bs-ht-top"
-
-  - resource: "https://minexmr.com/dashboard?address=42nKjMjkmaUgbfhxLj2KWEEXWpyGPAjPZ3YmxXrmMHdNUewQtaAhaqw1T6PwtFU6YbjBnKvaFVv4BGaeS2W2vZNELPUEQyZ"
-    verify_ssl: false
-    scan_interval: 60
-    sensor:
-      - name: XMR-Active-Workers
-        select: "span#st-workers-active"
 
