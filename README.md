@@ -11,7 +11,7 @@ I will eventually write a summary here but this is just some text to take up spa
 
 # Frontend #
 
-I am in the process of implementing pieces of the Maximalist Dashboard.  This is a very slick setup and is comprised of well layed out CSS and template driven yaml frontend.
+I am in the process of implementing pieces of the Maximalist Dashboard.  This is a very slick setup and is comprised of well layered CSS and template driven yaml frontend with some amazing dashboards.
 
 
 - ####  [Maximalist Dashboard   By MMAK.ES](https://github.com/Madelena/hass-config-public)
