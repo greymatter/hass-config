@@ -45,7 +45,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 
 ### Addons - Noteworthy ### 
-[view complete list](https://github.com/greymatter/hass-config/wiki/All-AddOns)
+- [view complete list](https://github.com/greymatter/hass-config/wiki/All-AddOns)
 
 #### Automation ####
 - [Simple Scheduler](https://github.com/arthurdent75/SimpleScheduler)
@@ -98,7 +98,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 ### Custom integrations
 
-  [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
+- [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
 
 - [HACS](https://github.com/hacs/integration)
 - [Astroweather](https://github.com/mawinkler/astroweather)
