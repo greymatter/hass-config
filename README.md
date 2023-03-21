@@ -313,10 +313,20 @@ Its connected to IP KVM and runs headless in a server cabinet
 - UPB Switch (x8)
 - UPB High Amp Fan Switch (x1)
 
+### Relays ###
+- Elk M1RB x2
+- Aeotec heavy duty switch zw078
+- Zooz zw17
+
 
 ### Sensors ###
 - Aeotec Multisensor 6
 - Aeotec Door/Window Sensor
+- Zooz Zse-40 multi sensor (x2)
+- Zooz Tilt/Shock Sensor (x2)
+
+
+
 - Aeotech Power Monitors (x2)
 
 ### Plugs ###
@@ -326,6 +336,7 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Sonoff S31 Pro (x3)
 - Insteon Plugs (x8)
 - UPB Plugs (x2)
+- Zooz Twin Outdoor plug
 
 ### Other ###
 
