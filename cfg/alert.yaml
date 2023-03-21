@@ -1,0 +1,24 @@
+  garage_door_1_alert:
+    name: Garage 1 is open
+    done_message: Garage 1 is closed
+    entity_id: input_boolean.garage_door_1_open
+    state: "on"
+    repeat: 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - todd_iphone13
+      - janelles_iphone
+
+  garage_door_2_alert:
+    name: Garage 2 is open
+    done_message: Garage 2 is closed
+    entity_id: input_boolean.garage_door_2_open
+    state: "on"
+    repeat: 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - todd_iphone13
+      - janelles_iphone
+
