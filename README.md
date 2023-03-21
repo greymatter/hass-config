@@ -272,6 +272,9 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Cisco 37xx AP's (x8)
 - Cisco 36XX AP's with AC Modules (x5)
 
+### Firewall ###
+- PC Engines apu4d4 OPNsense
+
 
 ## Devices ##
 
@@ -283,7 +286,11 @@ Its connected to IP KVM and runs headless in a server cabinet
   - UPB GW
 - ISY99i 
   - Insteon Gateway
-- DTE Energy Bridge
+- Sensebender MySensors Lora Gateway
+- HA7net 1wire Gateway
+- HDHomeRun Tuner
+- obi202
+- CQC Server (CharmedQuark) via MQTT
 
 
 ### Tablet ###
@@ -303,7 +310,7 @@ Its connected to IP KVM and runs headless in a server cabinet
 
 
 ### Light Bulbs ###
-- Philips Hue A19 White/Color Bulb (6x)
+- Philips Hue A19 White/Color Bulb (x6)
 - Sonoff A05 (Testing)
 
 
@@ -311,23 +318,28 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Insteon 6 button (x2)
 - Inston single gang (x2)
 - UPB Switch (x8)
-- UPB High Amp Fan Switch (x1)
+- UPB High Amp Fan Switch (x2)
 
 ### Relays ###
 - Elk M1RB x2
-- Aeotec heavy duty switch zw078
+- Aeotec heavy duty switch zw078 (x2)
 - Zooz zw17
 
 
 ### Sensors ###
 - Aeotec Multisensor 6
 - Aeotec Door/Window Sensor
+- Aeotec Leak Detector (x2)
 - Zooz Zse-40 multi sensor (x2)
 - Zooz Tilt/Shock Sensor (x2)
 
 
-
+### Energy Monitoring ###
+- Brultech ECM-1240 w/etherbee
 - Aeotech Power Monitors (x2)
+- DTE Energy Bridge
+- rPi3b+ SDR / rtl_amr / metermon
+
 
 ### Plugs ###
 - Aeotec Smart Switch
@@ -335,10 +347,16 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Aeotec Smart Switch 7
 - Sonoff S31 Pro (x3)
 - Insteon Plugs (x8)
+- Insteon HD plug (x2)
 - UPB Plugs (x2)
 - Zooz Twin Outdoor plug
 
 ### Other ###
+- UPB Phase Coupler
+- aeotec Siren
+- aeotec Repeater 7
+
+
 
 Coming...
 
