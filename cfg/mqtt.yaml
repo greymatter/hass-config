@@ -463,14 +463,6 @@ sensor:
     unit_of_measurement: "W"
     device_class: "energy"
 
-  #- name: "DTE Energy Bridge Summary 8051"
-  #  unique_id: sensor.dte_energy_bridge_summary_8051
-  #  state_topic: "8051"
-  #  qos: 0
-  #  value_template: "{{ value_json.time | round(6) }}"
-  #  unit_of_measurement: "W"
-  #  device_class: "energy"
-
   - name: "DTE Energy Bridge Demand 8xx1"
     unique_id: sensor.dte_energy_bridge_demand_8xx1
     state_topic: "dte/8xx1/event/metering/instantaneous_demand"
@@ -478,14 +470,6 @@ sensor:
     value_template: "{{ value_json.demand | round(4) }}"
     unit_of_measurement: "W"
     device_class: "energy"
-
-  #- name: "DTE Energy Bridge Demand 8051"
-  #  unique_id: sensor.dte_energy_bridge_demand_8051
-  #  state_topic: "8051"
-  #  qos: 0
-  #  value_template: "{{ value_json.demand | round(6) }}"
-  #  unit_of_measurement: "W"
-  #  device_class: "energy"
 
   - name: "DTE Energy Bridge Summary 8xx5"
     state_topic: "8xx5/event/metering/summation/minute"
