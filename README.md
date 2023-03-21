@@ -56,9 +56,9 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [Studio Code Server](https://github.com/hassio-addons/addon-vscode)
 
 #### Backup ####
-- [Home Assistant Samba Backup](https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup)
-- [Home Assistant NextCloud Backup](https://github.com/Sebclem/hassio-nextcloud-backup)
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup)
+- [Samba Backup](https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup)
+- [NextCloud Backup](https://github.com/Sebclem/hassio-nextcloud-backup)
+- [Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup)
 
 
 #### Device MGMT ####
@@ -97,7 +97,10 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 
 ### Custom integrations
-[view complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
+
+  [complete list](https://github.com/greymatter/hass-config/wiki/Custom-Integrations)
+
+- [HACS](https://github.com/hacs/integration)
 - [Astroweather](https://github.com/mawinkler/astroweather)
 - [Blueiris Nvr](https://github.com/elad-bar/ha-blueiris)
 - [Browser Mod](https://github.com/thomasloven/hass-browser_mod)
@@ -105,7 +108,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [Event Sensor](https://github.com/azogue/eventsensor)
 - [Google Home](https://github.com/leikoilja/ha-google-home)
 - [Grocy Custom Component](https://github.com/custom-components/grocy)
-- [HACS](https://github.com/hacs/integration)
+
 - [Ham Radio Propagation](https://github.com/emics/ham_radio_propagation)
 - [Hp Printers Integration](https://github.com/elad-bar/ha-hpprinter)
 - [Icloud3 Device Tracker](https://github.com/gcobb321/icloud3)
