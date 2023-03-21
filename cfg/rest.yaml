@@ -11,7 +11,7 @@
         "variables": {
           "fuel": 1,
           "maxAge": 0,
-          "search": "48116"
+          "search": "xXxXx"
         },
         "query": "query LocationBySearchTerm($search: String) { locationBySearchTerm(search: $search) { trends { areaName country today todayLow } } }"
       }
