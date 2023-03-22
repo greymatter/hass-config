@@ -18,24 +18,29 @@ db_url: !secret psql_recorder_db_url
 #  - input_datetime.septic_pit_cleanout_installed
 exclude:
   entities:
-    - sun.sun
     - sensor.moon
-    - sensor.downloaded_movies
-    - sensor.wanted_movies
-    - sensor.kodi_recently_added_movies
-    - sensor.kodi_recently_added_tv
-    - sensor.greymatterhq_overhead_satellites
-    - sensor.nasa_iss_station_report
-    - sensor.noaa_space_weather_alerts_feed
-    - sensor.last_boot
-    - sensor.date
-    - sensor.time
-    #      - sensor.date__time
-    - sensor.whois
-    - sensor.whois_2
-    - sensor.ups
-    - sensor.next_launch_countdown
-    - sensor.icloud3_event_log
+    - sensor.zodiac
+    - sensor.zodiac_2
+    - binary_sensor.blueiris_alerts
+    ## sensors - like real ones ################################################
+    - binary_sensor.multisensor_6_battery_is_disconnected
+    - binary_sensor.multisensor_6_battery_temperature_is_low
+    - binary_sensor.multisensor_6_fluid_is_low
+    - binary_sensor.multisensor_6_home_security_tampering_product_cover_removed
+    - binary_sensor.multisensor_6_low_battery_level
+    - binary_sensor.multisensor_6_overheating
+    - binary_sensor.multisensor_6_rechargeable
+    - binary_sensor.multisensor_6_used_as_backup
+    - binary_sensor.q_sensor_tampering_product_cover_removed
+    - binary_sensor.q_sensor_tampering_product_cover_removed_2
+    - binary_sensor.smart_implant_system_hardware_failure_with_failure_code_7
+    - binary_sensor.smart_switch_7_over_current_detected
+    - binary_sensor.smart_switch_7_over_load_detected
+    - binary_sensor.smart_switch_7_over_voltage_detected
+    - sensor.multisensor_6_charging_status
+    - sensor.multisensor_6_maximum_capacity
+    - sensor.multisensor_6_recharge_or_replace
+    ## time - date internal ####################################################
     - sensor.time
     - sensor.date
     - sensor.date_time
@@ -43,34 +48,39 @@ exclude:
     - sensor.time_date
     - sensor.time_utc
     - sensor.beat
+    ##  time / date - not internal #############################################
+    - binary_sensor.workday_sensor
+    - binary_sensor.holiday
+    - binary_sensor.weekend
+    - binary_sensor.workday_janelle
+    - binary_sensor.workday_todd
+    - sensor.anniversary_cake_day
+    - sensor.anniversary_todd_days_on_earth
+    ## mail / pkg ##############################################################
+    - sensor.ups
+    - binary_sensor.amazon_image_updated
+    - binary_sensor.usps_image_updated
+    ## multimedia ##############################################################
+    - sensor.downloaded_movies
+    - sensor.wanted_movies
+    - sensor.kodi_recently_added_movies
+    - sensor.kodi_recently_added_tv
+    - binary_sensor.radarr_health
+    - binary_sensor.music_area_entertainment_configuration
+    ## rss feeds ###############################################################
+    - sensor.greymatterhq_overhead_satellites
+    - sensor.nasa_iss_station_report
+    - sensor.noaa_space_weather_alerts_feed
     - sensor.iss
+    - sensor.next_launch_countdown
+    ## finance / crypto ########################################################
     - sensor.difficulty
-    - sensor.nws_alerts
     - sensor.time_between_blocks
     - sensor.total_fees
     - sensor.total_sent
     - sensor.trade_volume
     - sensor.trade_volume_2
-    - binary_sensor.amazon_image_updated
-    - binary_sensor.blueiris_alerts
-    - binary_sensor.blueiris_basement_connectivity
-    - binary_sensor.blueiris_basement_dio
-    - binary_sensor.blueiris_basement_external
-    - binary_sensor.blueiris_front_of_house_audio
-    - binary_sensor.blueiris_front_of_house_connectivity
-    - binary_sensor.blueiris_front_of_house_dio
-    - binary_sensor.blueiris_front_of_house_external
-    - binary_sensor.blueiris_loading_dock_audio
-    - binary_sensor.blueiris_loading_dock_connectivity
-    - binary_sensor.blueiris_loading_dock_dio
-    - binary_sensor.blueiris_loading_dock_external
-    - binary_sensor.blueiris_paint_booth_connectivity
-    - binary_sensor.blueiris_paint_booth_dio
-    - binary_sensor.blueiris_paint_booth_external
-    - binary_sensor.blueiris_shop_connectivity
-    - binary_sensor.blueiris_shop_dio
-    - binary_sensor.blueiris_shop_external
-    - binary_sensor.holiday
+    - sensor.openexchangerates
     ## uptime sensors
     - sensor.docker1_uptime
     - sensor.gmhqbi1_uptime
@@ -87,57 +97,59 @@ exclude:
     - sensor.hassio_uptime
     - sensor.hassio_uptime_2
     - sensor.sdrpi_uptime
+    - sensor.cisco_wlc_uptime
+    - sensor.ipbx_uptime
+    - sensor.last_boot
+    - sensor.loki_system_boottime
+    - sensor.loki_uptime
+    - sensor.opn_fw_uptime
+    - sensor.sw01_uptime
+    - sensor.sw02_uptime
+    - sensor.sw03_uptime
+    ## server related ##########################################################
+    - binary_sensor.all_hassio_dockers_online
+    - sensor.whois
+    - sensor.whois_2
+    - sensor.myip
+    - sensor.ipv4_address_eno1
+    - sensor.ipv4_address_eth0
+    - sensor.ipv6_address_eno1
+    - sensor.ipv6_address_eth0
+    - sensor.opn_fw_bsd_version
+    - sensor.opn_fw_memory_size
+    - sensor.opn_fw_opn_version
+    - sensor.opn_fw_storage_root_size
+    - sensor.swap_use
+    - sensor.swap_use_percent
+    ## updates / versions ######################################################
     - sensor.grafana_newest_version
     - sensor.grafana_version
-    - sensor.home_office_speaker_alarms
-    - sensor.home_office_speaker_device
-    - sensor.home_office_speaker_timers
-    ## updates
-    - binary_sensor.workday_sensor
-    - binary_sensor.snowtire
-    - binary_sensor.car_wash
-    - binary_sensor.multisensor_6_battery_is_disconnected
-    - binary_sensor.multisensor_6_battery_temperature_is_low
-    - binary_sensor.multisensor_6_fluid_is_low
-    - binary_sensor.multisensor_6_home_security_tampering_product_cover_removed
-    - binary_sensor.multisensor_6_low_battery_level
-    - binary_sensor.multisensor_6_overheating
-    - binary_sensor.multisensor_6_rechargeable
-    - binary_sensor.multisensor_6_used_as_backup
-    - binary_sensor.q_sensor_tampering_product_cover_removed
-    - binary_sensor.q_sensor_tampering_product_cover_removed_2
-    - binary_sensor.smart_implant_system_hardware_failure_with_failure_code_7
-    - binary_sensor.smart_switch_7_over_current_detected
-    - binary_sensor.smart_switch_7_over_load_detected
-    - binary_sensor.smart_switch_7_over_voltage_detected
-    - binary_sensor.all_hassio_dockers_online
-    - binary_sensor.car_wash
-    - binary_sensor.s4biturbo
-    - binary_sensor.dumstupidiot
-    - binary_sensor.music_area_entertainment_configuration
-    - binary_sensor.nws_alerts_are_active
-    - binary_sensor.radarr_health
-    - binary_sensor.protection_window
-    - binary_sensor.usps_image_updated
-    - binary_sensor.washing_machine
-    - binary_sensor.weekend
-    - binary_sensor.workday_janelle
-    - binary_sensor.workday_todd
+    - sensor.z_wave_js_to_mqtt_version
+    ## voip ####################################################################
+    - sensor.latest_dtmf_signal
+    ## weather #################################################################
     - sensor.accuweather_condition_hourly
-    - sensor.accuweather_cloud_cover_hourly
     - sensor.accuweather_relative_humidity_hourly
     - sensor.accuweather_solar_irradiance_hourly
     - sensor.accuweather_temperature_hourly
     - sensor.accuweather_total_precipitation_hourly
     - sensor.accuweather_wind_direction_hourly
     - sensor.accuweather_wind_speed_hourly
-    - sensor.anniversary_cake_day
-    - sensor.anniversary_todd_days_on_earth
-    - sensor.cisco_wlc_uptime
+    - binary_sensor.protection_window
+    - binary_sensor.snowtire
+    - binary_sensor.car_wash
+    - sensor.nws_alerts
+    ## browser_mod #############################################################
     - light.0df36bdb_12586848_screen
     - light.ca27a89e_d13c9b9c_screen
-    - sensor.eddie_munson_activity
-    - sensor.eddie_munson_average_active_pace
+    - light.cast_screen
+    - light.e7434d65_6a91494a_screen
+    - light.55479af4_16dad1a0_screen
+    - light.9cd64833_3149def6_screen
+    - light.a06a410f_b27ab77c_screen
+    - light.a311d46a_09558e44_screen
+    ## mobile devices ##########################################################
+    - sensor.icloud3_event_log
     - sensor.eddie_munson_badge
     - sensor.eddie_munson_bssid
     - sensor.eddie_munson_calc_distance
@@ -178,9 +190,6 @@ exclude:
     - sensor.greymatter_iphone_trigger
     - sensor.greymatter_iphone_waze_distance
     - sensor.greymatter_iphone_zone_distance
-    - sensor.todd_iphone13_activity
-    - sensor.todd_iphone13_average_active_pace
-    - sensor.todd_iphone13_battery_state
     - sensor.todd_iphone13_bssid
     - sensor.todd_iphone13_connection_type
     - sensor.todd_iphone13_distance
@@ -191,11 +200,8 @@ exclude:
     - sensor.todd_iphone13_sim_1
     - sensor.todd_iphone13_sim_2
     - sensor.todd_iphone13_ssid
-    - sensor.todd_iphone13_storage
-    - sensor.todd_iphone_activity
     - sensor.todd_iphone_average_active_pace
     - sensor.todd_iphone_bssid
-    - sensor.todd_iphone_connection_type
     - sensor.todd_iphone_distance
     - sensor.todd_iphone_floors_ascended
     - sensor.todd_iphone_floors_descended
@@ -236,87 +242,165 @@ exclude:
     - sensor.janelles_iphone_trigger
     - sensor.janelles_iphone_waze_distance
     - sensor.janelles_iphone_zone_distance
-    - sensor.janelles_office_speaker_alarms
-    - sensor.janelles_office_speaker_device
-    - sensor.janelles_office_speaker_timers
-    - sensor.ipbx_uptime
-    - sensor.ipv4_address_eno1
-    - sensor.ipv4_address_eth0
-    - sensor.ipv6_address_eno1
-    - sensor.ipv6_address_eth0
-    - light.cast_screen
-    - light.e7434d65_6a91494a_screen
-    - light.55479af4_16dad1a0_screen
-    - light.9cd64833_3149def6_screen
-    - light.a06a410f_b27ab77c_screen
-    - light.a311d46a_09558e44_screen
-    - sensor.latest_dtmf_signal
-    - sensor.living_room_display_alarms
-    - sensor.living_room_display_device
-    - sensor.living_room_display_timers
-    - sensor.living_room_tv_device
-    - sensor.loki_system_boottime
-    - sensor.loki_uptime
-    - sensor.multisensor_6_charging_status
-    - sensor.multisensor_6_maximum_capacity
-    - sensor.multisensor_6_recharge_or_replace
-    - sensor.multisensor_6_ultraviolet
-    - sensor.myip
-    - sensor.nws_alerts
-    - sensor.openexchangerates
-    - sensor.opn_fw_bsd_version
-    - sensor.opn_fw_memory_size
-    - sensor.opn_fw_uptime
-    - sensor.opn_fw_opn_version
-    - sensor.opn_fw_storage_root_size
-    - sensor.sw01_uptime
-    - sensor.sw02_uptime
-    - sensor.sw03_uptime
-    - sensor.swap_use
-    - sensor.swap_use_percent
-    - sensor.z_wave_js_to_mqtt_version
-    - sensor.zodiac
-    - sensor.zodiac_2
-    - sensor.zoe_s_bedroom_speaker_alarms
-    - sensor.zoe_s_bedroom_speaker_device
-    - sensor.zoe_s_bedroom_speaker_timers
+    ## waqi shit to cleanup when i feel like it ################################
+    - sensor.waqi_aberdeen_anderson_dr_united_kingdom
+    - sensor.waqi_allen_park_michigan_usa
+    - sensor.waqi_anglesey_brynteg_united_kingdom
+    - sensor.waqi_anglesey_llynfaes_united_kingdom
+    - sensor.waqi_auchencorth_moss_united_kingdom
+    - sensor.waqi_auchencorth_moss_united_kingdom_2
+    - sensor.waqi_av_miribel_belleville_sur_meuse_d603_france
+    - sensor.waqi_bangor_maine_usa
+    - sensor.waqi_batavia_ohio_usa
+    - sensor.waqi_bay_city_michigan_usa
+    - sensor.waqi_bend_oregon_usa
+    - sensor.waqi_bexley_thamesmead_united_kingdom
+    - sensor.waqi_birmingham_tyburn_united_kingdom
+    - sensor.waqi_blackpool_marton_united_kingdom
+    - sensor.waqi_burns_oregon_usa
+    - sensor.waqi_canton_ohio_usa
+    - sensor.waqi_carlisle_roadside_united_kingdom
+    - sensor.waqi_carpinteria_usa
+    - sensor.waqi_chatham_roadside_united_kingdom
+    - sensor.waqi_coventry_allesley_united_kingdom
+    - sensor.waqi_derry_brooke_park_united_kingdom
+    - sensor.waqi_detroit_lakes_minnesota_usa
+    - sensor.waqi_dundee_mains_loan_united_kingdom
+    - sensor.waqi_dundee_meadowside_united_kingdom
+    - sensor.waqi_edinburgh_currie_united_kingdom
+    - sensor.waqi_eliza_howell_roadway_michigan_usa
+    - sensor.waqi_falkirk_banknock_united_kingdom
+    - sensor.waqi_fife_dunfermline_united_kingdom
+    - sensor.waqi_forks_of_salmon_usa
+    - sensor.waqi_g_t_craig_ohio_usa
+    - sensor.waqi_garberville_usa
+    - sensor.waqi_glasgow_anderston_united_kingdom
+    - sensor.waqi_glasgow_broomhill_united_kingdom
+    - sensor.waqi_glasgow_kerbside_united_kingdom
+    - sensor.waqi_glasgow_kerbside_united_kingdom_2
+    - sensor.waqi_glasgow_townhead_united_kingdom
+    - sensor.waqi_glasgow_townhead_united_kingdom_2
+    - sensor.waqi_grand_rapids_michigan_usa
+    - sensor.waqi_greenock_a8_roadside_united_kingdom
+    - sensor.waqi_guerneville_usa
+    - sensor.waqi_haringey_roadside_united_kingdom
+    - sensor.waqi_havering_rainham_united_kingdom
+    - sensor.waqi_highway_99_lane_usa
+    - sensor.waqi_hilo_hawaii_usa
+    - sensor.waqi_holland_michigan_usa
+    - sensor.waqi_houghton_lake_michigan_usa
+    - sensor.waqi_hounslow_chiswick_united_kingdom
+    - sensor.waqi_kalamazoo_michigan_usa
+    - sensor.waqi_kihei_hawaii_usa
+    - sensor.waqi_lake_george_usa
+    - sensor.waqi_lebanon_ohio_usa
+    - sensor.waqi_leicester_centre_united_kingdom
+    - sensor.waqi_london_bloomsbury_united_kingdom
+    - sensor.waqi_london_harlington_united_kingdom
+    - sensor.waqi_london_n_kensington_united_kingdom
+    - sensor.waqi_london_ohio_usa
+    - sensor.waqi_lyons_oregon_usa
+    - sensor.waqi_mlk_delaware_usa
+    - sensor.waqi_moscow_idaho_usa
+    - sensor.waqi_mt_fanny_oregon_usa
+    - sensor.waqi_n_lanarkshire_croy_united_kingdom
+    - sensor.waqi_nampa_idaho_usa
+    - sensor.waqi_newcastle_centre_united_kingdom
+    - sensor.waqi_newry_trevor_hill_united_kingdom
+    - sensor.waqi_nku_kentucky_usa
+    - sensor.waqi_nmh48217_michigan_usa
+    - sensor.waqi_no_12_middle_school_tangshan_no_12_middle_school_tangshan_tang_shan_shi_12zhong
+    - sensor.waqi_no_1_middle_school_mudanjiang_no_1_middle_school_mudanjiang_mu_dan_jiang_di_yi_zhong_xue
+    - sensor.waqi_no_2_middle_school_hangzhou_no_2_middle_school_hangzhou_hang_zhou_shi_fu_yang_shi_zhen_er_zhong
+    - sensor.waqi_no_2_middle_school_shuozhou_no_2_middle_school_shuozhou_shuo_zhou_shi_er_zhong
+    - sensor.waqi_no_4_middle_school_jinhua_no_4_middle_school_jinhua_jin_hua_shi_si_zhong
+    - sensor.waqi_no_4_middle_school_zhuzhou_no_4_middle_school_zhuzhou_zhu_zhou_shi_si_zhong
+    - sensor.waqi_no_8_middle_school_guilin_no_8_middle_school_guilin_gui_lin_ba_zhong
+    - sensor.waqi_no_bham_alabama_usa
+    - sensor.waqi_nottingham_centre_united_kingdom
+    - sensor.waqi_paia_hawaii_usa
+    - sensor.waqi_peck_kansas_usa
+    - sensor.waqi_perth_high_street_united_kingdom
+    - sensor.waqi_placerville_usa
+    - sensor.waqi_port_talbot_docks_united_kingdom
+    - sensor.waqi_princess_anne_maryland_usa
+    - sensor.waqi_reading_new_town_united_kingdom
+    - sensor.waqi_reading_new_town_united_kingdom_2
+    - sensor.waqi_rome_georgia_usa
+    - sensor.waqi_salem_oregon_usa
+    - sensor.waqi_salmon_idaho_usa
+    - sensor.waqi_silver_city_usa
+    - sensor.waqi_springville_2_usa
+    - sensor.waqi_springville_3_usa
+    - sensor.waqi_springville_5_usa
+    - sensor.waqi_springville_usa
+    - sensor.waqi_st_lukes_idaho_usa
+    - sensor.waqi_st_maries_idaho_usa
+    - sensor.waqi_st_michael_minnesota_usa
+    - sensor.waqi_swansea_roadside_united_kingdom
+    - sensor.waqi_swansea_roadside_united_kingdom_2
+    - sensor.waqi_tecumseh_michigan_usa
+    - sensor.waqi_three_rivers_usa
+    - sensor.waqi_trinity_st_marks_michigan_usa
+    - sensor.waqi_ward_alabama_usa
+    - sensor.waqi_watford_town_hall_united_kingdom
+    - sensor.waqi_willow_creek_usa
+    - sensor.waqi_windsor
   entity_globs:
-    - switch.apc7*
-    - switch.blueiris_profile_*
-    - switch.loki_*
-    - switch.nest_protect_*
-    - sensor.weather_*
-    - sensor.waqi_mi*
+    - sensor.count_*
+    - sensor.mail_*
+    - sensor.node_*
+    - sensor.packets_*
+    - binary_sensor.dtw_*
+    - sensor.garbage_*
+    - binary_sensor.home_energy_meter_*
+    - binary_sensor.q_sensor*
+    - binary_sensor.smart_implant*
+    - sensor.home_energy_meter_*_recharge_or_replace
+    - sensor.east_side_*
+    - sensor.no_side_6btn_*
+    - sensor.obihai_*
+    - sensor.hdhomerun_connect_*
+    - sensor.redfin_*
+    ## climate #################################################################
+    - binary_sensor.ecobee_indoor_*
+    ## multimedia ##############################################################
     - sensor.sabnzbd_*
     #- sensor.sonarr_*
     - sensor.lidarr_*
     - sensor.radarr_*
     - sensor.kodi_media_sensor_*
-    - sensor.dark_sky_*
-    - sensor.skin_*
+    ## nest / google devices ###################################################
+    - binary_sensor.nest_protect_*
+    - switch.nest_protect_*
+    - sensor.*_speaker_alarms
+    - sensor.*_speaker_device
+    - sensor.*_timers
+    ## Blue Iris ###############################################################
+    - switch.blueiris_profile_*
+    - binary_sensor.blueiris_*_connectivity
+    - binary_sensor.blueiris_*_dio
+    - binary_sensor.blueiris_*_external
+    ## Grocy ###################################################################
+    - binary_sensor.grocy_*
     - sensor.grocy*
-    - sensor.mail_*
-    - sensor.node_*
-    - sensor.packets_*
-    - sensor.obihai_*
-    - sensor.skin_type_*
-    - sensor.rocketlaunch_*
+    ## whois / domains #########################################################
+    - sensor.grymtr_com_*
     - sensor.roninmetalwerks_com_*
-    - sensor.no_side_6btn_*
-    - sensor.mta_bt_alerts_*
-    - sensor.panynj_bt_*
+    ## server related ##########################################################
+    - binary_sensor.ping*
+    - switch.apc7*
+    - switch.loki_*
+    - binary_sensor.loki_*
     - sensor.loki_gateway_*
     - sensor.loki_interface_opt1_*
-    - binary_sensor.grocy_*
-    - binary_sensor.ping*
-    - binary_sensor.vaultwarden_bitwarden_*
-    - binary_sensor.q_sensor*
-    - binary_sensor.smart_implant*
-    - binary_sensor.cast_*
-    - binary_sensor.dtw_*
-    - binary_sensor.ecobee_indoor_*
-    - binary_sensor.home_energy_meter_*
-    - binary_sensor.launch_*
+    - binary_sensor.pihole1_*
+    - binary_sensor.pihole2_*
+    - sensor.nextcloud_*
+    ## update related ##########################################################
+    - sensor.greymatter_hass_config_*
+    - sensor.greymatter_homeassistant_addons_*
+    - sensor.vaultwarden_*
     - binary_sensor.grafana_*
     - binary_sensor.hdhomerun_connect_*
     - binary_sensor.influxdb_*
@@ -325,21 +409,11 @@ exclude:
     - binary_sensor.node_red_*
     - binary_sensor.bitwarden_rs_*
     - binary_sensor.pgadmin4_*
-    - binary_sensor.pihole1_*
-    - binary_sensor.pihole2_*
     - binary_sensor.uptime_kuma_*
     - binary_sensor.z_wave_js_to_mqtt_*
-    - binary_sensor.loki_*
-    - binary_sensor.nest_protect_*
-    - sensor.greymatter_hass_config_*
-    - sensor.greymatter_homeassistant_addons_*
-    - sensor.garbage_*
-    - sensor.grymtr_com_*
-    - sensor.hdhomerun_connect_*
-      ##  setting this as I am not using them at the moment for power mgmt
-    - sensor.home_energy_meter_*
-      ##  remove it to start using them
-    - sensor.east_side_*
+    - binary_sensor.vaultwarden_bitwarden_*
+    ## finance and crypto ######################################################
+    - sensor.es_*
     - sensor.1inch_*
     - sensor.aave_*
     - sensor.ada_*
@@ -363,37 +437,40 @@ exclude:
     - sensor.zrx_*
     - sensor.storj_*
     - sensor.sushi_*
-    - sensor.gdacs_*
-    - sensor.garbage_*
     - sensor.ethermine_*
+    - sensor.yahoofinance*
+    - sensor.coinbase_*
+    ## weather related #########################################################
+    - sensor.sun_*
+    - sensor.gdacs_*
+    - sensor.usgs_all_earthquakes_*
+    - sensor.dark_sky_*
+    - sensor.skin_*
+    - sensor.skin_type_*
+    - sensor.weather_*
+    - sensor.waqi_mi*
+    - sensor.asthma_index_*
+    ## space wx & rockets ######################################################
+    - sensor.noaa_space_weather_alert_*
+    - sensor.x_class_*
+    - sensor.rocketlaunch_*
+    - sensor.solar_flux_*
+    - sensor.starman_*
+    - binary_sensor.launch_*
+    ## scrape sensors ##########################################################
     - sensor.alpine_*
     - sensor.ots_*
-    - sensor.asthma_index_*
-    - sensor.sun_*
-    - sensor.starman_*
-    - sensor.coinbase_*
-    - sensor.count_*
-    - sensor.es_*
-    - sensor.noaa_space_weather_alert_*
-    - sensor.nextcloud_*
-    - sensor.noaa_space_*
-    - sensor.obihai_*
     - sensor.panynj_*
-    - sensor.redfin_*
-    - sensor.rocketlaunch_*
-    - sensor.skin_*
-    - sensor.solar_flux_*
-    - sensor.usgs_all_earthquakes_*
-    - sensor.vaultwarden_*
-    - sensor.x_class_*
-    - sensor.yahoofinance_*
-      # asterisk
+    - sensor.mta_bt_alerts_*
+    ## asterisk ################################################################
     - sensor.100_*
     - sensor.101_*
     - sensor.102_*
+    ## rss feeds ###############################################################
     - sensor.bbc_*
     - sensor.last_fm_top_*
-      # hass-agent sensors
+    ## hass-agent sensors / brwoser_mod ########################################
+    - binary_sensor.cast_*
     - binary_sensor.0df36bdb_*
     - sensor.0df36bdb_*
     - binary_sensor.55479af4_*
@@ -429,26 +506,27 @@ exclude:
     - alert
     - automation
     - button
-    - calendar
+    #- calendar
     - camera
     - cover
     - device_tracker
     - geo_location
-    - group
-    - input_boolean
-    - input_number
+    #- group
+    #- input_boolean
+    #- input_number
     - media_player
-    - number
+    #- number
     - persistent_notification
     - script
     - scene
+    #- select
     - sun
-    - timer
+    #- timer
     - update
     - vacuum
-    - variable
+    #- variable
     - weblink
-    - weather
+    #- weather
     - zwave
     - zone
     - zigbee
