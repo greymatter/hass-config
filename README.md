@@ -283,6 +283,7 @@ HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
 - Insteon HD plug (x2)
 - UPB Plugs (x2)
 - Zooz Twin Outdoor plug
+- Third Reality Zigbee Smart Plug G2 (x4)
 
 ### Other ###
 - UPB Phase Coupler
