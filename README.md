@@ -67,7 +67,8 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [EMQX / MQTT](https://github.com/hassio-addons/addon-emqx)
 - [ESPHome](https://esphome.io/)
 - [Z-Wave JS UI](https://github.com/hassio-addons/addon-zwave-js-ui)
-
+- [Silicon Labs Multiprotocol](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
+- [Matter Server](https://github.com/home-assistant/addons/tree/master/matter_server)
 
 #### Database ####
 - [PostgreSQL / TimescaleDB](https://github.com/Expaso/hassos-addon-timescaledb)
@@ -181,10 +182,10 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 ### System ###
 My system is an Intel NUC i3 with 8GB memory and 160GB m2 SSD
 
-- Aeotec Z-Wave Stick 6
-- SkyConnect (ordered)
+- [Aeotec Z-Wave Stick Gen 5+](https://aeotec.com/products/aeotec-z-stick-gen5/)
+- [SkyConnect](https://www.home-assistant.io/skyconnect/)
 
-Its connected to IP KVM and runs headless in a server cabinet
+HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
  - USB devices are routed via USB extensions out of cabinet to minimize inteference with both cabinet and USB 3.0 ports
 
 
@@ -247,8 +248,8 @@ Its connected to IP KVM and runs headless in a server cabinet
 ### Switches ###
 - Insteon 6 button (x2)
 - Inston single gang (x2)
-- UPB Switch (x8)
-- UPB High Amp Fan Switch (x2)
+- PulseWorx WS1DL-10 UPB Switch (x14)
+- PulseWorx WS1R 15A Fan Switch (x2)
 
 ### Relays ###
 - Elk M1RB x2
@@ -267,7 +268,7 @@ Its connected to IP KVM and runs headless in a server cabinet
 ### Energy Monitoring ###
 - Brultech ECM-1240 w/etherbee
 - Aeotech Power Monitors (x2)
-- DTE Energy Bridge
+- DTE Energy Bridge (x2)
 - rPi3b+ SDR / rtl_amr / metermon
 
 
@@ -289,6 +290,7 @@ Its connected to IP KVM and runs headless in a server cabinet
 - Aeotec Range Extender 7
 - Nest Wired Doorbell
 - Nest Protect (x4)
+- [WiCAN Wifi ODB2 HA bridge](https://www.crowdsupply.com/meatpi-electronics/wican)
 
 
 ### ESPHome Devices ###
@@ -298,9 +300,7 @@ Coming...
 
 ## Ordered ##
 
-- [SkyConnect](https://www.home-assistant.io/skyconnect/)
-- Second DTE Energy Bridge for Workshop
-- [WiCAN Wifi ODB2 HA bridge](https://www.crowdsupply.com/meatpi-electronics/wican)
+
 
 
 ## Automations ##
@@ -309,7 +309,7 @@ Coming...
 
 
 ### Planned Upgrades ###
-- implement Zigbee/Matter via SkyConnect
+- Move hassio install to new Intel NUC | i7 processor, 24 or 32GB or memory
 - Upgrade Core switch stack to 3750x to be able to run ios 15.2+
 - Move vWLC to physical WLC controller
 
@@ -321,42 +321,40 @@ Coming...
 Description | value
 --|--
 Installed version | unknown
-Total entity objects | 2902
-Entities in the [`alarm_control_panel`](https://www.home-assistant.io/components/alarm_control_panel) domain | 2
-Entities in the [`alert`](https://www.home-assistant.io/components/alert) domain | 2
-Entities in the [`automation`](https://www.home-assistant.io/components/automation) domain | 53
-Entities in the [`binary_sensor`](https://www.home-assistant.io/components/binary_sensor) domain | 231
-Entities in the [`button`](https://www.home-assistant.io/components/button) domain | 61
-Entities in the [`calendar`](https://www.home-assistant.io/components/calendar) domain | 10
-Entities in the [`camera`](https://www.home-assistant.io/components/camera) domain | 15
-Entities in the [`climate`](https://www.home-assistant.io/components/climate) domain | 1
-Entities in the [`device_tracker`](https://www.home-assistant.io/components/device_tracker) domain | 10
-Entities in the [`geo_location`](https://www.home-assistant.io/components/geo_location) domain | 2
-Entities in the [`group`](https://www.home-assistant.io/components/group) domain | 91
-Entities in the [`humidifier`](https://www.home-assistant.io/components/humidifier) domain | 1
-Entities in the [`input_boolean`](https://www.home-assistant.io/components/input_boolean) domain | 21
-Entities in the [`input_button`](https://www.home-assistant.io/components/input_button) domain | 46
-Entities in the [`input_datetime`](https://www.home-assistant.io/components/input_datetime) domain | 6
-Entities in the [`input_number`](https://www.home-assistant.io/components/input_number) domain | 16
-Entities in the [`input_select`](https://www.home-assistant.io/components/input_select) domain | 4
-Entities in the [`input_text`](https://www.home-assistant.io/components/input_text) domain | 47
-Entities in the [`light`](https://www.home-assistant.io/components/light) domain | 37
-Entities in the [`media_player`](https://www.home-assistant.io/components/media_player) domain | 47
-Entities in the [`number`](https://www.home-assistant.io/components/number) domain | 24
-Entities in the [`persistent_notification`](https://www.home-assistant.io/components/persistent_notification) domain | 1
+Total entity objects | 3140
 Entities in the [`person`](https://www.home-assistant.io/components/person) domain | 3
-Entities in the [`remote`](https://www.home-assistant.io/components/remote) domain | 1
-Entities in the [`scene`](https://www.home-assistant.io/components/scene) domain | 52
-Entities in the [`script`](https://www.home-assistant.io/components/script) domain | 14
-Entities in the [`select`](https://www.home-assistant.io/components/select) domain | 27
-Entities in the [`sensor`](https://www.home-assistant.io/components/sensor) domain | 1859
+Entities in the [`update`](https://www.home-assistant.io/components/update) domain | 74
+Entities in the [`binary_sensor`](https://www.home-assistant.io/components/binary_sensor) domain | 249
+Entities in the [`sensor`](https://www.home-assistant.io/components/sensor) domain | 2023
+Entities in the [`group`](https://www.home-assistant.io/components/group) domain | 92
 Entities in the [`sun`](https://www.home-assistant.io/components/sun) domain | 1
-Entities in the [`switch`](https://www.home-assistant.io/components/switch) domain | 123
-Entities in the [`update`](https://www.home-assistant.io/components/update) domain | 70
-Entities in the [`vacuum`](https://www.home-assistant.io/components/vacuum) domain | 6
-Entities in the [`variable`](https://www.home-assistant.io/components/variable) domain | 1
-Entities in the [`weather`](https://www.home-assistant.io/components/weather) domain | 8
 Entities in the [`zone`](https://www.home-assistant.io/components/zone) domain | 9
+Entities in the [`input_boolean`](https://www.home-assistant.io/components/input_boolean) domain | 21
+Entities in the [`input_select`](https://www.home-assistant.io/components/input_select) domain | 4
+Entities in the [`input_number`](https://www.home-assistant.io/components/input_number) domain | 16
+Entities in the [`input_datetime`](https://www.home-assistant.io/components/input_datetime) domain | 6
+Entities in the [`input_text`](https://www.home-assistant.io/components/input_text) domain | 56
+Entities in the [`input_button`](https://www.home-assistant.io/components/input_button) domain | 55
+Entities in the [`select`](https://www.home-assistant.io/components/select) domain | 32
+Entities in the [`script`](https://www.home-assistant.io/components/script) domain | 15
+Entities in the [`device_tracker`](https://www.home-assistant.io/components/device_tracker) domain | 10
+Entities in the [`light`](https://www.home-assistant.io/components/light) domain | 42
+Entities in the [`weather`](https://www.home-assistant.io/components/weather) domain | 8
+Entities in the [`climate`](https://www.home-assistant.io/components/climate) domain | 1
+Entities in the [`humidifier`](https://www.home-assistant.io/components/humidifier) domain | 1
+Entities in the [`switch`](https://www.home-assistant.io/components/switch) domain | 134
+Entities in the [`number`](https://www.home-assistant.io/components/number) domain | 24
+Entities in the [`button`](https://www.home-assistant.io/components/button) domain | 66
+Entities in the [`scene`](https://www.home-assistant.io/components/scene) domain | 52
+Entities in the [`alarm_control_panel`](https://www.home-assistant.io/components/alarm_control_panel) domain | 2
+Entities in the [`media_player`](https://www.home-assistant.io/components/media_player) domain | 52
+Entities in the [`automation`](https://www.home-assistant.io/components/automation) domain | 54
+Entities in the [`alert`](https://www.home-assistant.io/components/alert) domain | 2
+Entities in the [`vacuum`](https://www.home-assistant.io/components/vacuum) domain | 6
+Entities in the [`geo_location`](https://www.home-assistant.io/components/geo_location) domain | 4
+Entities in the [`camera`](https://www.home-assistant.io/components/camera) domain | 16
+Entities in the [`calendar`](https://www.home-assistant.io/components/calendar) domain | 9
+Entities in the [`remote`](https://www.home-assistant.io/components/remote) domain | 1
 
 
 
