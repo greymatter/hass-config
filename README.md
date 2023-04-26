@@ -301,8 +301,9 @@ Coming...
 
 ## Ordered ##
 
-
-
+- Intel NUC i5 - NUC7i5BNK
+- 32GB DDR4 2133
+- m2 256GB SSD
 
 ## Automations ##
 
@@ -310,7 +311,7 @@ Coming...
 
 
 ### Planned Upgrades ###
-- Move hassio install to new Intel NUC | i7 processor, 24 or 32GB or memory
+- Move hassio install to new Intel NUC i5
 - Upgrade Core switch stack to 3750x to be able to run ios 15.2+
 - Move vWLC to physical WLC controller
 
