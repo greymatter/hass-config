@@ -180,7 +180,8 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 ## System Hardware ##
 
 ### System ###
-My system is an Intel NUC i3 with 8GB memory and 160GB m2 SSD
+My system is an Intel NUC i5-4250U with 8GB memory and 160GB m2 SSD
+Moving to Intel NUC i5-7260U with 32GB memory and 256GB m2 SSD
 
 - [Aeotec Z-Wave Stick Gen 5+](https://aeotec.com/products/aeotec-z-stick-gen5/)
 - [SkyConnect](https://www.home-assistant.io/skyconnect/)
@@ -212,7 +213,7 @@ HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
 ### Gateways ###
 - Aeotec Z-Wave Stick 6
 - Hue Hub
-- SkyConnect Zigbee / Matter (Ordered)
+- SkyConnect Zigbee / Matter
 - Elk M1
   - UPB GW
 - ISY99i 
