@@ -181,8 +181,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 ## System Hardware ##
 
 ### System ###
-My system is an Intel NUC i5-4250U with 8GB memory and 160GB m2 SSD
-Moving to Intel NUC i5-7260U with 32GB memory and 256GB m2 SSD
+My system is an Intel NUC i5-7260U with 32GB memory and 256GB m2 SSD
 
 - [Aeotec Z-Wave Stick Gen 5+](https://aeotec.com/products/aeotec-z-stick-gen5/)
 - [SkyConnect](https://www.home-assistant.io/skyconnect/)
