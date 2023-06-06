@@ -67,6 +67,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 - [EMQX / MQTT](https://github.com/hassio-addons/addon-emqx)
 - [ESPHome](https://esphome.io/)
 - [Z-Wave JS UI](https://github.com/hassio-addons/addon-zwave-js-ui)
+- [Zigbee2mqtt](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt)
 - [Silicon Labs Multiprotocol](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
 - [Matter Server](https://github.com/home-assistant/addons/tree/master/matter_server)
 
@@ -243,6 +244,7 @@ HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
 
 ### Light Bulbs ###
 - Philips Hue A19 White/Color Bulb (x6)
+- Philips Hue A19 White (x2)
 - Sonoff A05 (Testing)
 
 
@@ -284,7 +286,7 @@ HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
 - Insteon HD plug (x2)
 - UPB Plugs (x2)
 - Zooz Twin Outdoor plug
-- Third Reality Zigbee Smart Plug G2 (x4)
+- Third Reality Zigbee Smart Plug G2 (x8)
 
 ### Other ###
 - UPB Phase Coupler
