@@ -211,7 +211,7 @@ HA Box is connected to IP KVM and runs otherwise headless in a server cabinet
 ## Devices ##
 
 ### Gateways ###
-- Aeotec Z-Wave Stick 6
+- Aeotec Z-Wave Stick 5+
 - Hue Hub
 - SkyConnect Zigbee / Matter
 - Elk M1
