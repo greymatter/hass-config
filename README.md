@@ -5,6 +5,8 @@ This is my Home Assistant installation.
 
 I will eventually write a summary here but this is just some text to take up space in the meantime.
 
+Well I just recently recovered from a bad crash that took out my system for some time.  I finally got around to rebuilding it from scratch and will be updating my config here to bring things current.
+
 
 
 
