@@ -1,5 +1,4 @@
-## Calculate the number of chores done, to do, or overdue.
-## moving chores entities to package format for consolidation
+# Calculate the number of chores done, to do, or overdue.
 template:
   - trigger:
       - platform: homeassistant
@@ -99,3 +98,4 @@ automation:
               {% set ns.entities = ns.entities + [ s.entity_id ] %}
             {% endfor %}
             {{ ns.entities }}
+

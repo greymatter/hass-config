@@ -1,0 +1,112 @@
+input_number:
+  huron_river_flood_stg_major:
+    name: "Huron River Major Flood Stage Level"
+    unit_of_measurement: ft
+    step: .5
+    initial: 8
+    min: 0
+    max: 12
+
+  huron_river_flood_stg_moderate:
+    name: "Huron River Moderate Flood Stage Level"
+    unit_of_measurement: ft
+    step: .5
+    initial: 7.5
+    min: 0
+    max: 12
+
+  huron_river_flood_stg_minor:
+    name: "Huron River Minor Flood Stage Level"
+    unit_of_measurement: ft
+    step: .5
+    initial: 7
+    min: 0
+    max: 12
+
+  huron_river_flood_stg_action:
+    name: "Huron River Action Flood Stage Level"
+    unit_of_measurement: ft
+    step: .5
+    initial: 6.5
+    min: 0
+    max: 12
+
+  huron_river_streamflow_min:
+    name: "Huron River Streamflow Recorded Low"
+    unit_of_measurement: "ft^3/s"
+    mode: box
+    step: 1
+    initial: 81
+    min: 0
+    max: 1600
+
+  huron_river_streamflow_max:
+    name: "Huron River Streamflow Recorded High"
+    unit_of_measurement: "ft^3/s"
+    mode: box
+    step: 1
+    initial: 1560
+    min: 0
+    max: 1600
+
+
+
+###################################################################################################################################
+### pull local hydrological river data from closest USGS monitoring station ##### source data is updated every 30 mins ###########
+### next is to add upsteam stations and create alerts based on increased flow and gage height for DIY flood warnings ##############
+### bonus points if you can figure out a way to receive data via satellite or radio ###############################################
+###################################################################################################################################
+sensor:
+  - platform: rest
+    name: Huron River Water Level Gage Height
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('6dd6e255fb024a2298383b9ca3dd84c3')/Observations?$top=1&$orderby=phenomenonTime%20desc
+    value_template: "{{ value_json.value[0].result }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+    json_attributes_path: "$.value.[0].result"
+
+  - platform: rest
+    name: Huron River Water Streamflow
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('2f60ca16c0c94382ab3a744043cf52a5')/Observations?$top=1&$orderby=phenomenonTime%20desc
+    value_template: "{{ value_json.value[0].result }}"
+    unit_of_measurement: "ft^3/s"
+    scan_interval: 1800
+    json_attributes_path: "$.value.[0].result"
+
+  - platform: rest
+    name: Huron River Water Level Elevation
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('91330d0fc1964cb0989f02a6d4987422')/Observations?$top=1&$orderby=phenomenonTime%20desc
+    value_template: "{{ value_json.value[0].result }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+    json_attributes_path: "$.value.[0].result"
+
+  - platform: rest
+    name: Huron River Water Gage Sensor Elevation
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-04172000')
+    value_template: "{{ value_json.properties.monitoringLocationAltitudeLandSurface }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+    json_attributes_path: "$.properties.monitoringLocationAltitudeLandSurface"
+
+  - platform: rest
+    name: Huron River Water Gage Sensor Lattitude
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-04172000')/Datastreams
+    value_template: "{{ value_json.value[0].observedArea.coordinates[0] }}"
+    unit_of_measurement: "°"
+    scan_interval: 1800
+    json_attributes_path: "$.value.[0].observedArea.coordinates.[0]"
+
+  - platform: rest
+    name: Huron River Water Gage Sensor Longitude
+    resource: https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-04172000')/Datastreams
+    value_template: "{{ value_json.value[0].observedArea.coordinates[1] }}"
+    unit_of_measurement: "°"
+    scan_interval: 1800
+    json_attributes_path: "$.value.[0].observedArea.coordinates.[1]"
+
+
+
+
+
+

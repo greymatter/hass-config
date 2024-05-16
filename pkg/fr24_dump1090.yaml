@@ -1,0 +1,68 @@
+# ADS-B System / Flightradar 24 / dump1090
+
+homeassistant:
+  customize:
+    sensor.fr24_feeder:
+      hidden: true
+    sensor.fr24_feeder_aircraft_tracked:
+      icon: mdi:airplane
+    sensor.fr24_feeder_aircraft_uploaded:
+      icon: mdi:airplane
+    sensor.fr24_feeder_radar_code:
+      icon: mdi:radar
+
+binary_sensor:
+  - platform: template
+    sensors:
+      fr24_feeder_receiver_connected:
+        friendly_name: Receiver Connected
+        value_template: '{{ is_state_attr("sensor.fr24_feeder", "rx_connected", "1") }}'
+        device_class: connectivity
+      fr24_feeder_link_connected:
+        friendly_name: Link Connected
+        value_template: '{{ is_state_attr("sensor.fr24_feeder", "feed_status", "connected") }}'
+        device_class: connectivity
+
+sensor:
+  - platform: rest
+    name: FR24 Feeder
+    resource: !secret dump1090_api_url
+    # resource: http://10.x.x.x:8754/monitor.json
+    value_template: '{{ value_json.feed_alias }}'
+    method: GET
+    scan_interval: 60
+    json_attributes:
+      - rx_connected
+      - feed_status
+      - d11_map_size
+      - feed_num_ac_tracked
+      - build_version
+      - feed_alias
+
+  - platform: template
+    sensors:
+      fr24_feeder_radar_code:
+        friendly_name: Radar Code
+        value_template: '{{ states.sensor.fr24_feeder.attributes["feed_alias"] }}'
+      fr24_feeder_aircraft_tracked:
+        friendly_name: Aircraft Tracking
+        value_template: '{{ states.sensor.fr24_feeder.attributes["d11_map_size"] | round(0) }}'
+        unit_of_measurement: 'aircraft'
+      fr24_feeder_aircraft_uploaded:
+        friendly_name: Aircraft with Coordinates
+        value_template: '{{ states.sensor.fr24_feeder.attributes["feed_num_ac_tracked"] | round(0) }}'
+        unit_of_measurement: 'aircraft'
+      fr24_feeder_version:
+        friendly_name: Version
+        value_template: '{{ states.sensor.fr24_feeder.attributes["build_version"] }}'
+
+  - platform: rest
+    name: FR24 Aircraft
+    #resource: http://10.x.x.x:8080/data/aircraft.json
+    resource: !secret flightaware_api_url
+    value_template: "{{ value_json.messages }}"
+    method: GET
+    scan_interval: 15
+    json_attributes:
+      - now
+      - aircraft
