@@ -1,0 +1,54 @@
+## curl -k -X POST -F 'api-key=xxxxxxxxxxxx' -F 'get=system-status' http://10.x.x.x/pialert/api/
+- sensor:
+    name: "PiAlert - Last Scan"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.lastscan
+    value_template: '{{ value_json.Last_Scan }}'
+
+- sensor:
+    name: "PiAlert - All Devices"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.alldevices
+    unit_of_measurement: ""
+    value_template: '{{ value_json.All_Devices }}'
+
+- sensor:
+    name: "PiAlert - Online Devices"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.onlinedevices
+    unit_of_measurement: ""
+    value_template: '{{ value_json.Online_Devices }}'
+
+- sensor:
+    name: "PiAlert - Offline Devices"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.offlinedevices
+    unit_of_measurement: ""
+    value_template: '{{ value_json.Offline_Devices }}'
+
+- sensor:
+    name: "PiAlert - Archived Devices"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.archiveddevices
+    unit_of_measurement: ""
+    value_template: '{{ value_json.Archived_Devices }}'
+
+- sensor:
+    name: "PiAlert - New Devices"
+    command: !secret pialert_api_url
+    scan_interval: 200
+    unique_id: pialert.status.newdevices
+    unit_of_measurement: ""
+    value_template: '{{ value_json.New_Devices }}'
+
+- sensor:
+    name: "PiAlert - Scanning"
+    command: !secret pialert_api_url
+    scan_interval: 120
+    unique_id: pialert.status.scanning
+    value_template: '{{ value_json.Scanning }}'
