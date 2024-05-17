@@ -384,9 +384,6 @@ exclude:
     ## Grocy ###################################################################
     - binary_sensor.grocy_*
     - sensor.grocy*
-    ## whois / domains #########################################################
-    - sensor.grymtr_com_*
-    - sensor.roninmetalwerks_com_*
     ## server related ##########################################################
     - binary_sensor.ping*
     - switch.apc7*
