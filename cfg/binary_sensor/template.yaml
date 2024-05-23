@@ -39,3 +39,36 @@
         {% else %}
           mdi:weather-sunny
         {% endif %}
+
+## washer and dryer binary sensors ################################
+- platform: template
+  sensors:
+    washing_machine:
+      friendly_name: Washing machine
+      value_template: >
+        {{ states("sensor.sonoff_1001710e8f_power") | float(0) > 3 }}
+      delay_off: "00:05:00"
+      icon_template: >
+        {% if is_state("binary_sensor.washing_machine", "on") %}
+          mdi:washing-machine
+        {% else %}
+          mdi:washing-machine-off
+        {% endif %}
+      attribute_templates:
+        actual: "{{ states('binary_sensor.washing_machine') }}"
+
+    tumble_dryer:
+      friendly_name: Tumble Dryer
+      value_template: >
+        {{ states("sensor.sonoff_1001710879_power") | float(0) > 3 }}
+      delay_off: "00:05:00"
+      icon_template: >
+        {% if is_state("binary_sensor.tumble_dryer", "on") %}
+          mdi:tumble-dryer
+        {% else %}
+          mdi:tumble-dryer-off
+        {% endif %}
+      attribute_templates:
+        actual: "{{ states('binary_sensor.tumble_dryer') }}"
+
+

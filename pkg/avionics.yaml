@@ -66,3 +66,6 @@ sensor:
     json_attributes:
       - now
       - aircraft
+
+
+

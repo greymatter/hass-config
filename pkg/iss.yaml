@@ -1,0 +1,288 @@
+## move all ISS sensors and functions into single package
+# International Space Station
+#- platform: iss
+  # show_on_map: true 
+  # scan_interval: 180
+
+sensor:
+  - platform: rest
+    name: ISS Pass times
+    json_attributes:
+      - request
+      - response
+    value_template: >
+      {{ value_json.message }}
+    resource: 'http://api.open-notify.org/iss-pass.json?lat=51.9867&lon=5.9202'
+    scan_interval:
+      seconds: 300
+
+  - platform: rest
+    name: ISS People in space
+    json_attributes:
+      - people
+      - number
+    value_template: "{{ value_json['number'] }}"
+    resource: 'http://api.open-notify.org/astros.json'
+
+  - platform: feedparser
+    name: NASA ISS Station Report
+    feed_url: https://blogs.nasa.gov/stationreport/feed/
+    date_format: "%a, %d %b %Y %H:%M:%S %z"
+    show_topn: 10
+    scan_interval:
+      hours: 1
+
+  # ISS
+  - platform: template
+    sensors:
+      iss_timestamp:
+        value_template: '{% if states.sensor.iss_coordinates %}{{ states.sensor.iss_coordinates.attributes.timestamp }}{% endif %}'
+        friendly_name: ISS Timestamp
+      iss_latitude:
+        value_template: '{% if states.sensor.iss_coordinates %}{{ states.sensor.iss_coordinates.attributes["iss_position"]["latitude"] }}{% endif %}'
+        friendly_name: ISS Latitude
+      iss_longitude:
+        value_template: '{% if states.sensor.iss_coordinates %}{{ states.sensor.iss_coordinates.attributes["iss_position"]["longitude"] }}{% endif %}'
+        friendly_name: ISS Longitude
+      iss_number_of_passes:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["request"]["passes"] }}{% endif %}'
+        friendly_name: ISS aantal overgangen
+      iss_next_rise_0:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][0]["risetime"] | int | timestamp_custom("%d-%m-%Y %H:%M")}}{% endif %}'
+        friendly_name: ISS overgang 1
+      iss_duration_0:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][0]["duration"] }}{% endif %}'
+        friendly_name: ISS Duur overgang 1
+        unit_of_measurement: "Seconds"
+      iss_next_rise_1:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][1]["risetime"]  | int | timestamp_custom("%d-%m-%Y %H:%M") }}{% endif %}'
+        friendly_name: ISS overgang 2
+      iss_duration_1:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][1]["duration"] }}{% endif %}'
+        friendly_name: ISS Duur overgang 2
+        unit_of_measurement: "Seconds"
+      iss_next_rise_2:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][2]["risetime"]  | int | timestamp_custom("%d-%m-%Y %H:%M") }}{% endif %}'
+        friendly_name: ISS overgang 3
+      iss_duration_2:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][2]["duration"] }}{% endif %}'
+        friendly_name: ISS Duur overgang 3
+        unit_of_measurement: "Seconds"
+      iss_next_rise_3:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][3]["risetime"]  | int | timestamp_custom("%d-%m-%Y %H:%M") }}{% endif %}'
+        friendly_name: ISS overgang 4
+      iss_duration_3:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][3]["duration"] }}{% endif %}'
+        friendly_name: ISS Duur overgang 4
+        unit_of_measurement: "Seconds"
+      iss_next_rise_4:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][4]["risetime"]  | int | timestamp_custom("%d-%m-%Y %H:%M") }}{% endif %}'
+        friendly_name: ISS overgang 5
+      iss_duration_4:
+        value_template: '{% if states.sensor.iss_pass_times %}{{ states.sensor.iss_pass_times.attributes["response"][4]["duration"] }}{% endif %}'
+        friendly_name: ISS Duur overgang 5
+        unit_of_measurement: "Seconds"
+      iss_people_in_space_0_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][0] %}{{ states.sensor.iss_people_in_space.attributes["people"][0]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_0_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][0] %}{{ states.sensor.iss_people_in_space.attributes["people"][0]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_1_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][1] %}{{ states.sensor.iss_people_in_space.attributes["people"][1]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_1_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][1] %}{{ states.sensor.iss_people_in_space.attributes["people"][1]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_2_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][2] %}{{ states.sensor.iss_people_in_space.attributes["people"][2]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_2_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][2] %}{{ states.sensor.iss_people_in_space.attributes["people"][2]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_3_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][3] %}{{ states.sensor.iss_people_in_space.attributes["people"][3]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_3_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][3] %}{{ states.sensor.iss_people_in_space.attributes["people"][3]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_4_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][4] %}{{ states.sensor.iss_people_in_space.attributes["people"][4]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_4_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][4] %}{{ states.sensor.iss_people_in_space.attributes["people"][4]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_5_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][5] %}{{ states.sensor.iss_people_in_space.attributes["people"][5]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_5_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][5] %}{{ states.sensor.iss_people_in_space.attributes["people"][5]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_6_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][6] %}{{ states.sensor.iss_people_in_space.attributes["people"][6]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_6_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][6] %}{{ states.sensor.iss_people_in_space.attributes["people"][6]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_7_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][7] %}{{ states.sensor.iss_people_in_space.attributes["people"][7]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_7_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][7] %}{{ states.sensor.iss_people_in_space.attributes["people"][7]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_8_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][8] %}{{ states.sensor.iss_people_in_space.attributes["people"][8]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_8_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][8] %}{{ states.sensor.iss_people_in_space.attributes["people"][8]["name"] }}{% endif %}'
+        friendly_name: Name
+      iss_people_in_space_9_craft:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][9] %}{{ states.sensor.iss_people_in_space.attributes["people"][9]["craft"] }}{% endif %}'
+        friendly_name: Craft
+      iss_people_in_space_9_name:
+        value_template: '{% if states.sensor.iss_people_in_space.attributes["people"][9] %}{{ states.sensor.iss_people_in_space.attributes["people"][9]["name"] }}{% endif %}'
+        friendly_name: Name
+
+  - platform: template
+    sensors:
+      iss_next_rise:
+        value_template: >
+          {% set response = state_attr('sensor.iss_pass_times', 'response') %}
+          {% if as_timestamp(now()) > response[0].risetime | int and
+                as_timestamp(now()) < response[0].risetime | int + response[0].duration | int %}
+            {% set nextrise = 'Visible Now!' %}
+          {% elif as_timestamp(now()) < response[0].risetime | int and
+                  response[0].risetime | timestamp_custom ('%Y-%m-%d') == states('sensor.date') %}
+            {% set nextrise = 'Today at ' ~ response[0].risetime  | timestamp_custom ('%H:%M') %}
+          {% else %}
+            {% set nextrise = 'Tomorrow at ' ~ response[0].risetime  | timestamp_custom ('%H:%M') %}
+          {% endif %}
+          {{ nextrise }}
+
+
+multiscrape:
+  - name: International Space Station
+    resource: https://api.wheretheiss.at/v1/satellites/25544
+    scan_interval: 30
+    sensor:
+
+      - unique_id: iss
+        name: International Space Station
+        value_template: 'OK'
+        attributes:
+          - name: latitude
+            value_template: '{{ value_json.latitude }}'
+          - name: longitude
+            value_template: '{{ value_json.longitude }}'
+          - name: altitude
+            value_template: '{{ value_json.altitude }}'
+          - name: velocity
+            value_template: '{{ value_json.velocity }}'
+          - name: visibility
+            value_template: '{{ value_json.visibility }}'
+
+      - unique_id: iss_velocity
+        name: International Space Station - Velocity
+        value_template: '{{ value_json.velocity }}'
+        unit_of_measurement: "km/h"
+
+      - unique_id: iss_altitude
+        name: International Space Station - Altitude
+        value_template: '{{ value_json.altitude }}'
+        unit_of_measurement: "km"
+
+
+script:
+  iss_overhead_in_10_minutes:
+    alias: ISS overhead in 10 minutes
+    sequence:
+    - service: notify.greymatter_iphone
+      data:
+        title: 🛰 ISS is arriving in 10 minutes 🛰
+        message: The ISS will arrive at {{ as_timestamp (states.input_datetime.iss_next_overhead_date_time.state)
+          | timestamp_custom('%I:%M %p') }} from {{ states.sensor.iss_approach.state
+          }} reaching a maximum height of {{ states.sensor.iss_elevation.state }} above
+          the horizon. After {{ states.sensor.iss_duration.state }} minutes, it will
+          leave {{ states.sensor.iss_departure.state }}. 
+        data:
+          chronometer: true
+          when: '{{ (as_timestamp(now()) + 600) | round }}'
+          timeout: 600
+          tag: iss
+          ttl: 86400
+          priority: high
+    mode: single
+    icon: mdi:space-station
+  iss_overhead_now:
+    alias: ISS overhead now
+    sequence:
+    - service: notify.mobile_app_mc_hass_app
+      data:
+        title: 🛰 ISS is overhead for {{ states.sensor.iss_duration.state }} minutes
+          🛰
+        message: The ISS will arrive at {{ as_timestamp (states.input_datetime.iss_next_overhead_date_time.state)
+          | timestamp_custom('%I:%M %p') }} from {{ states.sensor.iss_approach.state
+          }} reaching a maximum height of {{ states.sensor.iss_elevation.state }} above
+          the horizon. After {{ states.sensor.iss_duration.state }} minutes, it will
+          leave {{ states.sensor.iss_departure.state }}.
+        data:
+          chronometer: true
+          when: '{{ (as_timestamp(now()) + 600) | round }}'
+          timeout: 600
+          tag: iss
+          ttl: 86400
+          priority: high
+    mode: single
+    icon: mdi:space-station
+
+input_datetime:
+  iss_next_overhead:
+    name: 'ISS next overhead'
+    has_date: true
+    has_time: true
+
+  iss_next_overhead_date_time:
+    name: 'ISS next overhead'
+    has_date: true
+    has_time: true
+
+input_number:
+  iss_duration:
+    name: ISS duration visible
+    initial: 0
+    min: 0
+    max: 10
+    step: 1
+    mode: box
+
+  iss_elevation:
+    name: ISS maximum elevation
+    initial: 0
+    min: 0
+    max: 360
+    step: 1
+    mode: box
+
+  iss_set_minimum_elevation:
+    name: Minimum elevation
+    initial: 40
+    min: 0
+    max: 50
+    step: 10
+
+
+input_text:
+  iss_approach:
+    name: ISS approaching from
+    initial: ''
+
+  iss_departure:
+    name: ISS departing from
+    initial: ''
+
+  iss_rss_feed_updated:
+    name: Last updated
+    initial: 'Recalculating'
+
+
+
