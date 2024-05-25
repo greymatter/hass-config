@@ -7,8 +7,8 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - todd_iphone13
-      - janelles_iphone
+      - greymatter_iphone
+
 
   garage_door_2_alert:
     name: Garage 2 is open
@@ -19,6 +19,6 @@
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - todd_iphone13
-      - janelles_iphone
+      - greymatter_iphone
+
 
