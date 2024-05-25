@@ -1,0 +1,244 @@
+##############################################################
+## GreymatterHQ ##############################################
+##############################################################
+homeassistant:
+  name: GreymatterHQ
+
+  external_url: !secret internal_url
+  internal_url: !secret external_url
+
+  latitude: !secret homeassistant_latitude
+  longitude: !secret homeassistant_longitude
+  elevation: !secret homeassistant_elevation
+
+  country: US
+
+  temperature_unit: F
+  time_zone: !secret homeassistant_timezone
+  unit_system: imperial
+  currency: USD
+
+  customize: !include cfg/customize.yaml
+
+  packages: !include_dir_named pkg
+
+  auth_providers:
+    - type: homeassistant
+################## AD AUTH #####################################
+#   - type: command_line
+#     command: /config/ldap/ldap-auth.sh
+#     args: ["/config/ldap/hassio.cfg"]
+# Uncomment and see below if you want the Home Assistant
+# user to be populated with his full name.
+#meta: true
+################################################################
+
+#################################################################
+#                   default config                              #
+#################################################################
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+
+http:
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  # base_url:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 173.245.48.0/20
+    - 103.21.244.0/22
+    - 103.22.200.0/22
+    - 103.31.4.0/22
+    - 141.101.64.0/18
+    - 108.162.192.0/18
+    - 190.93.240.0/20
+    - 188.114.96.0/20
+    - 197.234.240.0/22
+    - 198.41.128.0/17
+    - 162.158.0.0/15
+    - 104.16.0.0/13
+    - 104.24.0.0/14
+    - 172.64.0.0/13
+    - 131.0.72.0/22
+#  cors_allowed_origins:
+#    - https://embed.windy.com
+
+
+#################################################################
+##  frontend                                                   ##
+#################################################################
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes/
+  extra_module_url:
+    - /local/community/lovelace-layout-card/layout-card.js
+    - /local/community/lovelace-card-tools/card-tools.js
+    - /local/community/lovelace-state-switch/state-switch.js
+    - /local/community/decluttering-card/decluttering-card.js
+    - /local/community/lovelace-auto-entities/auto-entities.js
+    - /local/community/mini-graph-card/mini-graph-card-bundle.js
+    - /local/community/button-card/button-card.js
+    - /local/community/lovelace-card-mod/card-mod.js
+    - /local/community/lovelace-mushroom/mushroom.js
+    - /local/community/ha-floorplan/floorplan.js
+    - /local/community/custom-sidebar/custom-sidebar-yaml.js?v4.6.0
+
+
+
+#################################################################
+##               default yaml lovelace                         ##
+#################################################################
+
+#automation: !include automations.yaml
+#script: !include scripts.yaml
+#scene: !include scenes.yaml
+
+#################################################################
+##               custom yaml lovelace                          ##
+#################################################################
+# Use for managed dashboards
+#lovelace:
+#  mode: storage
+
+#use for YAML only dashboardsa
+lovelace:
+  mode: yaml
+  resources: !include lovelace-resources.yaml
+  dashboards: !include lovelace-dashboards.yaml
+  #resources: !include ui-resources.yaml
+  #dashboards: !include ui-dashboards.yaml
+  
+
+
+#################################################################
+##                    Include Files                            ##
+#################################################################
+
+alert: !include cfg/alert.yaml
+automation: !include automations.yaml
+calendar: !include cfg/calendar.yaml
+camera: !include cfg/camera.yaml
+device_tracker: !include cfg/device_tracker.yaml
+feedreader: !include cfg/feedreader.yaml
+geo_location: !include cfg/geo_location.yaml
+google_assistant: !include cfg/google_assistant.yaml
+homekit: !include cfg/homekit.yaml
+ics_calendar: !include cfg/ics_calendar.yaml
+influxdb: !include cfg/influxdb.yaml
+input_boolean: !include cfg/input_boolean.yaml
+input_button: !include cfg/input_button.yaml
+input_text: !include cfg/input_text.yaml
+input_datetime: !include cfg/input_datetime.yaml
+input_number: !include cfg/input_number.yaml
+input_select: !include cfg/input_select.yaml
+logger: !include cfg/logger.yaml
+ltss: !include cfg/ltss.yaml
+media_player: !include cfg/media_player.yaml
+mqtt: !include cfg/mqtt.yaml
+notify: !include cfg/notify.yaml
+o365: !include cfg/o365.yaml
+panel_custom: !include cfg/panel_custom.yaml
+#panel_iframe: !include cfg/panel_iframe.yaml - removed from yaml deprecated
+powercalc: !include cfg/powercalc.yaml
+recorder: !include cfg/recorder.yaml
+rest_command: !include cfg/rest_command.yaml
+script: !include cfg/script.yaml
+scene: !include cfg/scenes.yaml
+scrape: !include cfg/scrape.yaml
+shell_command: !include cfg/shell_command.yaml
+switch: !include cfg/switch.yaml
+utility_meter: !include cfg/utility_meter.yaml
+vacuum: !include cfg/vacuum.yaml
+variable: !include cfg/variable.yaml
+yahoofinance: !include cfg/yahoofinance.yaml
+
+
+#################### moved to merge dirs #######################
+# sensor: !include cfg/sensor.yaml
+# binary_sensor: !include cfg/binary_sensor.yaml
+# rest: !include cfg/rest.yaml
+#
+#################################################################
+##                     Include Dirs                            ##
+#################################################################
+
+## merge named ##
+group: !include_dir_merge_named cfg/groups/
+
+## merge list ##
+binary_sensor: !include_dir_merge_list cfg/binary_sensor/
+command_line: !include_dir_merge_list cfg/command_line/
+multiscrape: !include_dir_merge_list cfg/multiscrape/
+rest: !include_dir_merge_list cfg/rest/
+sensor: !include_dir_merge_list cfg/sensor/
+template: !include_dir_merge_list cfg/template/
+
+## TODOS - LIST
+# automation: !include_dir_merge_list automation
+# scene: !include_dir_merge_list scene
+# switch: !include_dir_merge_list switch
+## TODOS - NAMED
+# script: !include_dir_merge_named script
+# input_boolean: !include_dir_merge_named input_boolean
+# shell_command: !include_dir_merge_named shell_command
+#################################################################
+##                          apps                               ##
+#################################################################
+#demo:
+
+
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_auth_token
+
+#asterisk_mbox:
+#  password: !secret asterisk_mbox_hassio
+#  host: !secret hassio_ip
+#  port: 12345
+#asterisk_mbox:
+#  password: !secret asterisk_mbox_gpbx
+#  host: !secret gpbx_ip
+#  port: 12345
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_api_key
+    allowed_chat_ids:
+      - !secret telegram_s4biturbo_chat_id # example: 123456789 for the chat_id of a user
+
+proxmoxve:
+  - host: !secret prox1_ip
+    port: 8006
+    verify_ssl: false
+    username: !secret prox1_user
+    realm: pve
+    password: !secret prox1_passwd
+    nodes:
+      - node: prox1
+        vms:
+          - 100
+        #containers:
+        #  - CONTAINER_ID
+
+spotcast:
+  sp_dc: !secret spotify_sp_dc
+  sp_key: !secret spotify_sp_key
+  country: US
+
+
+favicon:
+  title: GreymatterHQ
+  icon_path: /local/favicons/
+
+
+
+readme:
+  convert_lovelace: false
+
+
+
