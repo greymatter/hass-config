@@ -1,0 +1,53 @@
+## these have mostly been replaced by BI integration leaving this as documentation
+# - platform: mjpeg
+#   mjpeg_url: http://10.x.x.x:8188/mjpg/Cam1
+#   name: Cam1
+
+# - platform: generic
+#   name: grafana_opn_in_out_1
+#   still_image_url: https://10.x.x.x:3000/api/hassio_ingress/GE0L5DxMZWIL-utJhpsxHoz3rld49nRrIkPgxAyE2Bc/render/d-solo/v4KafSXiz/telegraf-system-dashboard?orgId=1&refresh=1m&var-datasource=InfluxDB-telegraf&var-inter=10s&var-server=loki.gmhq.greymatterhosting.com&var-mountpoint=All&var-cpu=All&var-disk=All&var-netif=All&from=now-1M&to=now&panelId=42026&width=450&height=200&tz=America%2FDetroit
+
+# - platform: generic
+#   name: grafana_opn_in_out_2
+#   still_image_url: https://10.x.x.x:3000/api/hassio_ingress/GE0L5DxMZWIL-utJhpsxHoz3rld49nRrIkPgxAyE2Bc/render/d-solo/v4KafSXiz/telegraf-system-dashboard?orgId=1&refresh=1m&var-datasource=InfluxDB-telegraf&var-inter=10s&var-server=loki.gmhq.greymatterhosting.com&var-mountpoint=All&var-cpu=All&var-disk=All&var-netif=All&from=now-1M&to=now&panelId=42026&width=1000&height=500&tz=America%2FDetroit
+
+#- platform: generic
+#  still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/binghamton-new-york-region-current-radar-animation.gif'
+#  name: 'mi_radar'
+#  content_type: image/gif
+#  scan_interval: 60
+
+#- platform: generic
+#  still_image_url: "https://radar.weather.gov/ridge/standard/CONUS-LARGE_loop.gif"
+#  name: "nws_radar_mosaic_conus"
+
+#- platform: generic
+#  name: ISS
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.sensor.iss.attributes.lat }},{{ states.sensor.iss.attributes.long }}&zoom=5&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.sensor.iss.attributes.lat }},{{ states.sensor.iss.attributes.long }}
+#  limit_refetch_to_url_change: true
+
+ - platform: ffmpeg
+   name: Earthcam - NYC Times Square
+   input: http://video3.earthcam.com/fecnetwork/hdtimes10.flv/playlist.m3u8
+
+ - platform: ffmpeg
+   name: Earthcam - NYC Midtown
+   input: http://videos-3.earthcam.com/fecnetwork/13903.flv/playlist.m3u8
+
+
+
+
+##############################################################################################
+## SkyField Platform - to map out planets and constellations #################################
+##########  this is very CPU intensive - use with caution ####################################
+##############################################################################################
+
+#- platform: ha_skyfield
+#  show_constellations: false
+##############################################################################################
+
+
+
+
+
+

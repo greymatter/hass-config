@@ -1,0 +1,38 @@
+####################################################################################
+# < moved to seperate google_assistant.yaml to clean up main cfg file - 02.03.23 > #
+####################################################################################
+  project_id: !secret g_a_project_id
+  service_account: !include hassio-b34441214882.json
+  report_state: true
+  expose_by_default: false
+  entity_config:
+    light.all_workbenchs:
+      expose: true
+      room: Main Shop
+    light.paint_booth_exh:
+      expose: true
+      room: Paint Booth
+      name: Paint Booth Exhaust Fan
+    camera.blueiris_paint_booth_2:
+      expose: true
+      room: Paint Booth
+    camera.blueiris_loading_dock_2:
+      expose: true
+      room: Loading Dock
+    camera.blueiris_basement:
+      expose: true
+      room: Basement
+    switch.smart_energy_switch_current_value:
+      expose: true
+      room: Janelle's Office
+      name: Space Heater
+    switch.sonoff_10018474b4_1:
+      expose: true
+      room: "Zoe's Room"
+      name: Leaf Lamp
+    switch.sonoff_1001846d84_1:
+      expose: true
+      room: "Zoe's Room"
+      name: Sunset Lamp
+
+

@@ -1,0 +1,36 @@
+  air_filter_installed:
+    name: Air Filter Installed
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+
+  humid_pad_installed:
+    name: Humidifer Pad Installed
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+
+  h20_fridge_filter_installed:
+    name: Fridge Water Filter Installed
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+
+  h20_spindown_filter_installed:
+    name: Twist-II-Clean Filter Cleaned
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+
+  septic_pit_filter_installed:
+    name: Septic Tank Filter Cleaned
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+
+  septic_pit_cleanout_installed:
+    name: Septic Tank Cleanout Performed
+    icon: mdi:air-filter
+    has_date: true
+    has_time: false
+

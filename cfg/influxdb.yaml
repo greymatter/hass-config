@@ -1,0 +1,17 @@
+#host: !secret influx_host
+host: a0d7b954-influxdb
+port: 8086
+database: !secret influx_db
+username: !secret influx_user
+password: !secret influx_pass
+ssl: false
+verify_ssl: false
+max_retries: 3
+default_measurement: state
+include:
+  entities:
+    - binary_sensor.ecobee_occupancy
+    - sensor.ecobee_humidity
+    - sensor.ecobee_temperature
+    - sensor.home_office_temperature
+    - binary_sensor.home_office_occupancy

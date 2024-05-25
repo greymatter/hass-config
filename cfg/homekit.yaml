@@ -1,0 +1,9 @@
+  - filter:
+      include_domains:
+        - light
+        - switch
+      include_entity_globs:
+        - binary_sensor.*
+      include_entities:
+        - binary_sensor.living_room_motion
+

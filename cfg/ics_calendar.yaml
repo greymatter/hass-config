@@ -1,0 +1,17 @@
+#- platform: ics_calendar
+calendars:
+  - name: "Astronomy Calendar"
+    url: "https://cantonbecker.com/astronomy-calendar/astrocal.ics"
+    include_all_day: true
+    download_interval: 21600
+  # https://in-the-sky.org/newscalyear_ical.php?year=2017&maxdiff=1
+  - name: "Astronomical Events"
+    url: "https://in-the-sky.org/newscalyear_ical.php?year=2024&maxdiff=7"
+    include_all_day: true
+    download_interval: 21600
+
+  - name: "Work Calendar"
+    url: !secret work_calendar_url
+    include_all_day: true
+    #download_interval: 21600
+ 

@@ -1,0 +1,14 @@
+# testing out using this for tracking
+
+- platform: cisco_mobility_express
+  host: !secret wlc_ip
+  username: !secret cisco_wlc_user
+  password: !secret cisco_wlc_pass
+  ssl: true
+  verify_ssl: false
+
+- platform: cisco_ios
+  host: !secret ssh_sw01_devtracker
+  username: !secret cisco_ios_user
+  password: !secret cisco_ios_pass
+

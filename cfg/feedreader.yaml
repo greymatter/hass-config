@@ -1,0 +1,8 @@
+urls:
+  - https://www.home-assistant.io/atom.xml
+  - https://atwoodknives.blogspot.com/feeds/posts/default
+  #- https://github.com/blog.atom
+  #- https://hasspodcast.io/feed/podcast
+scan_interval:
+  minutes: 5
+max_entries: 5
