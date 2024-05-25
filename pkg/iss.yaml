@@ -5,16 +5,17 @@
   # scan_interval: 180
 
 sensor:
-  - platform: rest
-    name: ISS Pass times
-    json_attributes:
-      - request
-      - response
-    value_template: >
-      {{ value_json.message }}
-    resource: 'http://api.open-notify.org/iss-pass.json?lat=51.9867&lon=5.9202'
-    scan_interval:
-      seconds: 300
+  ## deprecated feed
+  # - platform: rest
+  #   name: ISS Pass times
+  #   json_attributes:
+  #     - request
+  #     - response
+  #   value_template: >
+  #     {{ value_json.message }}
+  #   resource: !secret iss_pass_url
+  #   scan_interval:
+  #     seconds: 300
 
   - platform: rest
     name: ISS People in space
