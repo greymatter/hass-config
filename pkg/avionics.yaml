@@ -67,5 +67,137 @@ sensor:
       - now
       - aircraft
 
+  - platform: template
+    sensors:
+      adsb_lol_beast_positions_per_second:
+        friendly_name: ADSB.lol - Positions Uploaded per Second
+        value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_positions_per_second"] }}'
+      adsb_lol_beast_positions_kbs:
+        friendly_name: ADSB.lol - Uplink Throughput
+        value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["kbps"] | round(2) }}'
+        unit_of_measurement: 'kbps'
+
+
+
+multiscrape:
+
+  - name: adsb.lol stats
+    #resource: !secret openmeteo_api
+    resource: https://api.adsb.lol/0/me
+    scan_interval: 60
+    sensor:
+
+      - unique_id: adsb_lol_daily_stats
+        name: ADSB.lol - Daily Stats
+        value_template: OK
+        icon: mdi:plane
+        attributes:
+          - name: global_aircraft
+            value_template: '{{ value_json.global.aircraft }}'
+          - name: global_beast
+            value_template: '{{ value_json.global.beast }}'
+          - name: global_mlat
+            value_template: '{{ value_json.global.mlat }}'
+          - name: beast_connected_seconds
+            value_template: '{{ value_json.clients.beast[0].connected_seconds }}'
+          - name: beast_kbps
+            value_template: '{{ value_json.clients.beast[0].kbps }}'
+          - name: beast_ms
+            value_template: '{{ value_json.clients.beast[0].ms }}'
+          - name: beast_messages_per_second
+            value_template: '{{ value_json.clients.beast[0].messages_per_second }}'
+          - name: beast_positions
+            value_template: '{{ value_json.clients.beast[0].positions }}'
+          - name: beast_positions_per_second
+            value_template: '{{ value_json.clients.beast[0].positions_per_second }}'
+          - name: mlat_peer_count
+            value_template: '{{ value_json.clients.mlat[0].peer_count }}'
+          - name: mlat_outlier_percent
+            value_template: '{{ value_json.clients.mlat[0].outlier_percent }}'
+          - name: mlat_bad_sync_timeout
+            value_template: '{{ value_json.clients.mlat[0].bad_sync_timeout }}'
+
+
+  - name: adsb.fi stats
+    #resource: !secret openmeteo_api
+    resource: https://api.adsb.fi/v1/myip
+    scan_interval: 60
+    sensor:
+
+      - unique_id: adsb_fi_daily_stats
+        name: ADSB.fi - Daily Stats
+        value_template: OK
+        icon: mdi:plane
+        attributes:
+          - name: beast_connected_seconds
+            value_template: '{{ value_json.beast[0].connTime }}'
+          - name: beast_bandwidth
+            value_template: '{{ value_json.beast[0].bandwidth }}'
+          - name: beast_recentRtt
+            value_template: '{{ value_json.beast[0].recentRtt }}'
+          - name: beast_messages_per_second
+            value_template: '{{ value_json.beast[0].messageRate }}'
+          - name: beast_positions
+            value_template: '{{ value_json.beast[0].positions }}'
+          - name: beast_positions_per_second
+            value_template: '{{ value_json.beast[0].positionRate }}'
+          - name: mlat_messages_per_second
+            value_template: '{{ value_json.mlat[0].messageRate }}'
+          - name: mlat_peer_count
+            value_template: '{{ value_json.mlat[0].peerCount }}'
+          - name: mlat_outlier_percent
+            value_template: '{{ value_json.mlat[0].outlierPercent }}'
+          - name: mlat_bad_sync_timeout
+            value_template: '{{ value_json.mlat[0].badSyncTimeout }}'
+
+
+  - name: FlyItaly adsb stats
+    #resource: !secret openmeteo_api
+    resource: https://my.flyitalyadsb.com/am_i_feeding
+    scan_interval: 60
+    sensor:
+
+      - unique_id: adsb_flyitaly_stats
+        name: FlyItaly ADSB - Stats
+        value_template: OK
+        icon: mdi:plane
+        attributes:
+          - name: beast
+            value_template: '{{ value_json.feeding.beast }}'
+          - name: mlat
+            value_template: '{{ value_json.feeding.mlat }}'
+
+
+
+  # - name: FlyItaly adsb stats
+  #   #resource: !secret openmeteo_api
+  #   resource: https://my.flyitalyadsb.com/am_i_feeding
+  #   scan_interval: 60
+  #   sensor:
+
+  #     - unique_id: flyitaly_adsb_stats
+  #       name: FlyItaly ADSB - Stats
+  #       value_template: OK
+  #       icon: mdi:plane
+  #       attributes:
+  #         - name: beast
+  #           value_template: '{{ value_json.feeding.beast }}'
+  #         - name: mlat
+  #           value_template: '{{ value_json.feeding.mlat }}'
+
+
+recorder:
+  exclude:
+    entities:
+      - binary_sensor.fr24_feeder_receiver_connected
+      - binary_sensor.fr24_feeder_link_connected
+      - sensor.fr24_feeder_radar_code
+      - sensor.fr24_feeder_aircraft_tracked
+      - sensor.fr24_feeder_aircraft_uploaded
+      - sensor.fr24_feeder_version
+      - sensor.adsb_lol_daily_stats
+      - sensor.adsb_fi_daily_stats
+      - sensor.adsb_flyitaly_stats
+      - sensor.fr24_feeder
 
 
