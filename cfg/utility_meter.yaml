@@ -4,13 +4,13 @@
     tariffs:
       - standard
 
-  energy_daily_8051:
+  energy_daily_8xx1:
     source: sensor.energy_spent_8xx1
     cycle: daily
     tariffs:
       - standard
 
-  energy_daily_8045:
+  energy_daily_8xx5:
     source: sensor.energy_spent_8xx5
     cycle: daily
     tariffs:

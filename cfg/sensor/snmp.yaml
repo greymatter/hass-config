@@ -1,0 +1,900 @@
+
+#########################################################
+#                        SNMP                           #
+#########################################################
+##  APC SNMP Configs ####################################
+
+##  APC-7900 Configs ####################################
+- platform: snmp
+  name: apc7900_uptime
+  host: !secret apc7900_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.3.0
+  scan_interval: 5
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: "apc7900_load_amps"
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.1
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+##  APC-7901 Configs ####################################
+- platform: snmp
+  name: apc7901_uptime
+  host: 10.0.10.91
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.3.0
+  scan_interval: 5
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: "apc7901_load_amps"
+  host: 10.0.10.91
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.1
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+
+##  APC-7932 Configs ####################################
+- platform: snmp
+  name: apc7932_uptime
+  host: 10.0.10.92
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.3.0
+  scan_interval: 5
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: "apc7932_load_amps"
+  host: 10.0.10.92
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.1
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+- platform: snmp
+  name: "apc7932_b1_load_amps"
+  host: 10.0.10.92
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.2
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+- platform: snmp
+  name: "apc7932_b2_load_amps"
+  host: 10.0.10.92
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.3
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+
+##  APC-7811b Configs ###################################
+- platform: snmp
+  name: apc7811b_uptime
+  host: !secret apc7811_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.3.0
+  scan_interval: 5
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: "apc7811b_load_amps"
+  host: !secret apc7811_ip
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.1
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+- platform: snmp
+  name: "apc7811b_b1_load_amps"
+  host: !secret apc7811_ip
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.2
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+- platform: snmp
+  name: "apc7811b_b2_load_amps"
+  host: !secret apc7811_ip
+  community: !secret snmp_rw
+  baseoid: .1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.3
+  version: "1"
+  accept_errors: true
+  unit_of_measurement: "A"
+  value_template: "{{ value | float / 10 }}"
+
+### OPNsense firewall monitors #########################################
+
+- platform: snmp
+  name: opn_fw_wan_in
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.2.2.1.10.1
+  scan_interval: 2
+
+- platform: snmp
+  name: opn_fw_wan_out
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.2.2.1.16.1
+  scan_interval: 2
+
+- platform: snmp
+  name: opn_fw_lan_in
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.2.2.1.10.2
+  scan_interval: 6
+
+- platform: snmp
+  name: opn_fw_lan_out
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.2.2.1.16.2
+  scan_interval: 6
+
+- platform: snmp
+  name: opn_fw_uptime
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.1.3.0
+  scan_interval: 2
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: opn_fw_load
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.4.1.2021.10.1.3.1
+  scan_interval: 2
+  value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+  # 4 cores  change if you firewall have +-
+
+- platform: snmp
+  name: opn_fw_memory_size
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.2.0
+  scan_interval: 100
+  value_template: "{{ (value |int(0) / 1048576)  | round(2)  }}"
+  unit_of_measurement: "MB"
+
+- platform: snmp
+  name: opn_fw_mem_used_real
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.6.2
+  scan_interval: 5
+  #value_template: "{{ (value * 4096) | int(0)  }}"
+
+- platform: snmp
+  name: opn_fw_mem_used_buffers
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.6.6
+  scan_interval: 5
+
+- platform: snmp
+  name: opn_fw_mem_used_cached
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.6.7
+  scan_interval: 5
+
+- platform: snmp
+  name: opn_fw_mem_used_shared_real
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.6.9
+  scan_interval: 5
+
+- platform: snmp
+  name: opn_fw_storage_root_size
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.5.31
+  scan_interval: 500
+  value_template: "{{  ( ((value | int(0)) * 4096) /  1073741824) | round(2) | float(2) }}"
+  unit_of_measurement: "GB"
+
+- platform: snmp
+  name: opn_fw_storage_root_size_used
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.25.2.3.1.6.31
+  scan_interval: 50
+  value_template: "{{  ( ((value | int(0)) * 4096) /  1073741824) | round(2) | float(2) }}"
+  unit_of_measurement: "GB"
+
+  # this is not working #
+#- platform: snmp
+#  name: opn_fw_openvpn_users
+#  host: !secret opn_ip
+#  community: !secret snmp_ro
+#  baseoid: .3.6.1.4.1.2021.8.1.101.2
+#  scan_interval: 100
+
+- platform: snmp
+  name: opn_fw_opn_version
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.8072.1.3.2.3.1.1.7.118.101.114.115.105.111.110
+  scan_interval: 10000
+
+- platform: snmp
+  name: opn_fw_bsd_version
+  host: !secret opn_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.1.0
+  scan_interval: 10000
+
+## VMware ESXi SNMP ############################################################
+
+- platform: snmp
+  name: gmhqesxi04_uptime
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.3.0
+  scan_interval: 5
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: gmhqesxi04_esx_version
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.1.0
+  scan_interval: 10000
+
+- platform: snmp
+  name: gmhqesxi04_esx_version_number
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.1.2.0
+  scan_interval: 10000
+
+## unRAID
+- platform: snmp
+  name: gmhqesxi04_gmhqur1_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.6.1
+  scan_interval: 5
+
+## GMHQDC3
+- platform: snmp
+  name: gmhqesxi04_gmhqdc3_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.6.2
+  scan_interval: 5
+
+## GMHQVWLC2
+- platform: snmp
+  name: gmhqesxi04_gmhqvwlc2_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.6.13
+  scan_interval: 5
+
+## GMHQCQC1
+- platform: snmp
+  name: gmhqesxi04_gmhqcqc1_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.6.8
+  scan_interval: 5
+
+## GMHQVCTR1
+- platform: snmp
+  name: gmhqesxi04_gmhqvctr1_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.6.7
+  scan_interval: 5
+
+- platform: snmp
+  name: gmhqesxi04_vm1_vmtools_status
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.2.1.1.8.1
+  scan_interval: 5
+
+## anything other than 0 is an storage failure alert
+- platform: snmp
+  name: gmhqesxi04_vm1_storage_alert
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.2.3.1.7.1
+  scan_interval: 5
+
+- platform: snmp
+  name: gmhqesxi04_total_memory_kb
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.6876.3.2.1.0
+  scan_interval: 600
+  value_template: "{{ (value | float / 1048576 ) | round(2) }}"
+  unit_of_measurement: "GB"
+
+## memory used or at least i think it should be, going to try ##################
+- platform: snmp
+  name: gmhqesxi04_used_memory_kb
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.2.3.1.6.8
+  scan_interval: 2
+  value_template: "{{ (value | float / 1048576 ) | round(2) }}"
+  unit_of_measurement: "GB"
+
+# .1.3.6.1.4.1.6876.3.2.1.0
+- platform: snmp
+  name: gmhqesxi04_load_core_1
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.1
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+  # 4 cores  change if you firewall have +-
+
+- platform: snmp
+  name: gmhqesxi04_load_core_2
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.2
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+- platform: snmp
+  name: gmhqesxi04_load_core_3
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.3
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+- platform: snmp
+  name: gmhqesxi04_load_core_4
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.4
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+- platform: snmp
+  name: gmhqesxi04_load_core_5
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.5
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+  # 4 cores  change if you firewall have +-
+
+- platform: snmp
+  name: gmhqesxi04_load_core_6
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.6
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+- platform: snmp
+  name: gmhqesxi04_load_core_7
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.7
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+- platform: snmp
+  name: gmhqesxi04_load_core_8
+  host: !secret gmhqesxi04_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.25.3.3.1.2.8
+  scan_interval: 2
+  #value_template: "{{ ((value | float(0) * 100) / 4) | round(2)  }}"
+  value_template: "{{ ((value | float(0) ) ) | round(2)  }}"
+  device_class: power_factor
+  unit_of_measurement: "%"
+
+## i know this isnt an SNMP sensor but to keep things together #################
+- platform: template
+  sensors:
+    gmhqesxi04_load_core_average:
+      friendly_name: "GMHQESXI04 CPU Load Average"
+      #value_template: "{{ (float(states('sensor.gmhqesxi04_load_core_1'))) + (float(states('sensor.gmhqesxi04_load_core_2')))  + (float(states('sensor.gmhqesxi04_load_core_3'))) + (float(states('sensor.gmhqesxi04_load_core_4'))) + (float(states('sensor.gmhqesxi04_load_core_5'))) + (float(states('sensor.gmhqesxi04_load_core_6'))) + (float(states('sensor.gmhqesxi04_load_core_7'))) + (float(states('sensor.gmhqesxi04_load_core_8'))) / 8) | round(2)) }}"
+      #value_template: "{{ ((float (states('sensor.gmhqesxi04_load_core_1')) + (states('sensor.gmhqesxi04_load_core_2'))) / 2 )"
+      value_template: >-
+        {{ ((float(states('sensor.gmhqesxi04_load_core_1')) +
+            float(states('sensor.gmhqesxi04_load_core_2')) +
+            float(states('sensor.gmhqesxi04_load_core_3')) +
+            float(states('sensor.gmhqesxi04_load_core_4')) +
+            float(states('sensor.gmhqesxi04_load_core_5')) +
+            float(states('sensor.gmhqesxi04_load_core_6')) +
+            float(states('sensor.gmhqesxi04_load_core_7')) +
+            float(states('sensor.gmhqesxi04_load_core_8'))) / 8) | round(2)
+        }}
+      device_class: power_factor
+      unit_of_measurement: "%"
+
+- platform: template
+  sensors:
+    gmhqesxi04_memory_used_percent:
+      friendly_name: "GMHQESXI04 Memory Used Percent"
+      value_template: >-
+        {{ ((float(states('sensor.gmhqesxi04_used_memory_kb')) /
+            float(states('sensor.gmhqesxi04_total_memory_kb'))) * 100) | round(2)
+        }}
+      unit_of_measurement: "%"
+
+
+##  Cisco SNMP Configs #########################################################
+##  sw01  ######################################################################
+
+- platform: snmp
+  name: sw01_uptime
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.1.3.0
+  scan_interval: 2
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: sw01_ios_version
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.1.0
+  scan_interval: 10000
+
+- platform: snmp
+  name: sw01_ios_bin
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.16.19.6.0
+  scan_interval: 10000
+
+- platform: snmp
+  name: sw01_s2h_uplink_bytes_in
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.2.2.1.10.10102
+  scan_interval: 2
+
+- platform: snmp
+  name: sw01_s2h_uplink_bytes_out
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.2.2.1.16.10102
+  scan_interval: 2
+
+## cpu load monitors
+
+- platform: snmp
+  name: sw01_cpu_load_1_min
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.57.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw01_cpu_load_5_min
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.4.1.9.2.1.58.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw01_cpu_load_5_sec
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.56.0
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.
+- platform: snmp
+  name: sw01_memory_util_bytes_used
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.5.1
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently unused on the managed device.
+- platform: snmp
+  name: sw01_memory_util_bytes_unused
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.6.1
+  scan_interval: 2
+
+##  sw02  ############################################################
+
+- platform: snmp
+  name: sw02_uptime
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.1.3.0
+  scan_interval: 2
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: sw02_ios_version
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.1.0
+  scan_interval: 10000
+
+- platform: snmp
+  name: sw02_ios_bin
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.16.19.6.0
+  scan_interval: 10000
+
+## cpu load monitors
+
+- platform: snmp
+  name: sw02_cpu_load_1_min
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.57.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw02_cpu_load_5_min
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.4.1.9.2.1.58.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw02_cpu_load_5_sec
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.56.0
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.
+- platform: snmp
+  name: sw02_memory_util_bytes_used
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.5.1
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently unused on the managed device.
+- platform: snmp
+  name: sw02_memory_util_bytes_unused
+  host: !secret sw02_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.6.1
+  scan_interval: 2
+
+##  sw03  ############################################################
+
+- platform: snmp
+  name: sw03_uptime
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.2.1.1.3.0
+  scan_interval: 2
+  value_template: >
+    {% set timetick = value  |int(0) %}
+    {% set seconds = (timetick / 100) | round(0) | int(0) %}
+    {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+    {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+    {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+    {% if days  > 0 %}
+      {{ days }} days,
+    {% else %}
+      {{ days }} day,
+    {% endif %}
+    {% if hours  > 0 %}
+      {{ hours }} h
+    {% else %}
+      {{ 00 }} h
+    {% endif %}
+    {% if minutes  > 0 %}
+      {% if minutes < 10 %}
+        0{{ minutes }} m
+      {% else %}
+        {{ minutes }} m
+      {% endif %}
+    {% else %}
+      {{ 00 }} m
+    {% endif %}
+
+- platform: snmp
+  name: sw03_ios_version
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.1.1.0
+  scan_interval: 10000
+
+- platform: snmp
+  name: sw03_ios_bin
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.2.1.16.19.6.0
+  scan_interval: 10000
+
+## cpu load monitors
+
+- platform: snmp
+  name: sw03_cpu_load_1_min
+  host: !secret sw01_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.57.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw03_cpu_load_5_min
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: 1.3.6.1.4.1.9.2.1.58.0
+  scan_interval: 2
+
+- platform: snmp
+  name: sw03_cpu_load_5_sec
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.2.1.56.0
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.
+- platform: snmp
+  name: sw03_memory_util_bytes_used
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.5.1
+  scan_interval: 2
+
+  ## Indicates the number of bytes from the memory pool that are currently unused on the managed device.
+- platform: snmp
+  name: sw03_memory_util_bytes_unused
+  host: !secret sw03_ip
+  community: !secret snmp_ro
+  baseoid: .1.3.6.1.4.1.9.9.48.1.1.1.6.1
+  scan_interval: 2
+

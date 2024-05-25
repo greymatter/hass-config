@@ -1,0 +1,677 @@
+###############################################################################
+####  cisco wlc config all consolidated to ease sharing and updating ##########
+###############################################################################
+#
+#  i use a virtual machine for now, single wlc, 7 physical aps
+#
+#
+#
+#
+###############################################################################
+
+
+sensor:
+
+  ### cisco wlc monitors #########################################
+  - platform: snmp
+    name: cisco_wlc_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: 1.3.6.1.2.1.1.3.0
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+
+
+
+
+  - platform: snmp
+    name: cisco_wlc_aps_online
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.618.1.8.4.0
+    unit_of_measurement: "AP's"
+    scan_interval: 100
+
+  - platform: snmp
+    name: cisco_wlc_clients_online
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: 1.3.6.1.4.1.9.9.618.1.8.12.0
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhqx
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.2
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhqx2
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.8
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhql
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.4
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhqt
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.1
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhqm
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.3
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_bg_only
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.5
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhqk
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.6
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gmhq_guest
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.13
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_gtst
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.19
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  - platform: snmp
+    name: cisco_wlc_client_online_darknet
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.14179.2.1.1.1.38.50
+    unit_of_measurement: "Clients"
+    scan_interval: 30
+
+  ###########################################################
+  ## pull in/out throughput for each AP #####################
+
+  # - platform: snmp
+  #   name: sw01_s2h_uplink_bytes_in
+  #   host: !secret sw01_ip
+  #   community: !secret snmp_ro
+  #   baseoid: .1.3.6.1.2.1.2.2.1.10.10102
+  #   scan_interval: 2
+
+  # - platform: snmp
+  #   name: sw01_s2h_uplink_bytes_out
+  #   host: !secret sw01_ip
+  #   community: !secret snmp_ro
+  #   baseoid: .1.3.6.1.2.1.2.2.1.16.10102
+  #   scan_interval: 2
+
+
+  ###########################################################
+  ## pull uptime for each AP ################################
+
+  ### cisco ap02_c3602e #####################################
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.8.204.104.98.98.128
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.8.204.104.98.98.128
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.8.204.104.98.98.128
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.8.204.104.98.98.128
+    scan_interval: 3600
+
+  ### cisco ap03_c3602e ######################################
+  - platform: snmp
+    name: cisco_wlc_ap03_c3602e_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.100.233.80.51.90.32
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap03_c3602e_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.100.233.80.51.90.32
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap03_c3602e_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.100.233.80.51.90.32
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap03_c3602e_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.100.233.80.51.90.32
+    scan_interval: 3600
+
+  ### cisco ap05_c3702e ######################################
+  - platform: snmp
+    name: cisco_wlc_ap05_c3702e_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.116.38.172.180.146.240
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap05_c3702e_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.116.38.172.180.146.240
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap05_c3702e_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.116.38.172.180.146.240
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap05_c3702e_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.116.38.172.180.146.240
+    scan_interval: 3600
+
+  ### cisco ap06_c3702e #####################################
+  - platform: snmp
+    name: cisco_wlc_ap06_c3702e_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.4.98.115.235.193.176
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap06_c3702e_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.4.98.115.235.193.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap06_c3702e_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.4.98.115.235.193.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap06_c3702e_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.4.98.115.235.193.176
+    scan_interval: 3600
+
+  ### cisco ap07_c3702e ######################################
+  - platform: snmp
+    name: cisco_wlc_ap07_c3702e_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.88.243.156.215.136.176
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap07_c3702e_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.88.243.156.215.136.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap07_c3702e_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.88.243.156.215.136.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap07_c3702e_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.88.243.156.215.136.176
+    scan_interval: 3600
+
+  ### cisco ap09_c3702i ######################################
+  - platform: snmp
+    name: cisco_wlc_ap09_c3702i_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.4.98.115.9.38.96
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap09_c3702i_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.4.98.115.9.38.96
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap09_c3702i_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.4.98.115.9.38.96
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap09_c3702i_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.4.98.115.9.38.96
+    scan_interval: 3600
+
+  ### cisco ap10_c3702i ######################################
+  - platform: snmp
+    name: cisco_wlc_ap10_c3702i_uptime
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.6.4.98.115.210.63.176
+    scan_interval: 2
+    value_template: >
+      {% set timetick = value  |int(0) %}
+      {% set seconds = (timetick / 100) | round(0) | int(0) %}
+      {% set days = (seconds / 60 / 60 / 24) | int(0)  %}
+      {% set hours = ((seconds / 60 / 60) - (days * 24)) | int(0)  %}
+      {% set minutes = ((seconds / 60 ) - ( hours * 60) - ( days * (24 * 60))) | int(0) %}
+
+      {% if days  > 0 %}
+        {{ days }} days,
+      {% else %}
+        {{ days }} day,
+      {% endif %}
+      {% if hours  > 0 %}
+        {{ hours }} h
+      {% else %}
+        {{ 00 }} h
+      {% endif %}
+      {% if minutes  > 0 %}
+        {% if minutes < 10 %}
+          0{{ minutes }} m
+        {% else %}
+          {{ minutes }} m
+        {% endif %}
+      {% else %}
+       {{ 00 }} m
+      {% endif %}
+
+  - platform: snmp
+    name: cisco_wlc_ap10_c3702i_cpu_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.57.4.98.115.210.63.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+    ## 
+  - platform: snmp
+    name: cisco_wlc_ap10_c3702i_memory_usage
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.55.4.98.115.210.63.176
+    unit_of_measurement: "%"
+    scan_interval: 2
+
+  - platform: snmp
+    name: cisco_wlc_ap10_c3702i_location
+    host: !secret wlc_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.4.98.115.210.63.176
+    scan_interval: 3600
+
+
+
+
+
+switch:
+## cisco wlc ap LED status #############################################
+  # ap02_c3602e
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.8.204.104.98.98.128
+    payload_on: 1
+    payload_off: 2
+
+  # ap02_c3602e - not working...
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_led_flash
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.10.1.1.8.204.104.98.98.128
+    payload_on: 1
+    payload_off: 2
+
+  # ap02_c3602e - not working...
+  - platform: snmp
+    name: cisco_wlc_ap02_c3602e_led_flash_300
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: .1.3.6.1.4.1.9.9.513.1.1.10.1.2.8.204.104.98.98.128
+    payload_on: 300
+    payload_off: 0
+
+
+
+## cisco wlc ap LED status #############################################
+  # ap03_c3602e
+  - platform: snmp
+    name: cisco_wlc_ap03_c3602e_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.100.233.80.51.90.32
+    payload_on: 1
+    payload_off: 2
+
+
+## cisco wlc ap LED status #############################################
+  # ap05_c3702e
+  - platform: snmp
+    name: cisco_wlc_ap05_c3702e_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.116.38.172.180.146.240
+    payload_on: 1
+    payload_off: 2
+
+
+## cisco wlc ap LED status #############################################
+  # ap06_c3702e
+  - platform: snmp
+    name: cisco_wlc_ap06_c3702e_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.4.98.115.235.193.176
+    payload_on: 1
+    payload_off: 2
+
+
+## cisco wlc ap LED status #############################################
+  # ap07_c3702e
+  - platform: snmp
+    name: cisco_wlc_ap07_c3702e_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.88.243.156.215.136.176
+    payload_on: 1
+    payload_off: 2
+
+
+## cisco wlc ap LED status #############################################
+  # ap09_c3702i
+  - platform: snmp
+    name: cisco_wlc_ap09_c3702i_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.4.98.115.9.38.96
+    payload_on: 1
+    payload_off: 2
+
+
+## cisco wlc ap LED status #############################################
+  # ap10_c3702i
+  - platform: snmp
+    name: cisco_wlc_ap10_c3702i_led_state
+    host: !secret wlc_ip
+    community: !secret snmp_rw
+    baseoid: 1.3.6.1.4.1.9.9.513.1.1.1.1.46.4.98.115.210.63.176
+    payload_on: 1
+    payload_off: 2
+
+
+
