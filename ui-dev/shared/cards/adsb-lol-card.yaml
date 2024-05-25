@@ -1,0 +1,34 @@
+type: entities
+entities:
+  - entity: sensor.adsb_lol_daily_stats
+    icon: mdi:satellite-uplink
+    name: Uplink 
+  - entity: sensor.adsb_lol_daily_stats
+    type: attribute
+    name: MLAT Peers
+    icon: mdi:dots-grid
+    attribute: mlat_peer_count
+  - entity: sensor.adsb_lol_daily_stats
+    type: attribute
+    name: Aircraft
+    icon: mdi:airplane-search
+    attribute: global_aircraft
+  - entity: sensor.adsb_lol_daily_stats
+    type: attribute
+    name: BEAST
+    icon: mdi:airplane-marker
+    attribute: global_beast
+  - entity: sensor.adsb_lol_daily_stats
+    type: attribute
+    name: MLAT
+    icon: mdi:link-variant-plus
+    attribute: global_mlat
+footer:
+  type: graph
+  entity: sensor.adsb_lol_beast_positions_per_second
+  detail: 2
+
+
+
+
+  

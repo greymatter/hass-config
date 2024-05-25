@@ -1,0 +1,29 @@
+
+type: vertical-stack
+in_card: true
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity
+        entity: sensor.huron_river_water_streamflow
+        icon: none
+        name: Huron River USGS Streamflow
+
+
+  - type: custom:apexcharts-card
+    config_templates: environment_chart
+    series:
+      - entity: sensor.huron_river_water_streamflow
+        name: USGS Streamflow
+        color: green
+        yaxis_id: main
+        show:
+          datalabels: true
+
+
+    yaxis:
+      - id: main
+      - id: second
+    apex_config:
+      chart:
+        height: 240px

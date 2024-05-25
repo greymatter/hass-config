@@ -1,0 +1,15 @@
+type: entities
+title: Recycle Bin Monitor
+entities:
+  - entity: binary_sensor.gcmon_recycle_bin_ble_sensor
+    type: "custom:template-entity-row"
+    name: Recycle Bin
+    state: >-
+      {{ iif( is_state('binary_sensor.gcmon_recycle_bin_ble_sensor',
+      'on'), 'At House', 'At Curb') }}
+    secondary: >-
+      Since {{
+      binary_sensor.gcmon_recycle_bin_ble_sensor.last_changed |
+      relative_time }} ago
+  - entity: sensor.gcmon_recycle_bin_ble_sensor_rssi_value
+    name: RSSI

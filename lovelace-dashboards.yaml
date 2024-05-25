@@ -1,0 +1,139 @@
+# MY LOVELACE DASHBOARDS
+# greymatter313 2023
+
+# Production Dash
+# ui-greymatterhq:
+#   require_admin: true
+#   show_in_sidebar: true
+#   icon: fab:mandalorian
+#   #icon: mdi:death-star-variant
+#   title: GrymtrHQ
+#   filename: ui/ui-greymatterhq.yaml
+#   mode: yaml
+
+# DEV Dash
+ui-greymatterhq:
+  require_admin: true
+  show_in_sidebar: true
+  icon: fab:mandalorian
+  title: GrymtrHQ
+  filename: ui-dev/ui-greymatterhq.yaml
+  mode: yaml
+
+# RONIN Dash
+ui-ronin:
+  require_admin: true
+  show_in_sidebar: true
+  icon: mdi:ideogram-cjk-variant
+  title: RoninMachinewerks
+  filename: ui-dev/ui-ronin.yaml
+  mode: yaml
+
+# My Machines
+ui-machines:
+  show_in_sidebar: true
+  icon: mdi:server-network
+  title: Machines
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-machines.yaml
+
+  # My Devices
+ui-devices:
+  show_in_sidebar: true
+  icon: mdi:robot-excited
+  title: Devices
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-devices.yaml
+
+  # My Racks
+ui-racks:
+  show_in_sidebar: false
+  icon: mdi:server
+  title: Racks
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-racks.yaml
+
+# Rooms + Areas
+ui-house:
+  show_in_sidebar: true
+  icon: mdi:home-heart
+  title: House
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-house.yaml
+
+# Rooms + Areas
+ui-shop:
+  show_in_sidebar: true
+  icon: mdi:factory
+  title: Shop
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-shop.yaml
+
+# Utilities
+ui-utilities:
+  show_in_sidebar: true
+  icon: mdi:wrench-clock
+  title: Utilities
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-utilities.yaml
+
+## Dashboard for Smart Displfalse
+ui-smart-displays:
+  show_in_sidebar: false
+  icon: mdi:devices
+  title: For Smart Displays
+  require_admin: false
+  mode: yaml
+  filename: ui-dev/ui-smartdisplays.yaml
+
+## Weather Maps
+ui-weather:
+  mode: yaml
+  title: MAXIMALIST-Weather
+  icon: mdi:radar
+  show_in_sidebar: false
+  require_admin: true
+  filename: ui-dev/ui-weather.yaml
+
+## Traffic Maps
+ui-traffic:
+  mode: yaml
+  title: MAXIMALIST-Traffic
+  icon: mdi:road
+  show_in_sidebar: false
+  require_admin: true
+  filename: ui-dev/ui-traffic.yaml
+
+# Experiments
+ui-experiments:
+  show_in_sidebar: false
+  title: Experiments
+  require_admin: true
+  mode: yaml
+  filename: ui-dev/ui-lovelace-experiments.yaml
+  icon: mdi:flask-outline
+
+# For Hass.Agent Use
+#ui-hassagent:
+#  show_in_sidebar: true
+#  title: Home Assistant Agent Menu
+#  require_admin: true
+#  mode: yaml
+#  filename: ui/ui-hassagent.yaml
+#  icon: mdi:microsoft-windows
+
+
+## Experiments
+#ui-grymtr:
+#  show_in_sidebar: true
+#  title: restore
+#  require_admin: false
+#  mode: yaml
+#  filename: ui2/ui-grymtr.yaml
+#  icon: mdi:flask

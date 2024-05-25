@@ -1,0 +1,62 @@
+
+type: vertical-stack
+in_card: true
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity
+        entity: sensor.huron_river_water_level_gage_height
+        icon: none
+        name: Huron River USGS Gage Height
+
+
+  - type: custom:apexcharts-card
+    config_templates: environment_chart
+    series:
+      - entity: sensor.huron_river_water_level_gage_height
+        name: USGS Gage Height
+        color: green
+        #attribute: ft
+        yaxis_id: main
+        show:
+          datalabels: true
+
+      - entity: input_number.huron_river_flood_stg_major
+        name: Major Flood
+        color: purple
+        opacity: .6
+        yaxis_id: main
+        show:
+          datalabels: true
+
+      - entity: input_number.huron_river_flood_stg_moderate
+        name: Moderate Flood
+        color: red
+        opacity: .5
+        yaxis_id: main
+        show:
+          datalabels: true
+
+      - entity: input_number.huron_river_flood_stg_minor
+        name: Minor Flood
+        color: orange
+        opacity: .5
+        yaxis_id: main
+        show:
+          datalabels: true
+
+      - entity: input_number.huron_river_flood_stg_action
+        name: Action State
+        color: gray
+        opacity: .5
+        yaxis_id: main
+        show:
+          datalabels: true
+
+
+    yaxis:
+      - id: main
+      - id: second
+    apex_config:
+      chart:
+        height: 240px

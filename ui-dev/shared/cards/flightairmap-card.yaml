@@ -1,0 +1,23 @@
+type: entities
+entities:
+  - entity: sensor.flightairmap_count_all_tracked_aircraft
+    icon: mdi:airplane-marker
+    name: Aircraft Tracked
+  - entity: sensor.flightairmap_military_aircraft_tracked
+    name: Military Aircraft
+    icon: mdi:tank
+  - entity: sensor.flightairmap_count_all_helicopters
+    name: Helicopters
+    icon: mdi:helicopter
+  - entity: sensor.flightairmap_db_size
+    name: SQL Database
+    icon: mdi:database-alert
+footer:
+  type: graph
+  entity: sensor.flightairmap_db_size
+  detail: 2
+
+
+
+
+  

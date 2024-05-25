@@ -1,0 +1,46 @@
+type: entities
+show_header_toggle: false
+title: Solar Data
+entities:
+  - entities:
+    entity: sensor.ham_radio_propagation_solar_sig_noise_lvl
+    name: HF Conditions Noise Level
+    secondary_info: last-changed
+    type: custom:multiple-entity-row
+  - type: section
+  - entities:
+      - entity: sensor.ham_radio_propagation_solar_hf_12_10_day
+        name: Day
+      - entity: sensor.ham_radio_propagation_solar_hf_12_10_night
+        name: Night
+    entity: sensor.ham_radio_propagation_solar_hf_12_10_day
+    name: 12m-10m
+    show_state: false
+    type: custom:multiple-entity-row
+  - entities:
+      - entity: sensor.ham_radio_propagation_solar_hf_17_15_day
+        name: Day
+      - entity: sensor.ham_radio_propagation_solar_hf_17_15_night
+        name: Night
+    entity: sensor.ham_radio_propagation_solar_hf_17_15_day
+    name: 17m-15m
+    show_state: false
+    type: custom:multiple-entity-row
+  - entities:
+      - entity: sensor.ham_radio_propagation_solar_hf_30_20_day
+        name: Day
+      - entity: sensor.ham_radio_propagation_solar_hf_30_20_night
+        name: Night
+    entity: sensor.ham_radio_propagation_solar_hf_30_20_day
+    name: 30m-20m
+    show_state: false
+    type: custom:multiple-entity-row
+  - entities:
+      - entity: sensor.ham_radio_propagation_solar_hf_80_40_day
+        name: Day
+      - entity: sensor.ham_radio_propagation_solar_hf_80_40_night
+        name: Night
+    entity: sensor.ham_radio_propagation_solar_hf_80_40_day
+    name: 80m-40m
+    show_state: false
+    type: custom:multiple-entity-row

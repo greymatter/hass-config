@@ -46,7 +46,7 @@ http:
   ssl_key: /ssl/privkey.pem
   # base_url:
   ip_ban_enabled: true
-  login_attempts_threshold: 5
+  login_attempts_threshold: 3
   use_x_forwarded_for: true
   trusted_proxies:
     - 173.245.48.0/20
@@ -234,7 +234,6 @@ spotcast:
 favicon:
   title: GreymatterHQ
   icon_path: /local/favicons/
-
 
 
 readme:

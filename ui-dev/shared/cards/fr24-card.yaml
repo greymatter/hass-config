@@ -1,0 +1,23 @@
+type: entities
+entities:
+  - entity: sensor.fr24_feeder_aircraft_tracked
+    icon: mdi:airplane-marker
+  - entity: sensor.fr24_feeder_aircraft_uploaded
+    icon: mdi:airplane-check
+  - entity: binary_sensor.fr24_feeder_link_connected
+  - entity: sensor.fr24_feeder_radar_code
+    icon: mdi:radar
+  - entity: binary_sensor.fr24_feeder_receiver_connected
+  - entity: sensor.fr24_feeder_version
+header:
+  type: picture
+  image: /local/logos/flightradar24.png
+  tap_action:
+    action: url
+    url_path: !secret adsb_local_map_url
+  hold_action:
+    action: none
+footer:
+  type: graph
+  entity: sensor.fr24_feeder_aircraft_uploaded
+  detail: 2
