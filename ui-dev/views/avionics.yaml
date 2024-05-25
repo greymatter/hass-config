@@ -1,0 +1,119 @@
+# MAXIMALIST DASHBOARD
+# Avionicsw View
+# Made by greymatter313 2024
+
+title: Avionics
+path: avionics
+
+type: "custom:grid-layout"
+layout: !include ../shared/snippets/layout-page-margin.yaml
+
+cards:
+  - type: "custom:layout-card"
+    layout_type: "custom:grid-layout"
+    layout: !include ../shared/snippets/layout-page-columns.yaml
+    view_layout:
+      grid-area: cc
+
+    cards:
+      # [Header] Summary
+      - type: markdown
+        style: !include ../shared/snippets/style-markdown-page-title.yaml
+        view_layout:
+          grid-column: 1/-1
+        content: >
+          # Avionics
+
+          ADS-B Station {{ states('sensor.fr24_feeder') }} [GMHQ] is {{ states('binary_sensor.fr24_feeder_link_connected') }}line{{ iif(
+          is_state('binary_sensor.fr24_feeder_link_connected', 'on'), ' and
+          is currently tracking', '.') }} {{ states('sensor.fr24_feeder_aircraft_tracked') }} Aircraft, {{ states('sensor.fr24_feeder_aircraft_uploaded') }} with coordinates.
+
+
+
+
+      # [Column] My Flight Stats
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: FlightAirMap
+              label: FAM
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: !secret fam_stats_url
+            view_layout:
+              grid-column: 1/-1
+
+          - !include ../shared/cards/flightairmap-card.yaml
+      # - type: vertical-stack
+      #   cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: FR24
+              label: adsb.im
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: !secret adsb_im_url
+            view_layout:
+              grid-column: 1/-1
+
+          # - type: custom:fr24-card
+          #   entity: sensor.fr24_aircraft
+
+          # - type: custom:fr24-card
+          #   entity: sensor.fr24_aircraft
+          #   sort: track
+
+          - !include ../shared/cards/adsb-lol-card.yaml
+          - !include ../shared/cards/fr24-card.yaml
+
+
+
+
+      # [Column] Flight Map
+
+      - type: vertical-stack
+        view_layout:
+          grid-column: 2/-2
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: MAP
+              #label: adsb.im
+              arrow: 'mdi:arrow-right'
+              action: navigate
+              link: adsb-exchange-map
+
+          - type: iframe
+            url: !secret adsb_exchange_map_url
+            aspect_ratio: 80%
+            #width: 720
+
+
+      # [Column] Active Flights
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: ACTIVE FLIGHTS
+              label: MIL
+              arrow: 'mdi:arrow-top-right'
+              action: navigate
+              link: adsb-military-map
+            view_layout:
+              grid-column: 3/-3
+
+          - type: custom:fr24-card
+            entity: sensor.fr24_aircraft
+            sort: track
+            popup: true
+
+
+
+

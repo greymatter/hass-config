@@ -1,0 +1,33 @@
+
+nws_alerts:
+  variables:
+    slide: 1
+  name: |
+    [[[
+      if (entity.state == 0) { return "NWS Alerts" }
+      if (entity.attributes.entries[0].title.includes('no active')) { entity.state = 0; return "NWS Alerts" }
+      if (entity.state > 1) { return entity.state + " NWS Alerts" } else { return "1 NWS Alert" }
+    ]]]
+  icon: mdi:weather-sunny-alert
+  state_display: '[[[
+      if (entity.state == 0) { return "No Active Alerts" }
+      if ( entity.state > (variables.slide) ) { return entity.attributes.entries[variables.slide].title.replace(/ issue.*/g, "") }
+      return " "
+    ]]]'
+  label: '[[[
+      if (entity.state == 0) { return " " }
+      if ( entity.state > (variables.slide) ) { return entity.attributes.entries[variables.slide].summary }
+      return " "
+    ]]]'
+  styles:
+    card:
+      - color: |
+          [[[
+            if (entity.attributes.entries[0].title.includes('no active')) { return "var(--disabled-text-color)" }
+            if (entity.state >= 1) { return "var(--primary-text-color)" } else { return "var(--disabled-text-color)" }
+          ]]]
+      - background: |
+          [[[
+            if (entity.attributes.entries[0].title.includes('no active')) { return "var(--ha-card-background)" }
+            if (entity.state >= 1) { return "var(--primary-color)" } else { return "var(--ha-card-background)" }
+          ]]]
