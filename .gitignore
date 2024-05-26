@@ -17,3 +17,4 @@ zigbee.db
 zigbee.db-shm
 zigbee.db-wal
 rest_command.yaml
+shell_command.yaml
