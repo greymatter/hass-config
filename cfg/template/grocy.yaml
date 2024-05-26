@@ -1,0 +1,61 @@
+## all grocy templates ##########################################################################
+- sensor:
+    name: Humidifier Water Pad Grocy Stock
+    state: "{{ state_attr('sensor.grocy_stock', 'products')[0].available_amount | int(0) }}"
+
+- sensor:
+    name: Fridge Filter Grocy Stock
+    state: "{{ state_attr('sensor.grocy_stock', 'products')[1].available_amount | int(0) }}"
+
+- sensor:
+    name: Acid shit for softener Grocy Stock
+    state: "{{ state_attr('sensor.grocy_stock', 'products')[2].available_amount | int(0) }}"
+
+- sensor:
+    name: Take out Garbage Cans Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[0].next_estimated_execution_time }}"
+
+- sensor:
+    name: Bring in Garbage Cans Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[1].next_estimated_execution_time }}"
+
+- sensor:
+    name: Change Furnace Air Filter [HVAC] Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[4].next_estimated_execution_time }}"
+
+- sensor:
+    name: Change Humidifier Water Pad [HVAC] Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[5].next_estimated_execution_time }}"
+
+- sensor:
+    name: Flush Spindown Filter [Utilities] Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[6].next_estimated_execution_time }}"
+
+- sensor:
+    name: Change Fridge Water Filter [Utilities] Grocy Chore next exec
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[7].next_estimated_execution_time }}"
+
+- sensor:
+    name: Take out Garbage Cans Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[0].last_tracked_time }}"
+
+- sensor:
+    name: Bring in Garbage Cans Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[1].last_tracked_time }}"
+
+- sensor:
+    name: Change Furnace Air Filter [HVAC] Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[4].last_tracked_time }}"
+
+- sensor:
+    name: Change Humidifier Water Pad [HVAC] Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[5].last_tracked_time }}"
+
+- sensor:
+    name: Flush Spindown Filter [Utilities] Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[6].last_tracked_time }}"
+
+- sensor:
+    name: Change Fridge Water Filter [Utilities] Grocy Chore Last Tracked
+    state: "{{ state_attr('sensor.grocy_chores', 'chores')[7].last_tracked_time }}"
+

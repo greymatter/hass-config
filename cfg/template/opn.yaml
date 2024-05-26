@@ -1,0 +1,49 @@
+####################################################################################################
+## all OPNsense templates ##########################################################################
+####################################################################################################
+- sensor:
+    - name: "internet_wan_in"
+      state: '{{ ((states.input_number.internet_traffic_delta_wanin.state | float(0) ) / 1000000 ) | round(2) }}'
+      unit_of_measurement: 'Mbps'
+
+- sensor:
+    - name: "internet_wan_out"
+      state: '{{ ((states.input_number.internet_traffic_delta_wanout.state | float(0) ) / 1000000 ) | round(2) }}'
+      unit_of_measurement: 'Mbps'
+
+- sensor:
+    - name: "internet_lan_in"
+      state: '{{ ((states.input_number.internet_traffic_delta_lanin.state | float(0) ) / 1000000 ) | round(2) }}'
+      unit_of_measurement: 'Mbps'
+
+- sensor:
+    - name: "internet_lan_out"
+      state: '{{ ((states.input_number.internet_traffic_delta_lanout.state | float(0) ) / 1000000 ) | round(2) }}'
+      unit_of_measurement: 'Mbps'
+
+- sensor:
+    - name: "opn_fw_mem_total_used"
+      state: "{{ (( states('sensor.opn_fw_mem_used_real') | int(0) +
+        states('sensor.opn_fw_mem_used_buffers') | int(0) +
+        states('sensor.opn_fw_mem_used_cached') | int (0) +
+        states('sensor.opn_fw_mem_used_shared_real') | int(0))  / 1048576 ) | round(2)
+        }}"
+      unit_of_measurement: 'MB'
+
+####################################################################################################
+## convert up and down bytes to GB #################################################################
+####################################################################################################
+- sensor:
+    - name: "OPNsense WAN Download GB"
+      unit_of_measurement: "GB"
+      state: >-
+        {{ (states('sensor.loki_interface_wan_inbytes') | filesizeformat(GB)) }}
+
+- sensor:
+    - name: "OPNsense WAN Upload GB"
+      unit_of_measurement: "GB"
+      state: >-
+        {{ (states('sensor.loki_interface_wan_outbytes') | filesizeformat(GB)) }}
+
+####################################################################################################
+

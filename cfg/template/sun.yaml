@@ -1,0 +1,12 @@
+################## sun elevation sensor ##################################################
+
+- trigger:
+    platform: time_pattern
+    minutes: "/1"
+  sensor:
+
+    - name: Sun Elevation
+      state: >
+        {{ state_attr('sun.sun', 'elevation') | float }}
+      unit_of_measurement: ".."
+

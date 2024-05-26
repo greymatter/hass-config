@@ -1,0 +1,9 @@
+- sensor:
+    name: "uplink_s2h_in"
+    state: '{{ ((states.input_number.uplink_traffic_delta_s2h_in.state | float(0) ) / 1000000 ) | round(2) }}'
+    unit_of_measurement: 'Mbps'
+
+- sensor:
+    name: "uplink_s2h_out"
+    state: '{{ ((states.input_number.uplink_traffic_delta_s2h_out.state | float(0) ) / 1000000 ) | round(2) }}'
+    unit_of_measurement: 'Mbps'

@@ -1,0 +1,10 @@
+- trigger:
+    - platform: homeassistant
+      event: start
+  sensor:
+
+    - name: Zero
+      state: "0"
+
+    - name: OpenSky Flight in Vicinity
+      state: ''

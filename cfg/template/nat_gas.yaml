@@ -1,0 +1,7 @@
+- sensor:
+    - name: Gas Energy Metric
+      state: "{{ states('sensor.gas_meter_reading') | float * 0.0283168 }}}"
+      icon: mdi:fire
+      unit_of_measurement: "m^3"
+      state_class: "total_increasing"
+      device_class: "gas"

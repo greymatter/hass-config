@@ -1,0 +1,90 @@
+####################### climacell shit ##########################################
+- sensor:
+    - name: cc_temperature
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','temperature') }}"
+      unit_of_measurement: ..F
+    - name: cc_humidity
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','humidity') }}"
+
+    - name: cc_pressure
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','pressure') }}"
+      unit_of_measurement: Hg
+
+    - name: cc_current_conditions
+      state: "{{ states.weather.tomorrow_io_greymatterhq_daily.state }}"
+
+    #  feels_like
+
+    - name: cc_visibility
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','visibility') }}"
+
+    - name: cc_wind_bearing
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','wind_bearing') }}"
+
+    - name: cc_wind_speed
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','wind_speed') }}"
+
+    - name: cc_O3
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','ozone') }}"
+
+    - name: cc_weather_condition_0d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[0].condition  }}"
+    - name: cc_weather_condition_1d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[1].condition }}"
+    - name: cc_weather_condition_2d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[2].condition }}"
+    - name: cc_weather_condition_3d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[3].condition  }}"
+    - name: cc_weather_condition_4d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[4].condition  }}"
+
+    - name: cc_temperature_maximum_0d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[0].temperature }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_maximum_1d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[1].temperature }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_maximum_2d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[2].temperature }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_maximum_3d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[3].temperature }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_maximum_4d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[4].temperature }}"
+      unit_of_measurement: ..F
+
+    - name: cc_temperature_minimum_0d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[0].templow }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_minimum_1d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[1].templow }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_minimum_2d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[2].templow }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_minimum_3d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[3].templow }}"
+      unit_of_measurement: ..F
+    - name: cc_temperature_minimum_4d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[4].templow }}"
+      unit_of_measurement: ..F
+
+    - name: cc_precipitation_intensity_0d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[0].precipitation }}"
+
+    - name: cc_precipitation_probability_0d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[0].precipitation_probability }}"
+
+    - name: cc_precipitation_probability_1d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[1].precipitation_probability }}"
+
+    - name: cc_precipitation_probability_2d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[2].precipitation_probability }}"
+
+    - name: cc_precipitation_probability_3d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[3].precipitation_probability }}"
+
+    - name: cc_precipitation_probability_4d
+      state: "{{ state_attr('weather.tomorrow_io_greymatterhq_daily','forecast')[4].precipitation_probability }}"
+
