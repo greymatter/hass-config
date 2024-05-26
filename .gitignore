@@ -16,3 +16,4 @@ known_devices.yaml
 zigbee.db
 zigbee.db-shm
 zigbee.db-wal
+rest_command.yaml
