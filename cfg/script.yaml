@@ -1,0 +1,103 @@
+turn_on_kodi_with_cec:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: Addons.ExecuteAddon
+      addonid: script.json-cec
+      params:
+        command: activate
+turn_off_kodi_with_cec:
+  sequence:
+  - service: media_player.media_stop
+    data:
+      entity_id: media_player.osmc_shop
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.kodi
+      method: Addons.ExecuteAddon
+      addonid: script.json-cec
+      params:
+        command: standby
+turn_on_kodi_with_wol:
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: b8:27:eb:7d:1e:ee
+      broadcast_address: !secret vlan15_bcast_addy
+kodi_quit:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: Application.Quit
+kodi_hibernate:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: System.Hibernate
+kodi_suspend:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: System.Suspend
+kodi_reboot:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: System.Reboot
+kodi_shutdown:
+  sequence:
+  - service: kodi.call_method
+    data:
+      entity_id: media_player.osmc_shop
+      method: System.Shutdown
+update_library:
+  alias: Update Kodi Library
+  sequence:
+  - alias: Call Kodi update
+    service: kodi.call_method
+    data:
+      entity_id: media_player.kodi_24474dff2241f4f435185259a24cfc82
+      method: VideoLibrary.Scan
+enable_pihole1:
+  alias: Enable PiHole1
+  sequence:
+    service: shell_command.pihole1_enable
+enable_pihole2:
+  alias: Enable PiHole2
+  sequence:
+    service: shell_command.pihole2_enable
+disable_pihole1:
+  alias: Disable PiHole1
+  sequence:
+    service: shell_command.pihole1_disable
+disable_pihole2:
+  alias: Disable PiHole2
+  sequence:
+    service: shell_command.pihole2_disable
+nws_popup_on_wx_alert:
+  alias: NWS Weather Alert Pop Up
+  sequence:
+  - service: "{% if states('sensor.nws_alerts') != '0' %}\n  persistent_notification.create\n{%
+      endif %}\n"
+    data_template:
+      notification_id: nwswxalert
+      message: '{{ message }}'
+      title: '{{ title }}'
+  mode: single
+dump_all_entities_to_txt:
+  alias: print_entity_attributes
+  sequence:
+    - service: notify.print_export
+      data_template:
+        message: |
+          {% for state in states %}{{ state.entity_id }}~{{ state.domain }}~{{ state.object_id }}~{{ state.name }}~~{{ state.attributes.icon, state.attributes.friendly_name }}~~{{ state.state }}
+          {% endfor %}
+  mode: single
+  icon: mdi:cloud-print-outline
+
+

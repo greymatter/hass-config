@@ -1,0 +1,71 @@
+energy_daily:
+  source: sensor.energy_spent
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_8xxx:
+  source: sensor.energy_spent_8xxx
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_8yyy:
+  source: sensor.energy_spent_8yyy
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_rack02:
+  source: sensor.energy_spent_rack02
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_rack03:
+  source: sensor.energy_spent_rack03
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_washer:
+  source: sensor.energy_spent_washer
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_dryer:
+  source: sensor.energy_spent_dryer
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_mackie_monitors:
+  source: sensor.energy_spent_mackie_monitors
+  cycle: daily
+  tariffs:
+    - standard
+
+energy_daily_main_shop_overhead_lights:
+  source: sensor.energy_spent_main_shop_overhead_lights
+  cycle: daily
+  tariffs:
+    - standard
+
+daily_energy:
+  name: Total Energy Use (Daily)
+  source: sensor.total_energy_use_over_time
+  cycle: daily
+
+quarter_hourly_energy:
+  name: Total Energy Use (Hourly)
+  source: sensor.total_energy_use_over_time
+  cycle: hourly
+
+daily_co2:
+  name: Total Energy Use (Daily CO₂)
+  source: sensor.total_energy_use_hourly_co2_equivalent
+  cycle: daily
+
+
+

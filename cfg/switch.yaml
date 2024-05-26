@@ -1,0 +1,341 @@
+# - platform: command_line
+#   switches:
+#     tv_osmc_shop:
+#       command_on: ssh osmc@10.0.15.176 "sudo echo 'on 0' | cec-client -s"
+#       command_off: ssh osmc@10.0.15.176 "sudo echo 'standby 0' | cec-client -s"
+#       friendly_name: OSMC-shop TV
+
+# - platform: command_line
+#   switches:
+#     tv_osmc_lr:
+#       command_on: ssh osmc@10.0.15.175 "sudo echo 'on 0' | cec-client -s"
+#       command_off: ssh osmc@10.0.15.175 "sudo echo 'standby 0' | cec-client -s"
+#       command_state: ssh osmc@10.0.15.175 "sudo echo 'pow 0' | cec-client -s |grep 'power status:'"
+#       value_template: '{{ value == "power status: on" }}'
+#       friendly_name: OSMC-lr TV
+
+- platform: snmp
+  name: APC7900_Port_1
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.1
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_2 - OPNsense Firewall
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.2
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_3 - DSR-2035
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.3
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_4 - Cable Modem
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.4
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_5 - GMHQESXi04
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.5
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_6 - ASA-5505
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.6
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_7 - sw01-c3750g
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.7
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7900_Port_8 - sw01-c3750
+  host: !secret apc7900_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.8
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_1 - sw02-c3560
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.1
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_2 - iPBX
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.2
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_3 - emonPI
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.3
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_4 - obi202
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.4
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_5 - pihole1
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.5
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_6 - pihole2
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.6
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_7 - laptop
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.7
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7901_Port_8 - HA7net
+  host: !secret apc7901_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.8
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_1
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.1
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_2
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.2
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_3
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.3
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_4
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.4
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_5
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.5
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_6
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.6
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_7
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.7
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_8
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.8
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_9
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.9
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_10
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.10
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_11
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.11
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_12
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.12
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_13
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.13
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_14
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.14
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_15
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.15
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_16
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.16
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_17
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.17
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_18
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.18
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_19
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.19
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_20
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.20
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_21
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.21
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_22
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.22
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_23
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.23
+  payload_on: 1
+  payload_off: 2
+
+- platform: snmp
+  name: APC7932_Port_24
+  host: !secret apc7932_ip
+  community: !secret snmp_rw
+  baseoid: 1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.24
+  payload_on: 1
+  payload_off: 2
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+###########################################################
+#                      scrapes                            #
+###########################################################
+
+#  - resource: !secret flockpool_mining_url
+#    scan_interval: 60
+#    sensor:
+#      - name: FlockPool Workers Online
+#        select: "#root > div > div > main > div > div > div.undefined.CardRow_row__vLl08.CardRow_grow__xur5F.CardRow_wrap__mvUY7 > div:nth-child(1) > div > div > div:nth-child(1) > p"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Low
+        select: "#spanLowPrice"
+        #value_template: '{{ value[1:].replace(",", "") | float | round(5) }}'
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Avg
+        select: "#spanAvgPrice"
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker High
+        select: "#spanHighPrice"
+        unit_of_measurement: "GWEI"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Low USD
+        select: "#divLowPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker Avg USD
+        select: "#divAvgPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+  - resource: "https://etherscan.io/gastracker"
+    scan_interval: 60
+    sensor:
+      - name: ETH GAS Tracker High USD
+        select: "#divHighPrice > div:nth-child(3)"
+        unit_of_measurement: "USD"
+
+#  - resource: "https://etherscan.io/gastracker"
+#    scan_interval: 60
+#    sensor:
+#      - name: "ERC-20 Transfer"
+#        select: "#content > div.container.mb-4 > div > div.col-lg-6.mb-3.mb-sm-0 > div > div > div.table-responsive > table > tbody > tr:nth-child(1) > td:nth-child(3)"
+#        unit_of_measurement: "GWEI"
+
+#  - resource: "https://etherscan.io/gastracker"
+#    scan_interval: 60
+#    sensor:
+#      - name: Uniswap Swap
+#        select: "#content > div.container.mb-4 > div > div.col-lg-6.mb-3.mb-sm-0 > div > div > div.table-responsive > table > tbody > tr:nth-child(2) > td:nth-child(3)"
+#        unit_of_measurement: "GWEI"
+
+#  - resource: "https://etherscan.io/gastracker"
+#    scan_interval: 60
+#    sensor:
+#      - name: "Uniswap Add-Remove LP"
+#        select: "#content > div.container.mb-4 > div > div.col-lg-6.mb-3.mb-sm-0 > div > div > div.table-responsive > table > tbody > tr:nth-child(3) > td:nth-child(3)"
+#        unit_of_measurement: "GWEI"
+
+#  - resource: "https://www.ledger.com/ledger-live/lld-signatures"
+#    scan_interval: 600
+#    sensor:
+#      - name: Ledger Live Latest Version
+#        select: "#release > div > div.css-g1d714-ValueContainer > div.css-1uccc91-singleValue"
+
+#  - resource: !secret monero_mining_url
+#    sensor:
+#      - name: XMR Current Balance
+#        #select: 'span[id="st-bal-pending"]'
+#        select: "#dash-stats > div.row > div:nth-child(2) > div > div > div.bs-bal-pend.box-top > div.st-bal-pending"
+
+#  - resource: !secret monero_mining_url
+#    sensor:
+#      - name: XMR-Current-total
+#        select: "body > div.main > div.dash-stats > div.row > div:nth-child(2) > div > div > div.bs-list > div:nth-child(1) > div > span#st-bal-total"
+
+#  - resource: !secret monero_mining_url
+#    sensor:
+#      - name: XMR-Current-Paid
+#        select: "span[st-bal-paid]"
+#        #select: 'span#st-bal-paid'
+
+  - resource: !secret monero_mining_url
+    sensor:
+      - name: XMR-Current-Hashrate
+        select: "#st-hr-total-2"
+
+  - resource: !secret monero_mining_url
+    scan_interval: 60
+    sensor:
+      - name: XMR-Hashrate-Total
+        select: ".bs-ht-top"
+
+  - resource: !secret monero_mining_url
+    verify_ssl: false
+    scan_interval: 60
+    sensor:
+      - name: XMR-Active-Workers
+        select: "span#st-workers-active"
+
+#  - resource: "https://www.astrologyanswers.com/horoscopes/libra-daily-horoscope"
+#    verify_ssl: false
+#    scan_interval: 60
+#    #scan_interval: 21600
+#    sensor:
+#      - name: Horoscope Libra Scrape
+#        select: "#dh-widget-ad > div > p:nth-child(2)"
+#        #value_template: '{{ (value.split(">")[0].split(".")[0]) | truncate(255) }}'
+
+#  - resource: "https://www.astroyogi.com/horoscopes/daily/libra-free-horoscope.aspx"
+#    verify_ssl: false
+#    scan_interval: 600
+#    #scan_interval: 21600
+#    sensor:
+#      - name: Horoscope Libra Astroyogi
+#        select: "#myTabContent > div:nth-child(3)"
+#        #value_template: '{{ (value.split(">")[0].split(".")[0]) | truncate(255) }}'
+
