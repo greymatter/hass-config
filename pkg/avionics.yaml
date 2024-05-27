@@ -55,6 +55,26 @@ binary_sensor:
         value_template: '{{ is_state_attr("sensor.adsb_exchange_status", "beast_status", "Feed Ok ADS-B Status") }}'
         device_class: connectivity
 
+      piaware_feeder_link_connected:
+        friendly_name: Link Connected
+        value_template: '{{ is_state_attr("sensor.piaware_conn_status", "piaware_status", "green") }}'
+        device_class: connectivity
+
+      piaware_radio_link_connected:
+        friendly_name: Link Connected
+        value_template: '{{ is_state_attr("sensor.piaware_conn_status", "radio_status", "green") }}'
+        device_class: connectivity
+
+      piaware_adept_feeder_link_connected:
+        friendly_name: Link Connected
+        value_template: '{{ is_state_attr("sensor.piaware_conn_status", "adept_status", "green") }}'
+        device_class: connectivity
+
+      piaware_mlat_feeder_link_connected:
+        friendly_name: Link Connected
+        value_template: '{{ is_state_attr("sensor.piaware_conn_status", "mlat_status", "green") }}'
+        device_class: connectivity
+
 
 
 sensor:
@@ -293,6 +313,34 @@ multiscrape:
             select: 'body > section > div > p > span:nth-child(1) > span'
 
 
+  - name: FlightAware PiAware Status
+    resource: !secret piaware_status_url
+    scan_interval: 30
+    #log_response: true
+    sensor:
+      - unique_id: piaware_conn_status
+        name: FlightAware PiAware Status
+        value_template: Connected
+        icon: mdi:plane
+        attributes:
+          - name: adept_status
+            value_template: '{{ value_json.adept.status }}'
+          - name: cpu_load_percent
+            value_template: '{{ value_json.cpu_load_percent }}'
+          - name: cpu_temp_celcius
+            value_template: '{{ value_json.cpu_temp_celcius }}'
+          - name: mlat_status
+            value_template: '{{ value_json.mlat.status }}'
+          - name: piaware_status
+            value_template: '{{ value_json.piaware.status }}'
+          - name: piaware_version
+            value_template: '{{ value_json.piaware_version }}'
+          - name: radio_status
+            value_template: '{{ value_json.radio.status }}'
+          - name: system_uptime
+            value_template: '{{ value_json.system_uptime }}'
+
+
 
 
 ##############################################################################################
@@ -353,6 +401,7 @@ recorder:
       - sensor.adsb_lol_daily_stats
       - sensor.adsb_fi_daily_stats
       - sensor.adsb_flyitaly_stats
+      - sensor.piaware_conn_status
       - sensor.fr24_feeder
   #include:
 
