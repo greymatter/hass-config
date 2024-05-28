@@ -342,6 +342,50 @@ multiscrape:
             value_template: '{{ value_json.system_uptime }}'
 
 
+#### piaware - aircraft by type
+  - name: ADSB Aircraft Count by Type
+    resource: !secret flightaware_aircraft_type
+    scan_interval: 10
+    #log_response: true
+    sensor:
+
+      - unique_id: adsb_aircraft_count_by_type
+        name: FlightAware Aircraft Type
+        value_template: Connected
+        icon: mdi:plane
+        attributes:
+          - name: adsb_icao
+            value_template: '{{ value_json.aircraft_count_by_type.adsb_icao }}'
+          - name: adsb_icao_nt
+            value_template: '{{ value_json.aircraft_count_by_type.adsb_icao_nt }}'
+          - name: adsb_other
+            value_template: '{{ value_json.aircraft_count_by_type.adsb_other }}'
+          - name: adsc
+            value_template: '{{ value_json.aircraft_count_by_type.adsc }}'
+          - name: adsr_icao
+            value_template: '{{ value_json.aircraft_count_by_type.adsr_icao }}'
+          - name: adsr_other
+            value_template: '{{ value_json.aircraft_count_by_type.adsr_other }}'
+          - name: mlat
+            value_template: '{{ value_json.aircraft_count_by_type.mlat }}'
+          - name: mode_ac
+            value_template: '{{ value_json.aircraft_count_by_type.mode_ac }}'
+          - name: mode_s
+            value_template: '{{ value_json.aircraft_count_by_type.mode_s }}'
+          - name: other
+            value_template: '{{ value_json.aircraft_count_by_type.other }}'
+          - name: tisb_icao
+            value_template: '{{ value_json.aircraft_count_by_type.tisb_icao }}'
+          - name: tisb_other
+            value_template: '{{ value_json.aircraft_count_by_type.tisb_other }}'
+          - name: unknown
+            value_template: '{{ value_json.aircraft_count_by_type.unknown }}'
+          - name: aircraft_with_pos
+            value_template: '{{ value_json.aircraft_with_pos }}'
+          - name: aircraft_without_pos
+            value_template: '{{ value_json.aircraft_without_pos }}'
+          - name: uptime
+            value_template: '{{ value_json.uptime }}'
 
 
 ##############################################################################################
@@ -403,6 +447,7 @@ recorder:
       - sensor.adsb_fi_daily_stats
       - sensor.adsb_flyitaly_stats
       - sensor.piaware_conn_status
+      - sensor.adsb_aircraft_count_by_type
       - sensor.fr24_feeder
   #include:
 
