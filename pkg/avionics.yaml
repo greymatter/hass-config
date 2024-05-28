@@ -128,7 +128,7 @@ sensor:
         value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_positions_per_second"] }}'
       adsb_lol_beast_positions_kbs:
         friendly_name: ADSB.lol - Uplink Throughput
-        value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["kbps"] | round(2) }}'
+        value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_kbps"] | round(2) }}'
         unit_of_measurement: 'kbps'
 
 
