@@ -286,6 +286,7 @@ multiscrape:
           # - name: beast_kbs
           #   select: '#feeder-status > div > div.col.text-center.m-3.p-2 > div > div > div:nth-child(4) > div:nth-child(2) > input'
 
+
 ## scrape FlightAirMap stats ###########################################################
 
   - name: FlightAirMap Stats
@@ -311,6 +312,7 @@ multiscrape:
             select: 'body > section > div > p > span:nth-child(5) > span'
           - name: flights
             select: 'body > section > div > p > span:nth-child(1) > span'
+
 
 ## scrape FlightAware PiAware stats ###########################################################
 
@@ -342,7 +344,8 @@ multiscrape:
             value_template: '{{ value_json.system_uptime }}'
 
 
-#### piaware - aircraft by type
+#### piaware - aircraft by type ###########################################################
+
   - name: ADSB Aircraft Count by Type
     resource: !secret flightaware_aircraft_type
     scan_interval: 10
