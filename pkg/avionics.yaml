@@ -312,6 +312,7 @@ multiscrape:
           - name: flights
             select: 'body > section > div > p > span:nth-child(1) > span'
 
+## scrape FlightAware PiAware stats ###########################################################
 
   - name: FlightAware PiAware Status
     resource: !secret piaware_status_url
