@@ -1,0 +1,26 @@
+type: entities
+entities:
+  - entity: binary_sensor.fr24_feeder_receiver_connected
+    name: Reciever
+    icon: mdi:check-network-outline
+  - entity: sensor.fr24_feeder_aircraft_tracked
+    name: Aircraft Tracking
+    icon: mdi:check-network-outline
+  - entity: sensor.fr24_feeder_aircraft_uploaded
+    icon: mdi:check-network-outline
+    name: Aircraft Uploaded
+  # - entity: sensor.adsb_lol_daily_stats
+  #   name: ADSB.lol
+  #   icon: mdi:check-network-outline
+  # - entity: sensor.adsb_flyitaly_stats
+  #   name: FlyItaly ADSB
+  #   icon: mdi:check-network-outline
+footer:
+  type: graph
+  entity: sensor.fr24_feeder_aircraft_uploaded
+  detail: 2
+
+
+
+
+  

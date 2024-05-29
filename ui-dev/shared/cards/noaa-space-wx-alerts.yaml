@@ -1,0 +1,63 @@
+type: "custom:swipe-card"
+parameters:
+  direction: vertical
+  autoHeight: true
+  height: 112
+  effect: cube
+  autoplay:
+    delay: 15000
+  cubeEffect:
+    - slideShadows: false
+cards:
+  - &summary-card-noaa-space-weather
+    type: "custom:button-card"
+    variables:
+      aspect_ratio: 2/1
+      slide: 0
+    template:
+     - live_tile_card
+     - live_tile_with_long_state
+    entity: sensor.noaa_space_weather_alert_1
+    name: '[[[ return entity.state + " &bull; " + entity.attributes.summary.split(": ")[0] + " &bull; " + moment(entity.attributes.date).subtract(5, "h").fromNow() ]]]'
+    #name: '[[[ return entity.state + " &bull; " + entity.attributes.summary.split(": ")[0] + " &bull; " + entity.attributes.date).subtract(5, "h") ]]]'
+    state_display: '[[[ return entity.attributes.summary.split(": ")[1] ]]]'
+    label: "[[[ return entity.attributes.potential_impacts ]]]"
+    color: var(--ha-card-background)
+    icon: mdi:alert-octagram
+    styles:
+      card:
+        - color: |
+            [[[
+              var diff = (new Date() - new Date(entity.attributes.date)) / 1000
+              if (diff > 57888) { return "var(--primary-text-color)" } else { return "var(--accent-text-color)" }
+            ]]]
+        - background-image: |
+            [[[
+              var diff = (new Date() - new Date(entity.attributes.date)) / 1000
+              var opacity = 1 - (diff / 86400)
+              if (diff > 86400) { return '' }
+              return 'linear-gradient( to top, rgba(var(--rgb-primary-color),' + opacity + ') 0%, rgba(var(--rgb-primary-color),' + opacity + ') 100%)'
+            ]]]
+
+  - <<: *summary-card-noaa-space-weather
+    entity: sensor.noaa_space_weather_alert_2
+    variables:
+      aspect_ratio: 2/1
+
+  - <<: *summary-card-noaa-space-weather
+    entity: sensor.noaa_space_weather_alert_3
+    variables:
+      aspect_ratio: 2/1
+
+  - <<: *summary-card-noaa-space-weather
+    entity: sensor.noaa_space_weather_alert_4
+    variables:
+      aspect_ratio: 2/1
+
+  - <<: *summary-card-noaa-space-weather
+    entity: sensor.noaa_space_weather_alert_5
+    variables:
+      aspect_ratio: 2/1
+
+view_layout:
+  grid-column: span 2

@@ -1,0 +1,27 @@
+type: "custom:button-card"
+template: live_tile
+entity: sensor.iss_2
+name: ISS
+icon: mdi:space-station
+show_state: false
+view_layout:
+  grid-column: span 1
+  grid-row: span 1
+  margin: 0
+state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+show_label: true
+tap_action:
+  action: navigate
+  navigation_path: binary_sensor.iss
+label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+  #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+  # custom_fields:
+  #  unit: People
+styles:
+  card:
+    - background: |
+        [[[
+          return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+        ]]]
+    - background-size: 120% 120%
+    - background-position: center center

@@ -1,0 +1,112 @@
+type: vertical-stack
+in_card: true
+cards:
+  - type: "custom:apexcharts-card"
+    header:
+      show: true
+      title: ADS Type
+    chart_type: donut
+    layout: minimal
+    update_interval: 10sec
+    series:
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsb_icao
+        name: ADS-B ICAO
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsb_icao_nt
+        name: ADS-B ICAO-nt
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsb_other
+        name: ADS-B Other
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: mlat
+        name: MLAT
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: mode_s
+        name: Mode-S
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: mode_ac
+        name: Mode-AC
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsc
+        name: ADS-C
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsr_icao
+        name: ADS-R ICAO
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: adsr_other
+        name: ADS-R Other
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: other
+        name: Other
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: tisb_icao
+        name: TIS-B ICAO
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: tisb_other
+        name: TIS-B Other
+      - entity: sensor.adsb_aircraft_count_by_type
+        attribute: unknown
+        name: Unknown
+      # - entity: sensor.adsb_aircraft_count_by_type
+      #   attribute: aircraft_with_pos
+      #   name: aircraft_with_pos
+      # - entity: sensor.adsb_aircraft_count_by_type
+      #   attribute: aircraft_without_pos
+      #   name: aircraft_without_pos
+      # - entity: sensor.adsb_aircraft_count_by_type
+      #   attribute: uptime
+      #   name: Uptime
+    apex_config:
+      chart:
+        height: 500px
+        fontFamily: "Segoe UI, SegoeUI, sans-serif"
+        offsetY: -20
+        pie:
+          donut:
+            label:
+              show: true
+      title:
+        style:
+          fontSize: 12px
+          color: var(--primary-text-color)
+      legend:
+        formatter: |
+          EVAL:function(seriesName, opts) {
+            return seriesName
+          }
+        position: right
+        fontSize: 12
+        fontFamily: "Segoe UI, SegoeUI, sans-serif"
+        fontWeight: normal
+        markers:
+          width: 8
+          height: 8
+        itemMargin:
+          horizontal: 0
+      dataLabels:
+        formatter: >
+          EVAL:function(value, { seriesIndex, dataPointIndex, w
+          }) {
+            return Math.round(value * 10) / 10 + '%'
+          }
+        style:
+          fontSize: 10
+          fontFamily: "Segoe UI, SegoeUI, sans-serif"
+          fontWeight: 500
+        dropShadow:
+          enabled: false
+      tooltip:
+        style:
+          fontSize: 12px
+          fontFamily: "Segoe UI, SegoeUI, sans-serif"
+    style: |
+      #header__title {
+        font-size: var(--body-font-size) !important;
+        font-weight: normal !important;
+        color: var(--primary-text-color) !important;
+        margin-top: 8px;
+      }
+      #graph-wrapper {
+        padding-top: 32px;
+      }

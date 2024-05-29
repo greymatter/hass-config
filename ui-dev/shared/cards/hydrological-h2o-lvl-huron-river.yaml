@@ -8,7 +8,18 @@ cards:
         entity: sensor.huron_river_water_level_gage_height
         icon: none
         name: Huron River USGS Gage Height
-
+      # - type: entity
+      #   entity: input_number.huron_river_flood_stg_major
+      #   icon: none
+      #   name: Major Flood Stage
+      # - type: entity
+      #   entity: sensor.waqi_ann_arbor_burns_park_air_quality_index
+      #   icon: none
+      #   name: A2
+      # - type: entity
+      #   entity: sensor.waqi_detroit_lafayette_park_air_quality_index
+      #   icon: none
+      #   name: Detroit
 
   - type: custom:apexcharts-card
     config_templates: environment_chart
@@ -53,6 +64,41 @@ cards:
         show:
           datalabels: true
 
+
+      #- entity: sensor.waqi_ypsilanti_carbon_monoxide_co
+      #  attribute: ozone
+      #  name: Carbon Monoxide (CO)
+      #  yaxis_id: main
+      #  show:
+      #    datalabels: true
+
+      # - entity: sensor.huron_river_water_guage_level
+      #   #attribute: ozone
+      #   name: Ozone (O₃)
+      #   yaxis_id: main
+      #   show:
+      #     datalabels: true
+
+      # - entity: sensor.windsor_west_ontario_canada_air_quality_index
+      #   attribute: nitrogen_dioxide
+      #   name: Nitrogen Dioxide (NO₂)
+      #   yaxis_id: main
+      #   show:
+      #     datalabels: true
+
+      # - entity: sensor.windsor_west_ontario_canada_air_quality_index
+      #   attribute: sulfur_dioxide
+      #   name: Sulfer Dioxide (SO...)
+      #   yaxis_id: main
+      #   show:
+      #     datalabels: true
+
+      # - entity: sensor.windsor_west_ontario_canada_air_quality_index
+      #   attribute: pm_2_5
+      #   name: Particulate Matter (PM25)
+      #   yaxis_id: main
+      #   show:
+      #     datalabels: true
 
     yaxis:
       - id: main
