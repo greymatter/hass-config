@@ -1,0 +1,67 @@
+type: custom:tabbed-card
+show_name: true
+show_icon: true
+options: {}
+tabs:
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/42.5245438%2C-83.7513311/10?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      aspect_ratio: 100%
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: B-TOWN
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/42.3554525%2C-83.0718454/10?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      aspect_ratio: 100%
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: DET
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/42.2842953%2C-83.7401399/11?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: A2
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/42.4900207%2C-83.1479919/11?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: RO
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/42.9700474%2C-85.6450251/10?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: GR
+  - card:
+      type: picture
+      image: >-
+        https://dev.virtualearth.net/REST/V1/Imagery/Map/CanvasDark/43.7023774%2C-84.3831605/7?mapSize=1200%2C600&mapLayer=TrafficFlow&format=png&key=Am1UApCMDN1LqcXZzSnLPsRwksEMQlFG8LOo9CZwTTJrcavNz3jqcHVRqoY4M_bV
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    attributes:
+      label: MI

@@ -1,0 +1,37 @@
+- hours_to_show: 48
+  graph: line
+  type: sensor
+  entity: sensor.laundry_light_power
+  detail: 2
+  name: Light | Laundry Area
+  icon: 'mdi:server-network'
+
+- type: sensor
+  entity: sensor.sonoff_1001710e8f_power
+  graph: line
+  detail: 2
+  name: Washer
+  hours_to_show: 48
+
+- type: sensor
+  entity: sensor.sonoff_1001710879_power
+  detail: 2
+  graph: line
+  name: Dryer
+  hours_to_show: 48
+
+- type: sensor
+  entity: sensor.smart_switch_6_electric_w
+  graph: line
+  detail: 1
+  name: GMHQ-DC-Rack-02
+  hours_to_show: 48
+
+
+# - graph: line
+#   type: sensor
+#   entity: sensor.bedroom_lights_energy_use
+#   detail: 2
+#   icon: 'mdi:lightbulb-group'
+#   name: Bedroom Lights
+#   hours_to_show: 48
