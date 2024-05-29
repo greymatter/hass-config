@@ -1,0 +1,51 @@
+type: "custom:layout-card"
+layout_type: "custom:masonry-layout"
+layout:
+  margin: 0 -16px
+  card_margin: 1px 16px
+  width: 360
+cards:
+  - type: "custom:auto-entities"
+    filter:
+      include:
+        - group: group.chore_main_shop
+          options:
+            type: "custom:button-card"
+            template: chore_tile
+    card:
+      type: entities
+      title: Main Shop
+
+  - type: "custom:auto-entities"
+    filter:
+      include:
+        - group: group.chore_grind_room
+          options:
+            type: "custom:button-card"
+            template: chore_tile
+    card:
+      type: entities
+      title: Grind Room
+
+  - type: "custom:auto-entities"
+    filter:
+      include:
+        - group: group.chore_paint_booth
+          options:
+            type: "custom:button-card"
+            template: chore_tile
+    card:
+      type: entities
+      title: Paint Booth
+
+  - type: "custom:auto-entities"
+    filter:
+      include:
+        - group: group.chore_utility_garage
+          options:
+            type: "custom:button-card"
+            template: chore_tile
+    card:
+      type: entities
+      title: Utility Garage
+

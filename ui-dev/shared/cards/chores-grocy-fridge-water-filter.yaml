@@ -1,0 +1,9 @@
+type: custom:grocy-chores-card
+title: ''
+entity: sensor.grocy_chores
+filter: Fridge Water Filter
+show_empty: true
+show_chores_without_due: true
+show_last_tracked: true
+show_track_button: true
+show_days: 1000

@@ -1,0 +1,17 @@
+type: "custom:layout-card"
+layout_type: "custom:masonry-layout"
+layout:
+  margin: 0 -16px
+  card_margin: 1px 16px
+  width: 360
+cards:
+  - type: "custom:auto-entities"
+    filter:
+      include:
+        - group: group.chore_yard_work
+          options:
+            type: "custom:button-card"
+            template: chore_tile
+    card:
+      type: entities
+      title: Yard Work
