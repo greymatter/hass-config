@@ -84,14 +84,14 @@ cards:
                     states:
                       "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
                         type: 'custom:mushroom-entity-card'
-                        entity: binary_sensor.ping_grymtr
-                        name: OPAS Tynan ↗
+                        entity: binary_sensor.ping_roninmachinewerks
+                        name: SpaceX ↗
                         icon: mdi:rocket-launch
                         icon_color: pink
                         style: 'ha-card {background: none;}'
                         tap_action:
                           action: url
-                          url_path: 'https://grymtr.com'
+                          url_path: 'https://www.spacex.com/launches/'
                       "(min-width: 800px) and (max-width: 1023.99px)":
                         <<: *title-badge-1
                         layout: vertical
@@ -101,14 +101,14 @@ cards:
                     states:
                       "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
                         type: 'custom:mushroom-entity-card'
-                        entity: binary_sensor.ping_roninmetalwerks
-                        name: Ronin Metalwerks ↗
+                        entity: binary_sensor.ping_roninmachinewerks
+                        name: Ronin Machinewerks ↗
                         icon: 'mdi:cloud'
                         icon_color: pink
                         style: 'ha-card {background: none;}'
                         tap_action:
                           action: url
-                          url_path: 'https://www.roninmetalwerks.com/'
+                          url_path: 'https://www.roninmachinewerks.com/'
                       "(min-width: 800px) and (max-width: 1023.99px)":
                         <<: *title-badge-2
                         layout: vertical

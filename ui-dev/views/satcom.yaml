@@ -74,7 +74,7 @@ cards:
                         type: 'custom:mushroom-entity-card'
                         entity: binary_sensor.ping_loki
                         name: Sky Watch ↗
-                        icon: mdi:rocket-launch
+                        icon: 'mdi:cloud'
                         icon_color: pink
                         style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
                         tap_action:
@@ -90,13 +90,13 @@ cards:
                       "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
                         type: 'custom:mushroom-entity-card'
                         entity: binary_sensor.ping_loki
-                        name: Astropheric ↗
-                        icon: 'mdi:cloud'
+                        name: SpaceX ↗
+                        icon: 'mdi:rocket-launch'
                         icon_color: pink
                         style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
                         tap_action:
                           action: url
-                          url_path: 'https://www.astrospheric.com/'
+                          url_path: 'https://www.spacex.com/launches/'
                       "(min-width: 800px) and (max-width: 1023.99px)":
                         <<: *title-badge-2
                         layout: vertical

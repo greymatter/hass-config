@@ -148,7 +148,7 @@ sensor:
 
   ###########################################################
   ## pull in/out throughput for each AP #####################
-
+  ### port 46 sw03 -ap02
   # - platform: snmp
   #   name: sw01_s2h_uplink_bytes_in
   #   host: !secret sw01_ip
@@ -166,6 +166,12 @@ sensor:
 
   ###########################################################
   ## pull uptime for each AP ################################
+
+
+
+
+
+
 
   ### cisco ap02_c3602e #####################################
   - platform: snmp
@@ -224,6 +230,26 @@ sensor:
     community: !secret snmp_ro
     baseoid: .1.3.6.1.4.1.9.9.513.1.1.1.1.49.8.204.104.98.98.128
     scan_interval: 3600
+
+  ## pull in/out throughput for each AP ##################################################
+  ########################### port 46 sw03 -ap02 #########################################
+  ##  plz take note here, these are in/out measurements taken at the switch so be sure  ##
+  ##  to take this into account in the interface and reverse in/out so it's accurate.   ##
+  ########################################################################################
+  - platform: snmp
+    name: sw03_ap02_uplink_bytes_in
+    host: !secret sw03_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.2.1.2.2.1.10.10146
+    scan_interval: 2
+
+  - platform: snmp
+    name: sw03_ap02_uplink_bytes_out
+    host: !secret sw03_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.2.1.2.2.1.16.10146
+    scan_interval: 2
+
 
   ### cisco ap03_c3602e ######################################
   - platform: snmp
@@ -673,5 +699,95 @@ switch:
     payload_on: 1
     payload_off: 2
 
+
+###############################################################################
+
+template:
+  - sensor:
+      - name: uplink_ap02_in
+        state: '{{ ((states.input_number.uplink_traffic_delta_ap02_in.state | float(0) ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+
+  - sensor:
+      - name: uplink_ap02_out
+        state: '{{ ((states.input_number.uplink_traffic_delta_ap02_out.state | float(0) ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+
+
+###############################################################################
+
+input_number:
+  uplink_traffic_delta_ap02_in:
+    name: "Uplink Traffic ap02 IN Delta"
+    initial: 0                 
+    min: 0                     
+    max: 1000000000000             
+
+  uplink_traffic_delta_ap02_out:
+    name: "Uplink Traffic ap02 OUT Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+
+###############################################################################
+
+automation:
+- id: '163494600244'
+  alias: Monitor Traffic ap02 Uplink In
+  trigger:
+  - platform: state
+    entity_id: sensor.sw03_ap02_uplink_bytes_in
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.uplink_traffic_delta_ap02_in
+      value: '{{ (((trigger.to_state.state | int - trigger.from_state.state | int)
+        * 8 ) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated)
+        )) | int  }}'
+
+- id: '163409547205'
+  alias: Monitor Traffic ap02 Uplink Out
+  trigger:
+  - platform: state
+    entity_id: sensor.sw03_ap02_uplink_bytes_out
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.uplink_traffic_delta_ap02_out
+      value: '{{ (((trigger.to_state.state | int - trigger.from_state.state | int)
+        * 8) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated)
+        )) | int  }}'
+
+
+###############################################################################
+
+recorder:
+  exclude:
+    entities:
+      # - binary_sensor.iss
+      # - binary_sensor.fr24_feeder_link_connected
+      - sensor.cisco_wlc_aps_online
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - input_number.uplink_traffic_delta_ap02_in
+      # - input_number.uplink_traffic_delta_ap02_out
+      # - input_number.
+      # - input_number.
+    entity_globs:
+      - sensor.cisco_wlc_*_location
+      - sensor.cisco_wlc_*_uptime
+      - switch.cisco_wlc_*_led_state
+      - sensor.sw*_ap*_uplink_bytes_*
+      - input_number.uplink_traffic_delta_ap*
+
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
 
 
