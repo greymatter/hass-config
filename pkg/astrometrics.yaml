@@ -104,9 +104,11 @@ sensor:
     value_template: '{{ value_json[0]["launch_date_unix"] }}'
     resource: 'https://api.spacexdata.com/v3/launches/upcoming?limit=1&offset=0'
 
-
-
-
+  - platform: template
+    sensors:
+      satellites_overhead_now:
+        friendly_name: Satellites Overhead Now
+        value_template: '{{ states.sensor.greymatterhq_overhead_satellites }}'
 
 
   - platform: template
@@ -551,45 +553,9 @@ multiscrape:
           #- name: visibility
           #  value_template: '{{ value_json.visibility }}'
 
-      #- unique_id: css_velocity
-      # name: International Space Station - Velocity
-      # value_template: '{{ value_json.velocity }}'
-      # unit_of_measurement: "km/h"
 
-      - unique_id: css_altitude
-        name: Tiangong Space Station - Altitude
-        value_template: '{{ value_json.positions[0].sataltitude }}'
-        unit_of_measurement: "km"
 
-  - name: Tiangong Space Station
-    resource: !secret n2yo_api_url_css
-    scan_interval: 30
-    sensor:
 
-      - unique_id: css
-        name: Tiangong Space Station
-        value_template: 'OK'
-        attributes:
-          - name: latitude
-            value_template: '{{ value_json.positions[0].satlatitude }}'
-          - name: longitude
-            value_template: '{{ value_json.positions[0].satlongitude }}'
-          - name: altitude
-            value_template: '{{ value_json.positions[0].sataltitude }}'
-          - name: azimuth
-            value_template: '{{ value_json.positions[0].azimuth }}'
-          #- name: visibility
-          #  value_template: '{{ value_json.visibility }}'
-
-      #- unique_id: css_velocity
-      # name: International Space Station - Velocity
-      # value_template: '{{ value_json.velocity }}'
-      # unit_of_measurement: "km/h"
-
-      - unique_id: css_altitude
-        name: Tiangong Space Station - Altitude
-        value_template: '{{ value_json.positions[0].sataltitude }}'
-        unit_of_measurement: "km"
 
 group:
   spacex:
@@ -611,4 +577,39 @@ group:
     entities:
       - sensor.starman_distance
       - sensor.starman_speed
+
+
+## space wx & rockets ######################################################
+recorder:
+  exclude:
+    entities:
+      - binary_sensor.next_launch_confirmed
+      - binary_sensor.fr24_feeder_link_connected
+      - sensor.greymatterhq_overhead_satellites
+      - sensor.starman_earth_distance
+      - sensor.starman_distance
+      - sensor.starman_speed
+      - sensor.noaa_space_weather_alerts_feed
+      - sensor.next_launch_countdown
+      - binary_sensor.aurora_42_83
+      - sensor.aurora_42_83
+      - sensor.spacex
+      - sensor.spacelibrary
+      - sensor.starlink_group
+    entity_globs:
+      - sensor.next_confirmed_launch_*
+      - sensor.next_launch_*
+      - sensor.noaa_space_weather_alert_*
+      - sensor.rocketlaunch_*
+      - sensor.starman_*
+      - binary_sensor.launch_*
+      - binary_sensor.astroweather_*
+      - sensor.spacelibrary_*
+      - sensor.spacex_next_*
+      #- sensor.solar_flux_*
+      #- binary_sensor.next_launch_*
+      #- sensor.x_class_*
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
+
 
