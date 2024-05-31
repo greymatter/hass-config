@@ -84,6 +84,7 @@ sensor:
     value_template: "{{ value_json.results[0].window_start }}"
     resource: 'https://ll.thespacedevs.com/2.0.0/launch/upcoming/?format=json&limit=3&offset=0'
 
+
   # Starman
   - platform: rest
     name: Starman Speed
@@ -92,6 +93,7 @@ sensor:
     value_template: '{{ value_json["speed_kph"] }}'
     unit_of_measurement: "km/h"
     resource: 'https://api.spacexdata.com/v2/info/roadster'
+
 
   # SpaceX Launches
   - platform: rest
@@ -104,11 +106,12 @@ sensor:
     value_template: '{{ value_json[0]["launch_date_unix"] }}'
     resource: 'https://api.spacexdata.com/v3/launches/upcoming?limit=1&offset=0'
 
+
   - platform: template
     sensors:
       satellites_overhead_now:
         friendly_name: Satellites Overhead Now
-        value_template: '{{ states.sensor.greymatterhq_overhead_satellites }}'
+        value_template: '{{ states.sensor.greymatterhq_overhead_satellites.state }}'
 
 
   - platform: template
