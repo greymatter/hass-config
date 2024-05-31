@@ -1,9 +1,9 @@
 # Devices / Access Points
 # greymatter 2024
 
+title: ap02-c3602e
 path: ap02-c3602e
-subview: true
 
 type: panel
 cards:
-  - !include ../../ap/ap02-c3602e-cards.yaml
+  - !include ap02-c3602e-cards.yaml

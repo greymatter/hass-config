@@ -1,0 +1,23 @@
+#### Maximalist Dashboard for Home Assistant ####
+# Subviews / Maps
+## greymatter 2024
+### https://github.com/greymatter
+
+title: RAMMB
+path: rammb
+subview: true
+
+type: 'custom:grid-layout'
+layout: !include ../../../shared/snippets/layout-page-margin.yaml
+
+cards:
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../../shared/snippets/layout-page-columns-one.yaml
+    view_layout:
+      grid-area: cc
+
+    cards:
+      - type: iframe
+        url: https://rammb-slider.cira.colostate.edu/?sat=goes-16&sec=conus&x=5834&y=3048&z=3&angle=0&im=12&ts=1&st=0&et=0&speed=130&motion=loop&maps%5Bborders%5D=white&p%5B0%5D=geocolor&opacity%5B0%5D=1&pause=0&slider=-1&hide_controls=1&mouse_draw=0&follow_feature=0&follow_hide=0&s=rammb-slider&draw_color=FFD700&draw_width=6
+
