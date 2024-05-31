@@ -1,3 +1,15 @@
+####################################################################################################################################################################
+# SQL sensors created using the official SQL integration | add these if you are using FlightAirMap for interesting sensors
+#   
+#   
+#   
+#   
+#   
+####################################################################################################################################################################
+
+
+
+
 # ADS-B System / Flightradar 24 / dump1090
 
 homeassistant:
@@ -34,7 +46,7 @@ binary_sensor:
         value_template: '{{ state_attr("sensor.adsb_fi_daily_stats", "beast_connected_seconds") | float(0) > 0 }}'
         device_class: connectivity
 
-      # not working
+      # not working but god only knows why
       adsb_flyitaly_feeder_link_connected:
         friendly_name: Link Connected
         value_template: '{{ is_state_attr("sensor.adsb_flyitaly_stats", "mlat", "true") }}'
@@ -74,6 +86,15 @@ binary_sensor:
         friendly_name: Link Connected
         value_template: '{{ is_state_attr("sensor.piaware_conn_status", "mlat_status", "green") }}'
         device_class: connectivity
+
+
+      # flightairmap_feeder_link_connected:
+      #   friendly_name: Link Connected
+      #   value_template: '{{ state_attr("sensor.adsb_lol_daily_stats", "beast_connected_seconds") | float(0) > 0 }}'
+      #   device_class: connectivity
+
+# {{ states('sensor.plug_tv_power')|float(0) > 10}}
+
 
 
 
@@ -126,6 +147,9 @@ sensor:
       adsb_lol_beast_positions_per_second:
         friendly_name: ADSB.lol - Positions Uploaded per Second
         value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_positions_per_second"] }}'
+      adsb_lol_beast_messages_per_second:
+        friendly_name: ADSB.lol - Messages Uploaded per Second
+        value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_messages_per_second"] }}'
       adsb_lol_beast_positions_kbs:
         friendly_name: ADSB.lol - Uplink Throughput
         value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_kbps"] | round(2) }}'
@@ -134,12 +158,12 @@ sensor:
 
 
 multiscrape:
+
 ## scrape adsb.lol stats ###########################################################
 
   - name: adsb.lol stats
-    #resource: !secret openmeteo_api
     resource: https://api.adsb.lol/0/me
-    scan_interval: 60
+    scan_interval: 30
     sensor:
 
       - unique_id: adsb_lol_daily_stats
@@ -171,6 +195,7 @@ multiscrape:
             value_template: '{{ value_json.clients.mlat[0].outlier_percent }}'
           - name: mlat_bad_sync_timeout
             value_template: '{{ value_json.clients.mlat[0].bad_sync_timeout }}'
+
 
 ## scrape adsb.fi stats ###########################################################
 
@@ -206,6 +231,7 @@ multiscrape:
           - name: mlat_bad_sync_timeout
             value_template: '{{ value_json.mlat[0].badSyncTimeout }}'
 
+
 ## scrape FlyItaly adsb stats ###########################################################
 
   - name: FlyItaly adsb stats
@@ -223,6 +249,7 @@ multiscrape:
             value_template: '{{ value_json.feeding.beast }}'
           - name: mlat
             value_template: '{{ value_json.feeding.mlat }}'
+
 
 ## scrape RadarPlane stats ###########################################################
 
@@ -264,6 +291,10 @@ multiscrape:
             select: '#beast-detect > div > div > span'
           - name: mlat_connected
             select: '#mlat-detect > div > div > span'
+
+
+
+
 
 
 ## scrape TheAirTraffic stats ###########################################################
@@ -314,6 +345,28 @@ multiscrape:
             select: 'body > section > div > p > span:nth-child(1) > span'
 
 
+
+  # - name: FlightAirMap Active Flights
+  #   resource: !secret fam_map_url
+  #   scan_interval: 60
+  #   #log_response: true
+  #   sensor:
+  #     - name: flightairmap_active_flights
+  #       select: '#ibxaircraft > b'
+
+
+
+      # - unique_id: flightairmap_stats
+      #   name: FlightAirMap Active Flights
+      #   value_template: Connected
+      #   icon: mdi:plane
+      #   attributes:
+      #     - name: flights
+      #       select: '#ibxaircraft'
+#ibxaircraft
+
+
+
 ## scrape FlightAware PiAware stats ###########################################################
 
   - name: FlightAware PiAware Status
@@ -342,6 +395,14 @@ multiscrape:
             value_template: '{{ value_json.radio.status }}'
           - name: system_uptime
             value_template: '{{ value_json.system_uptime }}'
+          - name: modes_enabled
+            value_template: '{{ value_json.modes_enabled }}'
+          - name: system_uptime
+            value_template: '{{ value_json.system_uptime }}'
+          # - name: radio_status
+          #   value_template: '{{ value_json.radio.status }}'
+          # - name: system_uptime
+          #   value_template: '{{ value_json.system_uptime }}'
 
 
 #### piaware - aircraft by type ###########################################################
@@ -391,6 +452,8 @@ multiscrape:
             value_template: '{{ value_json.uptime }}'
 
 
+
+
 ##############################################################################################
 #####################  need work #############################################################
 
@@ -437,6 +500,40 @@ multiscrape:
 
 
 
+  # - name: Airplanes.live
+  #   resource: https://airplanes.live/myfeed/
+  #   scan_interval: 60
+  #   #log_response: true
+  #   sensor:
+
+  #     - unique_id: airplanes_live_daily_stats
+  #       name: Airplanes.live - Daily Stats
+  #       value_template: Connected
+  #       icon: mdi:plane
+  #       attributes:
+  #         - name: beast_connected
+  #           select: '#beast-detect > div > div > span'
+  #         - name: mlat_connected
+  #           select: '#mlat-detect > div > div > span'
+  #         - name: beast_throughput
+  #           value_template: '{{ value_json.mlat_clients[0].peer_count }}'
+  #         - name: beast_messageRate
+  #           value_template: '{{ value_json.mlat_clients[0].peer_count }}'
+  #         - name: beast_positions
+  #           select: '#feeder-json > $.mlat_clients.[0].peer_count'
+  #         - name: beast_positions_total
+  #           select: '#feeder-json > value_json.mlat_clients.[0].peer_count'
+  #         - name: mlat_message_rate
+  #           select: '#feeder-json > value_json.mlat_clients[0].peer_countn'
+  #         - name: mlat_peers
+  #           select: '#mlat-peer-count > div > div > span'
+  #         - name: mlat_bad_sync
+  #           select: '#mlat-bad_sync > div > div > span'
+  #         - name: mlat_outlier
+  #           select: '#mlat-outlier > div > div > span'
+
+
+
 
 recorder:
   exclude:
@@ -449,9 +546,23 @@ recorder:
       - sensor.adsb_lol_daily_stats
       - sensor.adsb_fi_daily_stats
       - sensor.adsb_flyitaly_stats
+      - sensor.adsb_exchange_status
+      - sensor.radarplane_stats
+      - sensor.airplanes_live_daily_stats
+      - sensor.airplanes_live_connected
+      - sensor.the_air_traffic_status
+      - sensor.flightairmap_stats
       - sensor.piaware_conn_status
       - sensor.adsb_aircraft_count_by_type
       - sensor.fr24_feeder
-  #include:
+    entity_globs:
+      - sensor.flightairmap_count_*_tracked
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
+
+
+
+
+
 
 

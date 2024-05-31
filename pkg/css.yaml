@@ -1,0 +1,59 @@
+## all sensors for the CSS ####################################################
+
+
+
+multiscrape:
+
+  - name: Tiangong Space Station
+    resource: !secret n2yo_api_url_css
+    scan_interval: 30
+    sensor:
+
+      - unique_id: css
+        name: Tiangong Space Station
+        value_template: 'OK'
+        attributes:
+          - name: latitude
+            value_template: '{{ value_json.positions[0].satlatitude }}'
+          - name: longitude
+            value_template: '{{ value_json.positions[0].satlongitude }}'
+          - name: altitude
+            value_template: '{{ value_json.positions[0].sataltitude }}'
+          - name: azimuth
+            value_template: '{{ value_json.positions[0].azimuth }}'
+          #- name: visibility
+          #  value_template: '{{ value_json.visibility }}'
+
+      #- unique_id: css_velocity
+      # name: International Space Station - Velocity
+      # value_template: '{{ value_json.velocity }}'
+      # unit_of_measurement: "km/h"
+
+      - unique_id: css_altitude
+        name: Tiangong Space Station - Altitude
+        value_template: '{{ value_json.positions[0].sataltitude }}'
+        unit_of_measurement: "km"
+
+      #- unique_id: css_velocity
+      # name: International Space Station - Velocity
+      # value_template: '{{ value_json.velocity }}'
+      # unit_of_measurement: "km/h"
+
+      # - unique_id: css_altitude
+      #   name: Tiangong Space Station - Altitude
+      #   value_template: '{{ value_json.positions[0].sataltitude }}'
+      #   unit_of_measurement: "km"
+
+recorder:
+  exclude:
+    entities:
+      - binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+      - binary_sensor.fr24_feeder_link_connected
+      - sensor.tiangong_space_station
+      - sensor.css
+      - sensor.css_altitude
+    entity_globs:
+      - sensor.tiangong_space_station_css_pass_*
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
+

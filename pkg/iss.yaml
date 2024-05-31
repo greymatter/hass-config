@@ -285,5 +285,32 @@ input_text:
     name: Last updated
     initial: 'Recalculating'
 
+recorder:
+  exclude:
+    entities:
+      - binary_sensor.iss
+      - binary_sensor.fr24_feeder_link_connected
+      - sensor.iss
+      - sensor.iss_2
+      - sensor.iss_next_rise
+      - sensor.iss_people_in_space
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      # - sensor.
+      - sensor.nasa_iss_station_report
+      - input_text.iss_approach
+      - input_text.iss_departure
+      - input_text.iss_rss_feed_updated
+      - input_datetime.iss_next_overhead_date_time
+      - input_datetime.iss_next_overhead
+      - input_number.iss_duration
+      - input_number.iss_elevation
+      - input_number.iss_set_minimum_elevation
+    entity_globs:
+      - sensor.next_confirmed_launch_*
+      - sensor.next_launch_*
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
 
 
