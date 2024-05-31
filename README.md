@@ -45,6 +45,10 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Avionics-Map.png)
 
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Avionics-Stats.png)
+
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Avionics-popup.png)
+
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Neighborhood.png)
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Lighting_shop.png)
