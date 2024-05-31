@@ -1,0 +1,664 @@
+# MAXIMALIST DASHBOARD
+# Astrometrics Showxating
+# Made by Madelena Mak 2022
+
+title: Satcom
+path: satcom
+
+type: 'custom:grid-layout'
+layout: !include ../shared/snippets/layout-page-margin.yaml
+
+cards:
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    view_layout:
+      grid-area: cc
+    layout:
+      grid-template-columns: 'repeat(auto-fill, [col-start] minmax(360px, 1fr) [col-end])'
+      grid-template-rows: auto
+      grid-column-gap: 32px
+      margin: -1px
+      mediaquery:
+        # '(min-width: 2320px)':
+        #   grid-template-columns: 'repeat(auto-fill, [col-start] minmax(720px, 1fr) [col-end])'
+        '(max-width: 799.99px)':
+          grid-template-columns: 'repeat(auto-fill, [col-start] minmax(256px, 1fr) [col-end])'
+
+    cards:
+
+      # [Header] Summary
+      - type: 'custom:layout-card'
+        layout_type: 'custom:grid-layout'
+        layout: !include ../shared/snippets/layout-page-title-with-2-badges.yaml
+        view_layout:
+          grid-column: 1/-1
+        cards:
+
+          - type: markdown
+            content: >
+              # SATCOM
+
+              Welcome to Sector 001. R3 (Strong) Flare at 9:55 am EDT on 10 May, 2024. Atmospheric conditions are nominal for transmissions. <br/>
+              Interference may be problematic for the following HF Bands 30m-20m, 80m-40m today but should clear by this evening.
+            style:
+              .: |
+                ha-card {
+                  background: none;
+                }
+              ha-markdown$: |
+                h1 {
+                  font-size: var(--title-font-size);
+                  font-weight: 600;
+                  line-height: 1.1;
+                  margin-left: -2px;
+                  margin-block-end: -8px;
+                }
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout:
+              margin: 0
+            view_layout:
+              place-self: center auto
+            cards:
+
+              - type: 'custom:swipe-card'
+                parameters: !include ../shared/snippets/parameters-page-title-swipe-card.yaml
+                style: !include ../shared/snippets/style-page-title-swipe-card.yaml
+                cards:
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+                        type: 'custom:mushroom-entity-card'
+                        entity: binary_sensor.ping_loki
+                        name: Sky Watch ↗
+                        icon: mdi:rocket-launch
+                        icon_color: pink
+                        style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
+                        tap_action:
+                          action: url
+                          url_path: 'https://stellarium-web.org/'
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-1
+                        layout: vertical
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+                        type: 'custom:mushroom-entity-card'
+                        entity: binary_sensor.ping_loki
+                        name: Astropheric ↗
+                        icon: 'mdi:cloud'
+                        icon_color: pink
+                        style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
+                        tap_action:
+                          action: url
+                          url_path: 'https://www.astrospheric.com/'
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-2
+                        layout: vertical
+
+
+      # [Column] The Sun
+      - type: vertical-stack
+        cards:
+
+          - type: 'custom:button-card'
+            template: header_card
+            variables:
+              name: SOL
+              label: null
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: 'https://'
+
+          # - type: 'custom:layout-card'
+          #   layout_type: 'custom:grid-layout'
+          #   layout: !include ../shared/snippets/layout-page-columns.yaml
+          #   cards:
+
+          #     - type: vertical-stack
+          #       cards:
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout: !include ../shared/snippets/layout-live-tile.yaml
+            cards:
+              - type: "custom:button-card"
+                template: live_tile
+                entity: sensor.iss_2
+                name: ISS
+                icon: mdi:space-station
+                show_state: false
+                view_layout:
+                  grid-column: span 2
+                  grid-row: span 2
+                  margin: 0
+                state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                show_label: true
+                tap_action:
+                  action: navigate
+                  navigation_path: binary_sensor.iss
+                label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                  #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+                  # custom_fields:
+                  #  unit: People
+                styles:
+                  card:
+                    - background: |
+                        [[[
+                          return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                        ]]]
+                    - background-size: 120% 120%
+                    - background-position: center center
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                entity: binary_sensor.international_space_station_iss_10_minute_pass_warning
+                name: ISS Visibility
+
+              - type: custom:button-card
+                template:
+                  - live_tile_card
+                  - live_tile_with_picture
+                name: CMEs
+                color_type: icon
+                variables:
+                  picture: https://services.swpc.noaa.gov/images/animations/lasco-c3/latest.jpg
+                styles:
+                  custom_fields:
+                    picture:
+                      - background-size: 110% 110%
+                      - filter: grayscale(1) brightness(.85) contrast(2.5)
+                tap_action:
+                  action: none
+                view_layout:
+                  grid-column: span 1
+                  grid-row: span 1
+                  margin: 0
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile #_with_state_unit
+                entity: sensor.satellites_overhead_now
+                name: Satellites Overhead
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile_card
+              #   entity: binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+              #   name: CSS Visibility
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.noaa_space_weather_solar_wind_magnetic_fields_bz
+                name: Magnetic Fields - Bz
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.noaa_space_weather_noon_10_7cm_radio_flux
+                name: 10.7cm Radio Flux
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                entity: binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+                name: CSS Visibility
+
+              - type: "custom:button-card"
+                template: live_tile
+                entity: sensor.css
+                name: CSS
+                icon: mdi:space-station
+                show_state: false
+                view_layout:
+                  grid-column: span 2
+                  grid-row: span 2
+                  margin: 0
+                #state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                show_label: true
+                #label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                  #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+                  # custom_fields:
+                  #  unit: People
+                styles:
+                  card:
+                    - background: |
+                        [[[
+                          return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                        ]]]
+                    - background-size: 120% 120%
+                    - background-position: center center
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                entity: binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+                name: Srarlink Visibility
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.noaa_space_weather_solar_wind_speed
+                name: Solar Wind Speed
+                variables:
+                  aspect_ratio: 2/1
+                  line_width: 2
+                  graph_height: 80
+                view_layout:
+                  grid-column: span 2
+
+              - type: "custom:button-card"
+                template: live_tile
+                entity: sensor.starlink_group
+                name: Starlink
+                icon: mdi:satellite-variant
+                show_state: false
+                view_layout:
+                  grid-column: span 1
+                  grid-row: span 1
+                  margin: 0
+                #state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                show_label: true
+                #label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+                  #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+                  # custom_fields:
+                  #  unit: People
+                styles:
+                  card:
+                    - background: |
+                        [[[
+                          return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                        ]]]
+                    - background-size: 120% 120%
+                    - background-position: center center
+
+              # - type: vertical-stack
+              #   cards:
+
+              #     - type: 'custom:layout-card'
+              #       layout_type: 'custom:grid-layout'
+              #       layout: !include ../shared/snippets/layout-live-tile.yaml
+              #       cards:
+
+              - type: custom:button-card
+                template:
+                  - live_tile_card
+                  - live_tile_with_picture
+                name: Aurora
+                color_type: icon
+                variables:
+                  picture: https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg
+                styles:
+                  custom_fields:
+                    picture:
+                      - background-size: 127% 127%
+                      - filter: grayscale(.8) contrast(1)
+                tap_action:
+                  action: none
+                view_layout:
+                  grid-column: span 1
+                  grid-row: span 1
+                  margin: 0
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                entity: sensor.aurora_42_83
+                name: Aurora Visibility
+
+              - type: custom:button-card
+                template:
+                  - live_tile_card
+                  - live_tile_with_picture
+                name: Visible Light
+                color_type: icon
+                variables:
+                  picture: https://services.swpc.noaa.gov/images/animations/sdo-hmii/latest.jpg
+                styles:
+                  custom_fields:
+                    picture:
+                      - background-size: 110% 110%
+                      - filter: grayscale(1) brightness(.85) contrast(2.5)
+                tap_action:
+                  action: none
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_sig_noise_lvl
+                name: HF Noise
+
+
+
+              - type: custom:button-card
+                template:
+                  - live_tile_card
+                  - live_tile_with_picture
+                name: UV Comp
+                color_type: icon
+                view_layout:
+                  grid-column: span 2
+                  grid-row: span 2
+                  margin: 0
+                variables:
+                  picture: https://services.swpc.noaa.gov/images/animations/suvi/primary/195/latest.png
+                styles:
+                  custom_fields:
+                    picture:
+                      - background-size: 110% 110%
+                      - filter: grayscale(1) brightness(.85)
+                tap_action:
+                  action: none
+
+
+
+
+
+
+
+
+          # - type: custom:list-card
+          #   entity: sensor.noaa_space_weather_alerts
+          #   title: Space Weather Alerts
+          #   feed_attribute: entries
+          #   columns:
+          #     - field: product_id
+
+          - type: entities
+            entities:
+              - &astrometrics-noaa-alert
+                type: 'custom:button-card'
+                entity: sensor.noaa_space_weather_alert_1
+                show_icon: false
+                show_state: true
+                show_label: true
+                name: '[[[ return entity.state + " &bull; " + entity.attributes.summary.split(": ")[0] + " &bull; " + moment(entity.attributes.date).subtract(5, "h").fromNow() ]]]'
+                state_display: '[[[ return entity.attributes.summary.split(": ")[1] ]]]'
+                label: '[[[ return entity.attributes.potential_impacts ]]]'
+                styles:
+                  card:
+                    - background: none
+                    - padding: 8px 0
+                  grid:
+                    - grid-template-areas: '"n" "s" "l"'
+                    - grid-template-rows: min-content min-content min-content
+                  name:
+                    - font-size: var(--small-font-size)
+                    - place-self: center start
+                    - padding-bottom: 4px
+                  state:
+                    - font-size: var(--h5-font-size)
+                    - font-weight: 600
+                    - place-self: center start
+                    - white-space: normal
+                    - text-align: left
+                    - padding-bottom: 4px
+                  label:
+                    - font-size: var(--body-font-size)
+                    - place-self: center start
+                    - white-space: normal
+                    - text-align: left
+              - <<: *astrometrics-noaa-alert
+                entity: sensor.noaa_space_weather_alert_2
+              - <<: *astrometrics-noaa-alert
+                entity: sensor.noaa_space_weather_alert_3
+              - <<: *astrometrics-noaa-alert
+                entity: sensor.noaa_space_weather_alert_4
+              - <<: *astrometrics-noaa-alert
+                entity: sensor.noaa_space_weather_alert_5
+            title: NOAA Alerts
+
+      # Space Weather, Solar Flare
+
+
+
+
+
+      # [Column] Ships Around Sol III
+      - type: vertical-stack
+        view_layout:
+          grid-column: span 2
+        cards:
+
+          - type: 'custom:button-card'
+            template: header_card
+            variables:
+              name: SPACECRAFT
+              label: null
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: 'https://'
+
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                content: '## Starlink'
+                style: |
+                  ha-card {background: none;}
+                  ha-markdown {
+                    position: absolute;
+                    z-index: 10;
+                    background: var(--ha-card-background);
+                  }
+
+              - type: iframe
+                url: https://satellitemap.space/?constellation=starlink
+                aspect_ratio: 100%
+                card_mod:
+                  style: >
+                    :host {margin-bottom: 16px !important;}
+                    ha-card { overflow: hidden; }
+
+                    iframe { width: 100% !important; height: 140% !important; position:
+                    relative; top: -20% !important; left: 0 !important;
+                    filter: hue-rotate(calc(var(--hue-primary-color) - 205deg));}
+
+          - type: entities
+            entities:
+              - &astrometrics-rocket-launch
+                type: 'custom:button-card'
+                entity: sensor.rocketlaunch_live_next_1
+                show_icon: false
+                show_state: true
+                show_label: true
+                name: '[[[ return `${entity.attributes.date} &bull; ${entity.attributes.tags}` ]]]'
+                state_display: '[[[ return entity.attributes.name ]]]'
+                label: '[[[ return entity.attributes.launch_description ]]]'
+                styles:
+                  card:
+                    - background: none
+                    - padding: 8px 0
+                  grid:
+                    - grid-template-areas: '"n" "s" "l"'
+                    - grid-template-rows: min-content min-content min-content
+                  name:
+                    - font-size: var(--small-font-size)
+                    - place-self: center start
+                    - padding-bottom: 4px
+                  state:
+                    - font-size: var(--h5-font-size)
+                    - font-weight: 600
+                    - place-self: center start
+                    - white-space: normal
+                    - text-align: left
+                    - padding-bottom: 4px
+                  label:
+                    - font-size: var(--body-font-size)
+                    - place-self: center start
+                    - white-space: normal
+                    - text-align: left
+                tap_action:
+                  action: url
+                  url_path: '[[[ return entity.attributes.link ]]]'
+                hold_action:
+                  action: more-info
+                confirmation:
+                  text: '[[[ return `Open link for ${entity.state}?` ]]]'
+              - <<: *astrometrics-rocket-launch
+                entity: sensor.rocketlaunch_live_next_2
+              - <<: *astrometrics-rocket-launch
+                entity: sensor.rocketlaunch_live_next_3
+              - <<: *astrometrics-rocket-launch
+                entity: sensor.rocketlaunch_live_next_4
+              - <<: *astrometrics-rocket-launch
+                entity: sensor.rocketlaunch_live_next_5
+            title: Departures
+
+
+      # [Column] "Look Up (The Stars)." - Is that Agnes Jurati or Coldplay?
+
+      - type: vertical-stack
+        # view_layout:
+        #   grid-column: span 1
+        cards:
+          - type: 'custom:button-card'
+            template: header_card
+            variables:
+              name: RF
+              label: null
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: 'https://gpsjam.org/?lat=37.85960&lon=-89.86844&z=3.0'
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout:
+              grid-template-columns: 'repeat(auto-fill, [col-start] minmax(360px, 1fr) [col-end])'
+              grid-template-rows: auto
+              grid-column-gap: 32px
+              margin: -1px
+            cards:
+              - !include ../shared/cards/ham-prop.yaml
+
+
+          - type: 'custom:button-card'
+            template: header_card
+            variables:
+              name: INTERFERENCE
+              label: null
+              arrow: 'mdi:arrow-top-right'
+              action: url
+              link: 'https://'
+
+          # - type: 'custom:layout-card'
+          #   layout_type: 'custom:grid-layout'
+          #   layout: !include ../shared/snippets/layout-page-columns.yaml
+          #   cards:
+
+          #     - type: vertical-stack
+          #       cards:
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout: !include ../shared/snippets/layout-live-tile.yaml
+            cards:
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_sig_noise_lvl
+                name: HF Noise lvl
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_a_index
+                name: Solar A-Index
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_bz
+                name: Solar Bz
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_flux_index
+                name: Solar Flux Index
+                unit: SFZ
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_fof2
+                name: Solar foF2
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_k_index
+                name: Solar K-Index
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_sunspots
+                name: Sunspots
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_wind
+                name: Solar Wind
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_xray
+                name: Solar X-Ray Class
+                
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_with_graph
+                  - live_tile_with_state_unit
+                entity: sensor.ham_radio_propagation_solar_xray_scale
+                name: Solar X-Ray Scale
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

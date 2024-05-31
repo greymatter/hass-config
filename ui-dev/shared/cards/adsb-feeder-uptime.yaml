@@ -1,0 +1,68 @@
+type: vertical-stack
+in_card: true
+cards:
+
+  - type: 'custom:uptime-card'
+    entity: binary_sensor.updater
+    icon: 'mdi:raspberry-pi'
+    title_template: HA update
+    status_adaptive_color: true
+    bar:
+      spacing: 4
+      height: 10
+      round: 4
+    alias:
+      ok: Update available !
+      ko: No update for the moment...
+    color:
+      icon: grey
+    show:
+      footer: false
+    duration:
+      quantity: 1
+      unit: week
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # - type: entities
+  #   entities:
+  #     - entity: binary_sensor.fr24_feeder_receiver_connected
+  #       name: Reciever
+  #       icon: mdi:check-network-outline
+  #     - entity: binary_sensor.fr24_feeder_link_connected
+  #       name: FR24
+  #       icon: mdi:check-network-outline
+  #     - entity: sensor.adsb_fi_daily_stats
+  #       icon: mdi:check-network-outline
+  #       name: ADSB.fi
+  #     - entity: sensor.adsb_lol_daily_stats
+  #       name: ADSB.lol
+  #       icon: mdi:check-network-outline
+  #     - entity: sensor.adsb_flyitaly_stats
+  #       name: FlyItaly ADSB
+  #       icon: mdi:check-network-outline
+  #   footer:
+  #     type: graph
+  #     entity: sensor.fr24_feeder_aircraft_uploaded
+  #     detail: 2
+
+
+
+
+
+
+
+
+
+

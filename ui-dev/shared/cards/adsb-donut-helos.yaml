@@ -1,0 +1,85 @@
+type: vertical-stack
+in_card: true
+cards:
+  - type: "custom:apexcharts-card"
+    header:
+      show: true
+      title: HELOS
+    chart_type: donut
+    layout: minimal
+    update_interval: 10sec
+    series:
+      - entity: sensor.flightairmap_count_bell_helicopters_tracked
+        name: Bell
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Boeing
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Enstrom
+      - entity: sensor.flightairmap_count_eurocopters_tracked
+        name: Eurocopter
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Leonardo
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Lockheed
+      - entity: sensor.flightairmap_count_md_helicopters_tracked
+        name: MD
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Sikorski
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Robinson
+      - entity: sensor.flightairmap_count_sikorski_helicopters_tracked
+        name: Other
+
+    apex_config:
+      chart:
+        height: 500px
+        fontFamily: "Segoe UI, SegoeUI, sans-serif"
+        offsetY: -20
+        pie:
+          donut:
+            label:
+              show: true
+      title:
+        style:
+          fontSize: 12px
+          color: var(--primary-text-color)
+      legend:
+        formatter: |
+          EVAL:function(seriesName, opts) {
+            return seriesName
+          }
+        position: right
+        fontSize: 12
+        fontFamily: "Segoe UI, SegoeUI, sans-serif"
+        fontWeight: normal
+        markers:
+          width: 8
+          height: 8
+        itemMargin:
+          horizontal: 0
+      dataLabels:
+        formatter: >
+          EVAL:function(value, { seriesIndex, dataPointIndex, w
+          }) {
+            return Math.round(value * 10) / 10 + '%'
+          }
+        style:
+          fontSize: 10
+          fontFamily: "Segoe UI, SegoeUI, sans-serif"
+          fontWeight: 500
+        dropShadow:
+          enabled: false
+      tooltip:
+        style:
+          fontSize: 12px
+          fontFamily: "Segoe UI, SegoeUI, sans-serif"
+    style: |
+      #header__title {
+        font-size: var(--body-font-size) !important;
+        font-weight: normal !important;
+        color: var(--primary-text-color) !important;
+        margin-top: 8px;
+      }
+      #graph-wrapper {
+        padding-top: 32px;
+      }

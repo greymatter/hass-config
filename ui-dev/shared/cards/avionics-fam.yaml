@@ -1,0 +1,165 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: FEEDERS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.piaware_radio_link_connected
+      #   name: Radio Link
+      #   icon: mdi:antenna
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: sensor.adsb_fi_daily_stats
+      #   name: MLAT Peers
+      #   state_display: '[[[ return entity.attributes.mlat_peer_count ]]]'
+      #   icon: mdi:hub-outline
+
+      ## fam tiles
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #     - live_tile_with_long_state
+      #   entity: sensor.flightairmap_count_all_tracked_aircraft
+      #   name: Aircraft Tracked
+      #   icon: mdi:airplane-marker
+
+      - type: "custom:decluttering-card"
+        template: mini_graph_tile
+        view_layout:
+          grid-column: span 2
+        variables:
+          - entities:
+              - entity: sensor.flightairmap_count_all_tracked_aircraft
+          - title: Total Aircraft Tracked
+          - icon: mdi:airplane-marker
+          - aspect_ratio: 2/1
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+          - live_tile_with_unit
+          - live_tile_with_long_state
+        entity: sensor.flightairmap_db_size
+        name: SQL Database
+        icon: mdi:database-alert
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_military_aircraft_tracked
+        name: Military Aircraft
+        icon: mdi:tank
+        
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_all_helicopters
+        name: Helicopters
+        icon: mdi:helicopter
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_uofm_survival_flight_tracked
+        name: UofM Survival Flight
+        icon: mdi:medical-bag
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_elons_pjs_tracked
+        name: Elon
+        icon: mdi:space-invaders
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_glucas_pj_tracked
+        name: George Lucas
+        icon: mdi:death-star
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_steven_spielberg_pj_tracked
+        name: Steven Spielberg
+        icon: mdi:movie-open-outline
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_harrison_ford_pj_tracked
+        name: Harrison Ford
+        icon: fab:rebel
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_taylor_swift_pj_tracked
+        name: Gates
+        icon: mdi:microsoft
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_af1_aircraft_tracked
+        name: AF1/2
+        icon: mdi:cash-100
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_jeff_bezos_pj_tracked
+        name: Jeff Bezos
+        icon: fab:amazon
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_mark_cuban_pj_tracked
+        name: Mark Cuban
+        icon: mdi:shark
+        
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.flightairmap_count_jay_z_pj_tracked
+        name: Jay-Z PJ
+        icon: mdi:diamond-stone
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: sensor.flightairmap_count_taylor_swift_pj_tracked
+      #   name: TayTay
+      #   icon: mdi:microphone-variant
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: sensor.flightairmap_count_oprah_pjs_tracked
+      #   name: Oprah
+      #   icon: mdi:television-classic
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: sensor.flightairmap_count_drake_pj_tracked
+      #   name: Drake
+      #   icon: mdi:food-hot-dog
+
+
+
+

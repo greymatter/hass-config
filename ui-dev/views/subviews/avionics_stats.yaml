@@ -1,0 +1,535 @@
+# International Space Station Subview
+# Made by Madelena Mak 2022
+
+title: ADS-B Stats
+path: 'adsb.stats'
+subview: true
+
+type: 'custom:grid-layout'
+layout: !include ../../shared/snippets/layout-page-margin.yaml
+
+cards:
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout:
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto
+      grid-column-gap: 32px
+      margin: -1px
+      mediaquery:
+        '(max-width: 799.99px)':
+          margin: -1
+    view_layout:
+      grid-area: cc
+
+    cards:
+
+
+      - type: vertical-stack
+        cards:
+
+          # - type: 'custom:button-card'
+          #   template: header_card_no_link
+          #   variables:
+          #     name: STATS
+
+          - type: vertical-stack
+            cards:
+              # - type: markdown
+              #   content: 'Nadir'
+              #   style: |
+              #     ha-card {background: none;}
+              #     ha-markdown {
+              #       position: absolute;
+              #       z-index: 10;
+              #       background: var(--ha-card-background);
+              #     }
+              #     ha-markdown.no-header { padding: 16px !important; }
+ 
+              - type: 'custom:button-card'
+                template: header_card_no_link
+                variables:
+                  name: 2 HOUR
+
+              - type: picture-glance
+                #title: Front garden
+                entities: []
+                camera_image: camera.adsb_message_rate_2h
+
+
+              - type: 'custom:button-card'
+                template: header_card_no_link
+                variables:
+                  name: 24 HOUR
+
+              - type: picture-glance
+                #title: Front garden
+                entities: []
+                camera_image: camera.adsb_message_rate_24h
+
+              - type: 'custom:button-card'
+                template: header_card_no_link
+                variables:
+                  name: 14 DAY
+
+              - type: picture-glance
+                #title: Front garden
+                entities: []
+                camera_image: camera.adsb_message_rate_14d
+
+              - type: 'custom:button-card'
+                template: header_card_no_link
+                variables:
+                  name: 30 DAY
+
+              - type: picture-glance
+                #title: Front garden
+                entities: []
+                camera_image: camera.adsb_message_rate_30d
+
+
+
+              # - type: iframe
+              #   url: https://www.youtube.com/embed/itdpuGHAcpg?autoplay=1&mute=1
+              #   aspect_ratio: 56.25%
+              #   view_layout:
+              #     grid-column: span 2
+
+          # - type: vertical-stack
+          #   cards:
+          #     - type: markdown
+          #       content: 'Forward'
+          #       style: |
+          #         ha-card {background: none;}
+          #         ha-markdown {
+          #           position: absolute;
+          #           z-index: 10;
+          #           background: var(--ha-card-background);
+          #         }
+          #         ha-markdown.no-header { padding: 16px !important; }
+
+          #     - type: iframe
+          #       url: https://www.youtube.com/embed/xAieE-QtOeM?autoplay=1&mute=1
+          #       aspect_ratio: 56.25%
+          #       view_layout:
+          #         grid-column: span 2
+
+
+      - type: vertical-stack
+        cards:
+
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: FEEDERS
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout: !include ../../shared/snippets/layout-live-tile.yaml
+            cards:
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.piaware_radio_link_connected
+                name: Radio Link
+                icon: mdi:antenna
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.piaware_feeder_link_connected
+                name: PiAware Beast
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.piaware_adept_feeder_link_connected
+                name: PiAware Adept
+                show_name: true
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.piaware_mlat_feeder_link_connected
+                name: PiAware MLAT
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.adsb_exchange_feeder_link_connected
+                name: ADSB Exchange
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.adsb_fi_feeder_link_connected
+                name: adsb.fi
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.adsb_lol_feeder_link_connected
+                name: adsb.lol
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.airplanes_live_feeder_link_connected
+                name: Airplanes.live
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+                name: FlyItaly
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.fr24_feeder_link_connected
+                name: FR24
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile_card
+                  #- live_tile_with_last_changed_label
+                entity: binary_sensor.radarplane_feeder_link_connected
+                name: RadarPlane
+#
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile_card
+              #     #- live_tile_with_last_changed_label
+              #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+              #   name: FlyItaly
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.fr24_feeder_link_connected
+              #   name: FR24
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.radarplane_feeder_link_connected
+              #   name: RadarrPlane
+
+              - type: 'custom:button-card'
+                template:
+                  - live_tile
+                entity: sensor.adsb_fi_daily_stats
+                name: MLAT Peers
+                #attribute: mlat_peer_count
+                state_display: "[[[ return entity.attributes.mlat_peer_count ]]]"
+                icon: mdi:hub-outline
+
+              # - type: "custom:decluttering-card"
+              #   template: metro_bar_card
+              #   variables:
+              #     - entity: binary_sensor.radarplane_feeder_link_connected
+              #     - name: Todd's Light
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile_card
+              #   entity: binary_sensor.radarplane_feeder_link_connected
+              #   name: RadarrPlane
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile_card
+              #     - live_tile_with_last_changed_label
+              #   entity: binary_sensor.piaware_radio_link_connected
+              #   name: Radio Link
+              #   icon: mdi:antenna
+
+
+      # - type: vertical-stack
+      #   cards:
+
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: POSITION + TRAJECTORY
+
+
+
+
+
+
+
+          # - type: custom:button-card
+          #   show_name: false
+          #   show_icon: false
+          #   show_state: false
+          #   custom_fields:
+          #     iframe:
+          #       card:
+          #         type: iframe
+          #         url: https://isstracker.spaceflight.esa.int/
+          #         aspect_ratio: 50%
+          #         view_layout:
+          #           grid-column: span 2
+          #         card_mod:
+          #           style: |
+          #             [[[
+          #               const scale = this.offsetWidth / 625
+          #               return "iframe {transform: scale(" + scale + "); transform-origin: top;}"
+          #             ]]]
+          #   styles:
+          #     card:
+          #       - padding: 0
+          #     grid:
+          #       - grid-template-areas: "iframe"
+          #       - grid-template-rows: |
+          #           [[[
+          #             console.log(this.offsetWidth)
+          #             return this.offsetWidth / 625 * 310 + "px"
+          #           ]]]
+          #       - grid-template-columns: 
+          #     custom_fields:
+          #       iframe:
+          #         - position: absolute
+          #         - inset: 0 0 0 0
+
+
+          - type: horizontal-stack
+            cards:
+
+              - type: vertical-stack
+                cards:
+
+                  # - type: 'custom:button-card'
+                  #   template: large_tile_card
+                  #   entity: sensor.iss_nearby_place
+                  #   variables:
+                  #     aspect_ratio: none
+                  #   name: Currently Above
+                  #   state_display: '[[[ if (entity.state == "unknown" || entity.state == "") { return states["sensor.iss_nearby_ocean"].state } ]]]'
+
+                  - !include ../../shared/cards/adsb-donut-card.yaml
+
+                  - !include ../../shared/cards/adsb-donut-helos.yaml
+
+
+                  # - type: custom:button-card
+                  #   template:
+                  #     - live_tile_card
+                  #     - live_tile_with_picture
+                  #   name: ''
+                  #   color_type: icon
+                  #   custom_fields:
+                  #     picture:
+                  #       card:
+                  #         type: iframe
+                  #         url: https://www.satflare.com/w3d/?q=25544
+                  #         aspect_ratio: 100%
+                  #         card_mod:
+                  #           style: >
+                  #             :host {margin-bottom: 16px !important;}
+                  #             ha-card {border-radius: 50%;  border: 2px solid
+                  #             rgba(255,255,255,.1);}
+                  #   variables:
+                  #     picture: none
+                  #   tap_action:
+                  #     action: none
+
+              - type: vertical-stack
+                cards:
+
+                  - type: horizontal-stack
+                    cards:
+
+                      - type: 'custom:card-templater'
+                        card:
+                          type: entity
+                          entity: sensor.fr24_feeder_aircraft_tracked
+                          name: Tracking
+                          icon: mdi:airplane
+                        entities:
+                          - entity: sensor.fr24_feeder_aircraft_tracked
+                            # state_template: >
+                            #   {{ state_attr('sensor.iss_2', 'latitude') | round(2) }}
+
+                      - type: 'custom:card-templater'
+                        card:
+                          type: entity
+                          entity: sensor.fr24_feeder_aircraft_uploaded
+                          name: Tracking w/ Coordinates
+                          icon: mdi:airplane-marker
+                        entities:
+                          - entity: sensor.fr24_feeder_aircraft_uploaded
+                            # state_template: >
+                            #   {{ state_attr('sensor.iss_2', 'longitude') | round(2) }}
+
+                  - type: 'custom:decluttering-card'
+                    template: multi_graph_card
+                    variables:
+                      - entities:
+                          - entity: sensor.adsb_lol_beast_positions_per_second
+                      - title: Positions / Second
+                      - height: 120
+                      - icon: mdi:speedometer
+                      - hours_to_show: 8
+                      - points_per_hour: 12
+                      - lower_bound: ~50000
+
+                  - type: 'custom:decluttering-card'
+                    template: multi_graph_card
+                    variables:
+                      - entities:
+                          - entity: sensor.adsb_lol_beast_messages_per_second
+                      - title: Messages / Second
+                      - height: 120
+                      - icon: mdi:image-filter-hdr
+                      - hours_to_show: 8
+                      - points_per_hour: 12
+
+
+
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: 2 HOUR
+
+          - type: picture-glance
+            #title: Front garden
+            entities: []
+            camera_image: camera.adsb_flights_24h
+
+
+
+
+      # - type: vertical-stack
+      #   cards:
+
+      #     - type: 'custom:button-card'
+      #       template: header_card_no_link
+      #       variables:
+      #         name: CREW
+                  
+          # - type: custom:list-card
+          #   entity: sensor.nasa_iss_station_report
+          #   title: Captain's Log
+          #   feed_attribute: entries
+          #   row_limit: 5
+          #   columns:
+          #     - field: published
+          #       style:
+          #         - display: inline-block
+          #         - font-size: var(--small-font-size)
+          #         - padding: 0 0 2px
+          #     - field: author
+          #       prefix: '&nbsp;&bull; '
+          #       style:
+          #         - display: inline-block
+          #         - font-size: var(--small-font-size)
+          #         - padding: 0 0 2px
+          #     - field: title
+          #       add_link: link
+          #       style:
+          #         - display: block
+          #         - font-weight: bold
+          #         - font-size: var(--h5-font-size)
+          #         - line-height: 1.5
+          #         - padding: 0 0 4px 0
+          #     - field: summary
+          #       style:
+          #         - display: block
+          #         - padding: 0
+          #         - padding: 0 0 16px
+          #   style: >
+          #     table tbody:first-child { display: none; }
+          #     tbody tr:nth-child(odd), tbody tr:nth-child(even) {
+          #     background: none; }
+          #     td.title a {font-weight: 600;}
+          #   view_layout:
+          #     grid-column: span 2
+
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout: !include ../../shared/snippets/layout-live-tile.yaml
+            cards:
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.adsb_exchange_feeder_link_connected
+              #   name: ADSBExchange
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.adsb_fi_feeder_link_connected
+              #   name: adsb.fi
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.adsb_lol_feeder_link_connected
+              #   name: adsb.lol
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.airplanes_live_feeder_link_connected
+              #   name: Airplanes.live
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+              #   name: FlyItaly
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.fr24_feeder_link_connected
+              #   name: FR24
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.radarplane_feeder_link_connected
+              #   name: RadarrPlane
+#
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+              #   name: FlyItaly
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.fr24_feeder_link_connected
+              #   name: FR24
+
+              # - type: 'custom:button-card'
+              #   template:
+              #     - live_tile
+              #   entity: binary_sensor.radarplane_feeder_link_connected
+              #   name: RadarrPlane
+
+
+
+
+
+
+
+
+
+
