@@ -1,0 +1,33 @@
+# House Dashboard
+# Made by GRYMTR
+
+title: House
+
+
+views:
+  - !include views/rooms/dash-house.yaml
+  - !include views/rooms/energy-house.yaml
+  - !include views/rooms/home-office.yaml
+  - !include views/rooms/living-room.yaml
+  - !include views/rooms/master-bedroom.yaml
+  - !include views/rooms/zoes-room.yaml
+  - !include views/rooms/kitchen.yaml
+  #- !include views/rooms/loft-room.yaml
+  #- !include views/rooms/bathroom.yaml
+  - !include views/rooms/garage.yaml
+  - !include views/rooms/basement.yaml
+  #- !include views/rooms/attic.yaml
+  #- !include views/rooms/crawl.yaml
+  - !include views/racks/rack02.yaml
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+

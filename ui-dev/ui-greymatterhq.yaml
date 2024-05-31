@@ -1,0 +1,96 @@
+# Maximalist Dashboard for Home Assistant
+# For use on hassio
+# Made by greymatter313 2024
+
+
+title: GreymatterHQ
+
+views:
+  - !include views/summary.yaml
+  - !include views/summary2.yaml
+  - !include views/network.yaml
+  - !include views/energy.yaml
+  - !include views/lights.yaml
+  - !include views/security.yaml
+  - !include views/environment.yaml
+  - !include views/maintenance.yaml
+  - !include views/chores-all.yaml
+  - !include views/neighborhood.yaml
+  # - !include views/neighborhood2.yaml
+  - !include views/weather.yaml
+  # - !include views/wx.yaml
+  - !include views/traffic.yaml
+  - !include views/activities.yaml
+  - !include views/media.yaml
+  - !include views/me.yaml
+  - !include views/workday.yaml
+  - !include views/astrometrics.yaml
+  - !include views/satcom.yaml
+  - !include views/avionics.yaml
+  
+  #- !include views/travel.yaml
+
+# new subviews
+  - !include views/subviews/chores.yaml
+  - !include views/subviews/group.all_on_off.yaml
+  ## machine subviews
+  - !include views/subviews/machines/hassio.yaml
+  - !include views/subviews/machines/loki.yaml
+  - !include views/subviews/machines/gpbx.yaml
+  - !include views/subviews/machines/pihole1.yaml
+  - !include views/subviews/machines/pihole2.yaml
+  - !include views/subviews/machines/docker1.yaml
+  - !include views/subviews/machines/docker3.yaml
+  - !include views/subviews/machines/sdrpi.yaml
+  - !include views/subviews/machines/adsb1.yaml
+  - !include views/subviews/machines/gmhqdc3.yaml
+  - !include views/subviews/machines/gmhqdc4.yaml
+  - !include views/subviews/machines/gmhqbi1.yaml
+  - !include views/subviews/machines/gmhqcm1.yaml
+  - !include views/subviews/machines/unison.yaml
+  - !include views/subviews/machines/illinoise.yaml
+  - !include views/subviews/machines/plex.yaml
+  ## map subviews
+  - !include views/subviews/maps/mi-morels.yaml
+  - !include views/subviews/maps/brighton-map.yaml
+  - !include views/subviews/maps/windy-radar.yaml
+  - !include views/subviews/maps/windy.yaml
+  - !include views/subviews/maps/windy-rain.yaml
+  - !include views/subviews/maps/rainviewer.yaml
+  - !include views/subviews/maps/rammb.yaml
+  - !include views/subviews/maps/adsb-exchange-map.yaml
+  - !include views/subviews/maps/adsb-exchange-map-military.yaml
+  - !include views/subviews/maps/wxsat-tracker.yaml
+  - !include views/subviews/maps/cspp-geosphere.yaml
+  - !include views/subviews/maps/cspp-7day-composite.yaml
+  - !include views/subviews/maps/spaceaware-io.yaml
+
+
+
+  - !include views/subviews/maps/starlink-tracker-map.yaml
+  - !include views/subviews/maps/aprs-live-map.yaml
+
+  ## other subviews
+  - !include views/subviews/sensor.notify_nyc.yaml
+  - !include views/subviews/binary_sensor.iss.yaml
+  - !include views/subviews/sensor.nws_alert_rss_feed.yaml
+  - !include views/subviews/transit.yaml
+  - !include views/subviews/avionics_stats.yaml
+  - !include views/subviews/unbound_stats.yaml
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+
+
+# Remove the x for background.
+xbackground: >-
+  linear-gradient(to bottom, rgba(var(--rgb-primary-color),.2),
+  var(--primary-background-color))

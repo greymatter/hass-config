@@ -1,0 +1,55 @@
+# Devices
+# Made by GRYMTR 2023
+
+title: Devices
+
+views:
+  - !include views/devices/all-devices.yaml
+  - !include views/devices/all-wifi-devices.yaml
+  - !include views/devices/wlc.yaml
+  #- !include views/devices/ap02-c3602e.yaml
+  - !include views/devices/sw01.yaml
+  - !include views/devices/sw02.yaml
+  - !include views/devices/sw03.yaml
+  - !include views/devices/elk-m1.yaml
+  - !include views/devices/isy.yaml
+  - !include views/devices/apc7900.yaml
+  - !include views/devices/apc7901.yaml
+  - !include views/devices/apc7932.yaml
+  - !include views/devices/apc7811.yaml
+  - !include views/devices/printers.yaml
+  - !include views/devices/printers2.yaml
+
+# new subviews
+  #- !include views/subviews/all_network_devices.yaml
+  - !include views/subviews/group.all_on_off.yaml
+
+# new subviews for ap's
+  #- !include views/subviews/all_network_devices.yaml
+  - !include views/subviews/ap/ap02-c3602e.yaml
+  - !include views/subviews/ap/ap03-c3602e.yaml
+  - !include views/subviews/ap/ap05-c3702e.yaml
+  - !include views/subviews/ap/ap06-c3702e.yaml
+  - !include views/subviews/ap/ap07-c3702e.yaml
+  - !include views/subviews/ap/ap09-c3702i.yaml
+  - !include views/subviews/ap/ap10-c3702i.yaml
+
+
+
+
+
+
+
+
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+

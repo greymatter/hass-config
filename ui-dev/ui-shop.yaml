@@ -1,0 +1,33 @@
+# Rooms Dashboard
+# Made by GRYMTR
+
+title: Shop
+
+views:
+  - !include views/rooms/dash-shop.yaml
+  - !include views/rooms/energy-shop.yaml
+  - !include views/rooms/media-shop.yaml
+  - !include views/rooms/main-shop.yaml
+  - !include views/rooms/t-ofc.yaml
+  - !include views/rooms/grind-room.yaml
+  - !include views/rooms/loading-dock.yaml
+  #- !include views/rooms/paint-booth.yaml
+  #- !include views/rooms/utility-garage.yaml
+  - !include views/rooms/gmhq-dc.yaml
+  #- !include views/rooms/arthut.yaml
+  #- !include views/rooms/j-ofc.yaml
+  #- !include views/rooms/shop-bathroom.yaml
+  - !include views/racks/rack01.yaml
+  - !include views/racks/rack03.yaml
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+

@@ -1,0 +1,42 @@
+# Machines
+# Made by GRYMTR 2023
+
+title: Machines
+
+views:
+  - !include views/machines/all-machines.yaml
+  - !include views/machines/hassio.yaml
+  - !include views/machines/loki.yaml
+  - !include views/machines/docker1.yaml
+  - !include views/machines/docker3.yaml
+  - !include views/machines/gmhqur1.yaml
+  - !include views/machines/gmhqesxi04.yaml
+  - !include views/machines/gmhqdc3.yaml
+  - !include views/machines/gmhqdc4.yaml
+  - !include views/machines/gmhqbi1.yaml
+  - !include views/machines/gmhqcm1.yaml
+  - !include views/machines/pihole1.yaml
+  - !include views/machines/pihole2.yaml
+  - !include views/machines/prox1.yaml
+  - !include views/machines/gpbx.yaml
+  - !include views/machines/ipbx.yaml
+  - !include views/machines/sdrpi.yaml
+  - !include views/machines/adsb1.yaml
+  #- !include views/machines/unison.yaml
+  #- !include views/machines/terpsichora.yaml
+  #- !include views/machines/genesis.yaml
+  #- !include views/machines/dorothy.yaml
+  #- !include views/machines/illinoise.yaml
+  #- !include views/machines/astralplane.yaml
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+

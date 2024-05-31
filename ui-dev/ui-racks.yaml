@@ -1,0 +1,21 @@
+# Racks
+# Made by GRYMTR 2023
+
+title: Racks
+
+views:
+  - !include views/racks/rack01.yaml
+  - !include views/racks/rack02.yaml
+  - !include views/racks/rack03.yaml
+
+##  include all templates  #####################################################
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
+#popup_cards: !include_dir_merge_named popups/
+
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+
+
