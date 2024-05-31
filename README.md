@@ -57,6 +57,9 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/WiFi-Devices.png)
 
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Device-Cisco-AP.png)
+
+
 # Backend #
 
 
