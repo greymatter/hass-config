@@ -1,10 +1,52 @@
 ####################################################################################################################################################################
-# SQL sensors created using the official SQL integration | add these if you are using FlightAirMap for interesting sensors
-#   
-#   
-#   
-#   
-#   
+## SQL sensors created using the official SQL integration | add these if you are using FlightAirMap for interesting sensors
+##   use for sql string to FAM_DB
+##     mysql://flightairmap:db_passwd@10.x.x.x:3306/flightairmap?charset=utf8mb4
+##
+##    ####  THESE ARE SOME OF THE SQL QUERIES I USE TO PULL DATA FROM THE FlightAirMap DB  ####
+##   
+##   #count all tracked aircraft
+##   SELECT COUNT(*) AS spotter_id FROM spotter_output
+##   
+##   #find size of database
+##   SELECT table_schema AS 'db_name', ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS 'size_mb' FROM information_schema.TABLES WHERE table_schema='flightairmap'
+##
+##   #count all helos
+##   SELECT COUNT(*) AS aircraft_manufacturer from spotter_output where aircraft_manufacturer IN ('EUROCOPTER','EUROCOPTER-HARBAN','EUROCOPTER-KAWASAKI','BELL','SIKORSKI','AIRBUS HELICOPTERS','AVICOPTER','CONTINETAL COPTERS','AMERICAN SPORTCOPTER','JAG HELICOPTER','SPORT COPTER','TEXAS HELICOPTER','Tridair Helicopter','ROBINSON')
+##   
+##   #count Eurocopters
+##   SELECT COUNT(*) AS aircraft_manufacturer from spotter_output where aircraft_manufacturer IN ('EUROCOPTER','EUROCOPTER-HARBAN','EUROCOPTER-KAWASAKI')
+##   
+##   #count sikorskis
+##   SELECT COUNT(*) AS aircraft_manufacturer from spotter_output where aircraft_manufacturer IN ('SIKORSKI')
+##   
+##   #count all military flights
+##   SELECT COUNT(*) AS airline_type from spotter_output where airline_type = "MILITARY"
+## 
+##   #count MD Helos
+##   SELECT COUNT(*) AS aircraft_manufacturer from spotter_output where aircraft_manufacturer IN ('MD HELICOPTERS')
+##   
+##   #AF1/2 tracked
+##   SELECT COUNT(*) AS ident FROM spotter_output where ident IN ('_82-8000','_92-9000','EXEC1F')
+##   
+##   #track elons pj
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N272BG','N628TS','N502SX')
+##   
+##   #track george lucas
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N138GL')
+## 
+##   #track harrison ford
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N6GU')
+##   
+##   #track Jay-Z
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N444SC')
+##   
+##   #track bezos
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N758PB')
+##   
+##   #track steven spielberg
+##   SELECT COUNT(*) AS registration from spotter_output where registration IN ('N900KS')
+## 
 ####################################################################################################################################################################
 
 
@@ -155,7 +197,24 @@ sensor:
         value_template: '{{ states.sensor.adsb_lol_daily_stats.attributes["beast_kbps"] | round(2) }}'
         unit_of_measurement: 'kbps'
 
+  ## pull in/out throughput for ADSB1 ####################################################
+  ###########################   port 48 sw02     #########################################
+  ##  plz take note here, these are in/out measurements taken at the switch so be sure  ##
+  ##  to take this into account in the interface and reverse in/out so it's accurate.   ##
+  ########################################################################################
+  - platform: snmp
+    name: sw02_adsb1_uplink_bytes_in
+    host: !secret sw02_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.2.1.2.2.1.10.10148
+    scan_interval: 2
 
+  - platform: snmp
+    name: sw02_adsb1_uplink_bytes_out
+    host: !secret sw02_ip
+    community: !secret snmp_ro
+    baseoid: .1.3.6.1.2.1.2.2.1.16.10148
+    scan_interval: 2
 
 multiscrape:
 
@@ -235,7 +294,6 @@ multiscrape:
 ## scrape FlyItaly adsb stats ###########################################################
 
   - name: FlyItaly adsb stats
-    #resource: !secret openmeteo_api
     resource: https://my.flyitalyadsb.com/am_i_feeding
     scan_interval: 60
     sensor:
@@ -322,6 +380,7 @@ multiscrape:
 
   - name: FlightAirMap Stats
     resource: !secret fam_stats_url
+    # resource: http://10.x.x.x:8030/statistics
     scan_interval: 60
     #log_response: true
     sensor:
@@ -371,7 +430,8 @@ multiscrape:
 
   - name: FlightAware PiAware Status
     resource: !secret piaware_status_url
-    scan_interval: 30
+    #resource: http://10.x.x.x:8082/status.json
+    scan_interval: 10
     #log_response: true
     sensor:
       - unique_id: piaware_conn_status
@@ -409,6 +469,7 @@ multiscrape:
 
   - name: ADSB Aircraft Count by Type
     resource: !secret flightaware_aircraft_type
+    #resource: http://10.x.x.x:8080/data/status.json
     scan_interval: 10
     #log_response: true
     sensor:
@@ -532,7 +593,70 @@ multiscrape:
   #         - name: mlat_outlier
   #           select: '#mlat-outlier > div > div > span'
 
+###############################################################################
+##      Monitor port that pi is plugged into for total throughput            ##
+###############################################################################
 
+template:
+
+  - sensor:
+      - name: uplink_adsb1_in
+        state: '{{ ((states.input_number.uplink_traffic_delta_adsb1_in.state | float(0) ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+
+  - sensor:
+      - name: uplink_adsb1_out
+        state: '{{ ((states.input_number.uplink_traffic_delta_adsb1_out.state | float(0) ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+
+
+###############################################################################
+
+input_number:
+  uplink_traffic_delta_adsb1_in:
+    name: "Uplink Traffic ADSB1 IN Delta"
+    initial: 0                 
+    min: 0                     
+    max: 1000000000000             
+
+  uplink_traffic_delta_adsb1_out:
+    name: "Uplink Traffic ADSB1 OUT Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+
+###############################################################################
+
+automation:
+- id: '163494619454'
+  alias: Monitor Traffic ADSB1 Uplink In
+  trigger:
+  - platform: state
+    entity_id: sensor.sw02_adsb1_uplink_bytes_in
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.uplink_traffic_delta_adsb1_in
+      value: '{{ (((trigger.to_state.state | int - trigger.from_state.state | int)
+        * 8 ) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated)
+        )) | int  }}'
+
+- id: '161923547205'
+  alias: Monitor Traffic ADSB1 Uplink Out
+  trigger:
+  - platform: state
+    entity_id: sensor.sw02_adsb1_uplink_bytes_out
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.uplink_traffic_delta_adsb1_out
+      value: '{{ (((trigger.to_state.state | int - trigger.from_state.state | int)
+        * 8) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated)
+        )) | int  }}'
+
+
+#####################################################################################
 
 
 recorder:
@@ -541,7 +665,7 @@ recorder:
       - binary_sensor.fr24_feeder_receiver_connected
       - binary_sensor.fr24_feeder_link_connected
       - sensor.fr24_feeder_radar_code
-      - sensor.fr24_feeder_aircraft_tracked
+      #- sensor.fr24_feeder_aircraft_tracked
       - sensor.fr24_feeder_version
       - sensor.adsb_lol_daily_stats
       - sensor.adsb_fi_daily_stats
