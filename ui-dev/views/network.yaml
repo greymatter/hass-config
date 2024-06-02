@@ -1,0 +1,659 @@
+# MAXIMALIST DASHBOARD
+# Network View
+# Made by Madelena Mak 2022
+
+title: Network
+path: "network"
+
+type: "custom:grid-layout"
+layout: !include ../shared/snippets/layout-page-margin.yaml
+
+cards:
+  - type: "custom:layout-card"
+    layout_type: "custom:grid-layout"
+    view_layout:
+      grid-area: cc
+    layout:
+      grid-template-columns: "repeat(auto-fill, [col-start] minmax(320px, 1fr) [col-end])"
+      grid-template-rows: auto
+      grid-column-gap: 32px
+      margin: -1px
+      mediaquery:
+        "(max-width: 800px)":
+          grid-template-columns: "repeat(auto-fill, [col-start] minmax(256px, 1fr) [col-end])"
+
+    cards:
+      # [Header] Summary
+      - type: "custom:layout-card"
+        layout_type: "custom:grid-layout"
+        layout: !include ../shared/snippets/layout-page-title.yaml
+        view_layout:
+          grid-column: 1/-1
+        cards:
+          - type: markdown
+            content: >
+              # Network
+
+              The Internet is {{ states('binary_sensor.ping_cloudflare') }}
+              and {{ states('sensor.cisco_wlc_clients_online') }} wireless devices
+              are connected across {{ states('sensor.cisco_wlc_aps_online') }} access points.{%- if states('sensor.speedtest_download') !=
+              'unavailable' -%}{{ ' ' }}The speed is {{ iif(
+              states('sensor.speedtest_download')|int >= 100, 'nominal',
+              'degraded') }}. {%- endif -%}
+            style:
+              .: |
+                ha-card {
+                  background: none;
+                }
+              ha-markdown$: |
+                h1 {
+                  font-size: var(--title-font-size);
+                  font-weight: 500;
+                  line-height: 1.1;
+                  margin-left: -2px;
+                  margin-block-end: -8px;
+                }
+
+          - type: "custom:layout-card"
+            layout_type: "custom:grid-layout"
+            layout:
+              margin: 0
+            view_layout:
+              place-self: center start
+            cards:
+              - type: "custom:swipe-card"
+                parameters:
+                  enabled: true
+                  slidesPerView: 1.66
+                  width: 480
+                  breakpoints:
+                    "800":
+                      enabled: false
+                      slidesPerView: 3
+                      width: 360
+                    "1024":
+                      enabled: false
+                      slidesPerView: 3
+                      width: 600
+                cards:
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)":
+                        &title-badge-1
+                        type: "custom:mushroom-entity-card"
+                        entity: binary_sensor.ping_cloudflare
+                        name: NMS ...
+                        icon_color: pink
+                        style: "ha-card {background: none;}"
+                        tap_action:
+                          action: url
+                          url_path: !secret librenms_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-1
+                        layout: vertical
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)":
+                        &title-badge-2
+                        type: "custom:mushroom-entity-card"
+                        entity: sensor.loki_interface_wan_status
+                        name: OPN ↗
+                        icon_color: pink
+                        style: "ha-card {background: none;}"
+                        tap_action:
+                          action: url
+                          url_path: !secret loki_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-1
+                        layout: vertical
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)":
+                        &title-badge-3
+                        type: "custom:mushroom-entity-card"
+                        entity: sensor.cisco_wlc_clients_online
+                        name: WLC ↗
+                        icon: "mdi:router-wireless"
+                        icon_color: pink
+                        style: "ha-card {background: none;}"
+                        tap_action:
+                          action: url
+                          url_path: !secret wlc_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-2
+                        layout: vertical
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)":
+                        &title-badge-4
+                        type: "custom:mushroom-entity-card"
+                        entity: binary_sensor.ping_loki_yourmom
+                        name: LibreNMS ↗
+                        icon: "mdi:server-network"
+                        icon_color: pink
+                        style: "ha-card {background: none;}"
+                        tap_action:
+                          action: url
+                          url_path: !secret librenms_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-3
+                        layout: vertical
+
+      # [Column] Network Map
+      - !include ../shared/cards/gmhq-network-map.yaml
+
+
+
+      # [Column] Download
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: WAN DOWNLOAD
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            entity: sensor.speedtest_download
+            graph: line
+            detail: 2
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.internet_wan_out
+            detail: 2
+            name: loki Download Speed
+
+          - type: sensor
+            entity: sensor.uplink_s2h_in
+            graph: line
+            name: sw02 Out
+            detail: 2
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.opnsense_wan_download_gb
+            detail: 2
+            name: Router Download
+
+      # [Column] Upload
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: WAN UPLOAD
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            entity: sensor.speedtest_upload
+            graph: line
+            detail: 2
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.internet_wan_in
+            detail: 2
+            name: loki Upload Speed
+
+          - type: sensor
+            entity: sensor.uplink_s2h_out
+            graph: line
+            detail: 2
+            name: sw02 In
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.opnsense_wan_upload_gb
+            #entity: "{{ (states('sensor.loki_interface_wan_outbytes')|filesizeformat(GB)) | round(2) }}"
+            detail: 2
+            name: loki Upload
+
+      # [Column] T'Ping
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: PING
+            view_layout:
+              grid-column: 1/-1
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.speedtest_ping
+            detail: 2
+
+          - type: "custom:uptime-card"
+            entity: binary_sensor.ping_cloudflare
+            color:
+              none: null
+            bar:
+              round: 0
+              height: 48
+              spacing: 4
+            init: {}
+            alias:
+              ok: Connected
+              ko: Disconnected
+            tap_action: {}
+            tooltip: {}
+            blink: {}
+
+          - type: "custom:uptime-card"
+            entity: binary_sensor.ping_gdns_1
+            color:
+              none: null
+            bar:
+              round: 0
+              height: 48
+              spacing: 4
+            init: {}
+            alias:
+              ok: Connected
+              ko: Disconnected
+            tap_action: {}
+            tooltip: {}
+            blink: {}
+
+          - type: "custom:uptime-card"
+            entity: binary_sensor.ping_gdns_2
+            color:
+              none: null
+            bar:
+              round: 0
+              height: 48
+              spacing: 4
+            init: {}
+            alias:
+              ok: Connected
+              ko: Disconnected
+            tap_action: {}
+            tooltip: {}
+            blink: {}
+
+      # [Column] VPN Stats
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: VPN USERS
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            graph: line
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_connected_client_count
+            name: VPN Devices Connected
+            detail: 2
+
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: VPN DOWNLOAD
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_recv_kilobytes_per_second
+            graph: line
+            detail: 2
+            name: OpenVPN In kBs
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_recv
+            graph: line
+            detail: 2
+            name: OpenVPN In Total
+
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: VPN UPLOAD
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_sent_kilobytes_per_second
+            graph: line
+            detail: 2
+            name: OpenVPN Out kBs
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_sent
+            graph: line
+            detail: 2
+            name: OpenVPN Out Total
+
+      # [Column] VPN Upload
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: VPN UPLOAD
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_sent_kilobytes_per_second
+            graph: line
+            detail: 2
+            name: OpenVPN Out kBs
+
+          - type: sensor
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_total_bytes_sent
+            graph: line
+            detail: 2
+            name: OpenVPN Out Total
+
+      # [Column] OPNsense - loki
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: loki
+              label: Open
+              arrow: "mdi:arrow-top-right"
+              action: url
+              link: !secret router_url
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.loki_system_load_average_fifteen_minute
+                    name: Load Avg - 15 Min
+                  - entity: sensor.loki_system_load_average_five_minute
+                    name: Load Avg - 5 Min
+                  - entity: sensor.loki_system_load_average_one_minute
+                    name: Load Avg - 1 Min
+              - title: loki - CPU Load
+              - height: 120
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.opn_fw_load
+              - title: CPU Load
+              - height: 120
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.loki_filesystem_used_percentage_slash
+              - title: File System Used
+              - height: 120
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.loki_memory_used_percentage
+              - title: RAM
+              - height: 120
+
+          - type: sensor
+            graph: line
+            entity: sensor.loki_openvpn_server_1_gmhq_ovpn_udp_1194_connected_client_count
+            name: VPN Devices Connected
+            detail: 2
+
+      # [Column] Hassio
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: HASSIO
+              label: More
+              arrow: "mdi:arrow-right"
+              action: navigate
+              link: /ui-machines/hassio
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.hassio_cpu
+              - title: CPU
+              - height: 120
+
+          # - type: "custom:decluttering-card"
+          #   template: multi_graph_card
+          #   variables:
+          #     - entities:
+          #         - entity: sensor.unison_processor_temperature
+          #     - title: CPU Temperature
+          #     - height: 120
+
+          - type: "custom:decluttering-card"
+            template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.hassio_memory_used
+              - title: RAM
+              - height: 120
+
+          - template: multi_graph_card
+            variables:
+              - entities:
+                  - entity: sensor.hassio_disk_freespace
+              - title: DISK
+              - height: 120
+
+
+
+      # [Column] Outlet
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: VALHALLA OUTLET
+              label: Open
+              arrow: "mdi:arrow-top-right"
+              action: url
+              link: !secret outlet_home_url
+          - type: entities
+            entities:
+              - entity: binary_sensor.valhalla_outlet_modem
+              - entity: binary_sensor.valhalla_outlet_router
+          - type: entities
+            entities:
+              - &network-event-log
+                type: "custom:button-card"
+                entity: sensor.valhalla_outlet_event
+                show_icon: false
+                show_state: true
+                name: "[[[ return entity.attributes.event_0_time ]]]"
+                state_display: "[[[ return entity.attributes.event_0 ]]]"
+                tap_action:
+                  action: none
+                styles:
+                  card:
+                    - background: none
+                    - padding: 8px 0
+                  grid:
+                    - grid-template-areas: '"n" "s"'
+                  name:
+                    - font-size: var(--h6-font-size)
+                    - place-self: center start
+                  state:
+                    - font-size: var(--body-font-size)
+                    - place-self: center start
+              - <<: *network-event-log
+                name: "[[[ return entity.attributes.event_1_time ]]]"
+                state_display: "[[[ return entity.attributes.event_1 ]]]"
+              - <<: *network-event-log
+                name: "[[[ return entity.attributes.event_2_time ]]]"
+                state_display: "[[[ return entity.attributes.event_2 ]]]"
+              - <<: *network-event-log
+                name: "[[[ return entity.attributes.event_3_time ]]]"
+                state_display: "[[[ return entity.attributes.event_3 ]]]"
+              - <<: *network-event-log
+                name: "[[[ return entity.attributes.event_4_time ]]]"
+                state_display: "[[[ return entity.attributes.event_4 ]]]"
+              - <<: *network-event-log
+                name: "[[[ return entity.attributes.event_5_time ]]]"
+                state_display: "[[[ return entity.attributes.event_5 ]]]"
+            title: Event Log
+
+      # [Column] Devices
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: CONNECTED DEVICES
+              label: All Devices
+              action: more-info
+              link: all_network_devices
+
+          - type: custom:auto-entities
+            filter:
+              include:
+                - domain: device_tracker
+                  integration: asusrouter
+                  state: home
+                  options:
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    secondary_info:
+                      attribute: connection_time
+                      format: relative
+                    entities:
+                      - attribute: ip
+                        styles:
+                          font-size: var(--h5-font-size)
+                          font-weight: 400
+                    card_mod:
+                      style:
+                        hui-generic-entity-row$: >
+                          :host {--mdc-icon-size: 24px;}
+
+                          .secondary {font-size: var(--h6-font-size); font-weight:
+                          var(--h6-font-weight); text-transform: uppercase;}
+              exclude: []
+            card:
+              type: entities
+              state_color: true
+            sort:
+              method: friendly_name
+
+      # [Column] Signal Strength
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: WIFI SIGNAL STRENGTH
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.huzzah_wifi_signal_percent
+            detail: 2
+            name: Huzzah
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.gcmon_wifi_signal_percent
+            detail: 2
+            name: GCMon
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.blemon_wifi_signal_percent
+            detail: 2
+            name: BLEMon
+
+      # [Column] PiHole1
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: pihole1
+              label: Manage
+              link: !secret pihole1_cp
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+          - type: sensor
+            graph: line
+            entity: sensor.pihole1_dns_queries_today
+            detail: 2
+          - type: sensor
+            graph: line
+            entity: sensor.pihole1_ads_percentage_blocked_today
+            detail: 2
+          - type: sensor
+            graph: line
+            entity: sensor.pihole1_cpu
+            detail: 2
+
+      # [Column] PiHole2
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            template: header_card
+            variables:
+              name: pihole2
+              label: Manage
+              link: !secret pihole2_cp
+            view_layout:
+              grid-column-start: 1
+              grid-column-end: -1
+          - type: sensor
+            graph: line
+            entity: sensor.pihole2_dns_queries_today
+            detail: 2
+          - type: sensor
+            graph: line
+            entity: sensor.pihole2_ads_percentage_blocked_today
+            detail: 2
+          - type: sensor
+            graph: line
+            entity: sensor.pihole2_cpu
+            detail: 2

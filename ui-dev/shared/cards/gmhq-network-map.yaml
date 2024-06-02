@@ -1,0 +1,313 @@
+type: vertical-stack
+# view_layout:
+#   grid-column: 1/-1
+# card_mod:
+#   style: |
+#     :host {max-height: 320px;}
+#     ha-card {max-height: 320px; overflow: visible;}
+cards:
+  - type: "custom:button-card"
+    template: header_card_no_link
+    variables:
+      name: MAP
+    view_layout:
+      grid-column: 1/-1
+
+  - type: entities
+    card_mod:
+      style: |
+        #states > * {margin: 0 !important;}
+        #states {
+          padding-top: 0 !important;
+          xtransform: rotate(90deg) translateY(-100%);
+          xtransform-origin: top left;
+        }
+        ha-card {background: none; xmax-height: 320px;}
+    entities:
+      - entity: binary_sensor.ping_cloudflare
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare
+          station_rail: 0
+          terminate_at: top terminal
+        label: 1.1.1.1
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_roninmachinewerks
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare
+          rail1_entity: binary_sensor.ping_roninmachinewerks
+          station_rail: 1
+          terminate_at: top
+        label: "[[[ entity.last_changed ]]]"
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_grymtr
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare
+          rail1_entity: binary_sensor.ping_roninmachinewerks
+          rail2_entity: binary_sensor.ping_grymtr
+          station_rail: 2
+          terminate_at: top
+        label: "[[[ entity.last_changed ]]]"
+        #name: mysite
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_gdns_1
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare
+          rail1_entity: binary_sensor.ping_roninmachinewerks
+          rail2_entity: binary_sensor.ping_grymtr
+          rail3_entity: binary_sensor.ping_gdns_1
+          station_rail: 3
+          terminate_at: top
+        label: "[[[ entity.last_changed ]]]"
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_gdns_2
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare
+          rail1_entity: binary_sensor.ping_roninmachinewerks
+          rail2_entity: binary_sensor.ping_grymtr
+          rail3_entity: binary_sensor.ping_gdns_1
+          rail4_entity: binary_sensor.ping_gdns_2
+          station_rail: 4
+          terminate_at: top
+        label: "[[[ entity.last_changed ]]]"
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: sensor.myip
+        type: "custom:button-card"
+        name: Internet IP
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: binary_sensor.ping_cloudflare
+          rail1_top_entity: binary_sensor.ping_roninmachinewerks
+          rail2_top_entity: binary_sensor.ping_grymtr
+          rail3_top_entity: binary_sensor.ping_gdns_1
+          rail4_top_entity: binary_sensor.ping_gdns_2
+          rail5_bottom_entity: binary_sensor.ping_loki
+          station_size_from: 0
+          station_size_to: 5
+        label: "[[[ return entity.state ]]]"
+        #label: EXT IP
+        state_display: " "
+        styles:
+          custom_fields:
+            station:
+              - background-color: '[[[ return entity.state != "unavailable" ? "var(--primary-color)" : "var(--disabled-color)" ]]]'
+
+      - entity: binary_sensor.ping_loki
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail5_entity: binary_sensor.ping_loki
+          station_rail: 5
+        name: Modem
+        label: !secret modem_ip
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - type: "custom:button-card"
+        template: rail_section_row
+        variables:
+          rail5_entity: binary_sensor.ping_loki
+          station_rail: 5
+        name: Firewall
+        entity: binary_sensor.ping_loki
+
+      #- entity: switch.pihole1
+      - entity: binary_sensor.ping_loki
+        type: "custom:button-card"
+        template: rail_section_row
+        variables:
+          rail5_entity: binary_sensor.ping_loki
+          station_rail: 5
+        name: pihole1
+        styles:
+          custom_fields:
+            station:
+              - --station-color: '[[[ return entity.state == "on" ? "var(--primary-color)" : "var(--disabled-color)" ]]]'
+
+      - entity: switch.pihole2
+        type: "custom:button-card"
+        template: rail_section_row
+        variables:
+          rail5_entity: binary_sensor.ping_loki
+          station_rail: 5
+        name: pihole2
+        styles:
+          custom_fields:
+            station:
+              - --station-color: '[[[ return entity.state == "on" ? "var(--primary-color)" : "var(--disabled-color)" ]]]'
+
+      - entity: binary_sensor.ping_loki
+        type: "custom:button-card"
+        template: rail_interchange_row
+        variables:
+          rail5_top_entity: binary_sensor.ping_loki
+          rail0_bottom_entity: binary_sensor.ping_sw03
+          rail1_bottom_entity: binary_sensor.ping_sw02
+          rail2_bottom_entity: binary_sensor.ping_wlc
+          rail3_bottom_entity: binary_sensor.ping_gmhqdc4
+          rail4_bottom_entity: binary_sensor.ping_gmhqdc3
+          rail5_bottom_entity: binary_sensor.ping_gmhqbi1
+          #rail6_bottom_entity: binary_sensor.ping_apc7932
+          station_size_from: 0
+          station_size_to: 5
+        name: sw01
+        label: !secret sw01_ip
+        #label: 10.x.x.x
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      #- entity: binary_sensor.ping_apc7932
+      # type: "custom:button-card"
+      #  template: rail_station_row
+      #  variables:
+      #    rail0_entity: binary_sensor.ping_sw03
+      #    rail1_entity: binary_sensor.ping_sw02
+      #    rail2_entity: binary_sensor.ping_wlc
+      #    rail3_entity: binary_sensor.ping_gmhqdc4
+      #    rail4_entity: binary_sensor.ping_gmhqdc3
+      #    rail5_entity: binary_sensor.ping_gmhqbi1
+      #    #rail6_entity: binary_sensor.ping_apc7932
+      #    station_rail: 6
+      #    terminate_at: bottom
+      #  name: apc7932
+      #  label: !secret apc7932_ip
+      #  state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_gmhqbi1
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_sw02
+          rail2_entity: binary_sensor.ping_wlc
+          rail3_entity: binary_sensor.ping_gmhqdc4
+          rail4_entity: binary_sensor.ping_gmhqdc3
+          rail5_entity: binary_sensor.ping_gmhqbi1
+          station_rail: 5
+          terminate_at: bottom
+        name: gmhqbi1
+        label: !secret gmhqbi1_ip
+        #label: 10.x.x.x
+        state_display: "-"
+
+      - entity: binary_sensor.ping_gmhqdc3
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_sw02
+          rail2_entity: binary_sensor.ping_wlc
+          rail3_entity: binary_sensor.ping_gmhqdc4
+          rail4_entity: binary_sensor.ping_gmhqdc3
+          station_rail: 4
+          terminate_at: bottom
+        name: gmhqdc3
+        label: !secret gmhqdc3_ip
+        #label: 10.x.x.x
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_gmhqdc4
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_sw02
+          rail2_entity: binary_sensor.ping_wlc
+          rail3_entity: binary_sensor.ping_gmhqdc4
+          station_rail: 3
+          terminate_at: bottom
+        name: gmhqdc4
+        label: !secret gmhqdc4_ip
+        #label: 10.x.x.x
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_wlc
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_sw02
+          rail2_entity: binary_sensor.ping_wlc
+          station_rail: 2
+          terminate_at: bottom
+        name: wlc
+        label: !secret wlc_ip
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_sw02
+        type: "custom:button-card"
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: binary_sensor.ping_sw03
+          rail0_bottom_entity: binary_sensor.ping_sw03
+          rail1_top_entity: binary_sensor.ping_loki
+          rail1_bottom_entity: binary_sensor.ping_hue
+          rail2_bottom_entity: binary_sensor.ping_dte_bridge_8xx1
+          rail3_bottom_entity: binary_sensor.ping_apc7901
+          station_size_from: 1
+          station_size_to: 3
+        name: sw02
+        label: "[[[ entity.last_changed ]]]"
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_apc7901
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_hue
+          rail2_entity: binary_sensor.ping_dte_bridge_8xx1
+          rail3_entity: binary_sensor.ping_apc7901
+          station_rail: 3
+          terminate_at: bottom
+        label: !secret apc7901_ip
+        name: apc7901
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_dte_bridge_8xx1
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_hue
+          rail2_entity: binary_sensor.ping_dte_bridge_8xx1
+          station_rail: 2
+          terminate_at: bottom
+        name: DTE Bridge 8xx1
+        label: !secret dte_bridge_8xx1_ip
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_hue
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          rail1_entity: binary_sensor.ping_hue
+          station_rail: 1
+          terminate_at: bottom
+        name: hue
+        label: !secret hue_ip
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_sw03
+        type: "custom:button-card"
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_sw03
+          station_rail: 0
+          terminate_at: bottom terminal
+        name: sw03
+        label: "[[[ entity.last_changed ]]]"
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
