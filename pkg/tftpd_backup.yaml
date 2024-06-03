@@ -1,0 +1,91 @@
+homeassistant:
+
+
+  allowlist_external_dirs:
+    - "/root/share/srv/tftp"
+
+
+  whitelist_external_dirs:
+    - /root/share/srv/tftp
+
+
+
+
+sensor:
+  - platform: folder
+    folder: /share/srv/tftp/wlc
+
+  - platform: folder
+    folder: /share/srv/tftp/sw01
+
+  - platform: folder
+    folder: /share/srv/tftp/sw02
+
+  - platform: folder
+    folder: /share/srv/tftp/sw03
+
+
+  ## pull last backup from main sensor and chop it up into just the date ######
+  - platform: template
+    sensors:
+      wlc_last_backup:
+        friendly_name: vWLC2 Last Backup
+        value_template: '{{ state_attr("sensor.wlc", "file_list") [0] |replace("/share/srv/tftp/wlc/gmhqvwlc2-config-", "")|replace(".txt", "") }}'
+
+  - platform: template
+    sensors:
+      sw01_last_backup:
+        friendly_name: sw01 Last Backup
+        value_template: '{{ state_attr("sensor.sw01", "file_list") [0] |replace("/share/srv/tftp/wlc/sw01-config-", "")|replace(".txt", "") }}'
+
+  - platform: template
+    sensors:
+      sw02_last_backup:
+        friendly_name: sw02 Last Backup
+        value_template: '{{ state_attr("sensor.sw02", "file_list") [0] |replace("/share/srv/tftp/wlc/sw02-config-", "")|replace(".txt", "") }}'
+
+  - platform: template
+    sensors:
+      sw03_last_backup:
+        friendly_name: sw03 Last Backup
+        value_template: '{{ state_attr("sensor.sw03", "file_list") [0] |replace("/share/srv/tftp/wlc/sw03-config-", "")|replace(".txt", "") }}'
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+
+recorder:
+  exclude:
+    entities:
+      # - binary_sensor.
+      # - binary_sensor.
+      - sensor.wlc
+      - sensor.sw01
+      - sensor.sw02
+      - sensor.sw03
+      - sensor.wlc_last_backup
+      - sensor.sw01_last_backup
+      - sensor.sw02_last_backup
+      - sensor.sw03_last_backup
+    # entity_globs:
+    #   - sensor.cisco_wlc_*_location
+    #   - sensor.cisco_wlc_*_uptime
+    #   - switch.cisco_wlc_*_led_state
+    #   - sensor.sw*_ap*_uplink_bytes_*
+    #   - input_number.uplink_traffic_delta_ap*
+
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
+
+
+
+
+
