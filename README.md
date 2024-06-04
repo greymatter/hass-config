@@ -51,7 +51,9 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Neighborhood.png)
 
-![](https://github.com/greymatter/hass-config/blob/main/screenshots/Lighting_shop.png)
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Shop-View.png)
+
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Energy-Shop.png)
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Server-View.png)
 
