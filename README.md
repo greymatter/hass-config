@@ -34,6 +34,7 @@ I am in the process of implementing pieces of the Maximalist Dashboard.  This is
  
  Some Screenshots of the work in progress...
  
+![](https://github.com/greymatter/hass-config/blob/main/screenshots/Summary.png)
 
 ![](https://github.com/greymatter/hass-config/blob/main/screenshots/Network.png)
 
