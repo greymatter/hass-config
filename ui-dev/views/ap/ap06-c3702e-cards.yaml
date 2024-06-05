@@ -1,0 +1,249 @@
+
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout:
+  margin: 0 16px 32px
+
+cards:
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout:
+      grid-template-columns: auto max-content
+      grid-template-rows: auto
+      mediaquery:
+        '(max-width: 799.99px)':
+          grid-template-columns: 1fr
+      margin: 0
+    cards:
+
+      - type: 'custom:button-card'
+        name: AP06-c3702e
+        template: title_card_with_icon
+        entity: binary_sensor.uptimekuma_ap06c3702e
+        icon: mdi:access-point-network
+        show_state: true
+        state_display: '[[[ return "Device is powered " + entity.state + " and has been operational for " + states["sensor.cisco_wlc_ap06_c3702e_uptime"].state + ".  Current Location: " + states["sensor.cisco_wlc_ap06_c3702e_location"].state ]]]'
+
+      - type: 'custom:layout-card'
+        layout_type: 'custom:grid-layout'
+        layout:
+          margin: 0
+        view_layout:
+          place-self: center start
+        cards:
+
+          - type: 'custom:swipe-card'
+            parameters:
+              enabled: true
+              slidesPerView: 1.66
+              width: 480
+              breakpoints:
+                '800':
+                  enabled: false
+                  slidesPerView: 3
+                  width: 360
+                '1024':
+                  enabled: false
+                  slidesPerView: 3
+                  width: 600
+            cards:
+
+              - type: custom:state-switch
+                entity: mediaquery
+                states:
+                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+                    type: "custom:mushroom-entity-card"
+                    entity: binary_sensor.uptimekuma_wlc
+                    name: Cisco WLC ↗
+                    icon: mdi:access-point-network
+                    icon_color: pink
+                    style: "ha-card {background: none;}"
+                    tap_action:
+                      action: url
+                      url_path: !secret cisco_wlc_url
+                  "(min-width: 800px) and (max-width: 1023.99px)":
+                    <<: *title-badge-1
+                    layout: vertical
+
+              - type: custom:state-switch
+                entity: mediaquery
+                states:
+                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+                    type: "custom:mushroom-entity-card"
+                    entity: binary_sensor.uptimekuma_ap06c3702e
+                    name: LibreNMS ↗
+                    icon: mdi:abacus
+                    icon_color: pink
+                    style: "ha-card {background: none;}"
+                    tap_action:
+                      action: url
+                      url_path: !secret librenms_url
+                  "(min-width: 800px) and (max-width: 1023.99px)":
+                    <<: *title-badge-2
+                    layout: vertical
+
+
+              - type: custom:state-switch
+                entity: mediaquery
+                states:
+                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-3
+                    type: "custom:mushroom-entity-card"
+                    entity: binary_sensor.uptimekuma_ssoauthelia
+                    name: Netbox ↗
+                    icon: mdi:ip-network
+                    icon_color: pink
+                    style: "ha-card {background: none;}"
+                    tap_action:
+                      action: url
+                      url_path: !secret netbox_ap06_url
+                  "(min-width: 800px) and (max-width: 1023.99px)":
+                    <<: *title-badge-3
+                    layout: vertical
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:horizontal-layout'
+    layout:
+      width: 328
+      max_width: 655
+      max_cols: 10
+      card_margin: 0 16px
+      margin: 0 -16px
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: STATUS
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.cisco_wlc_ap06_c3702e_cpu_usage
+            detail: 2
+
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.cisco_wlc_ap06_c3702e_memory_usage
+            detail: 2
+
+          # - type: sensor
+          #   graph: line
+          #   detail: 2
+          #   entity: sensor.memory_use_percent
+
+
+      - type: vertical-stack
+        cards:
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: THROUGHPUT
+
+          - hours_to_show: 240
+            graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.uplink_ap06_in
+            name: OUT | Rx
+
+          - hours_to_show: 240
+            graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.uplink_ap06_out
+            name: IN | Tx
+
+      # [Column] clients
+      - type: vertical-stack
+        cards:
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
+              name: ACTIVE CLIENTS
+
+##############################################################################################
+
+          - type: custom:auto-entities
+            filter:
+              include:
+                - attributes:
+                    scanner: CiscoMEDeviceScanner
+                    AP: ap06-c3702e
+                  entity_id: device_tracker.*
+                  state: home
+                  options:
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    secondary_info:
+                      attribute: macaddr
+                      format: relative
+                    entities:
+                      - attribute: SSID
+                        styles:
+                          font-size: var(--body-font-size)
+                          font-weight: 400
+                    card_mod:
+                      style:
+                        hui-generic-entity-row$: |
+                          :host {--mdc-icon-size: 24px;}
+                          .secondary {font-size: var(--h6-font-size); font-weight:
+                          var(--h6-font-weight); text-transform: uppercase;}
+                        .: |
+                          .entities-row {display: grid !important; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; width: 20%;}
+                          .state, .entity div {font-size: var(--body-font-size) !important;}
+              exclude: []
+            card:
+              type: entities
+              state_color: true
+            sort:
+              method: last_changed
+
+      # [Column] uptime
+
+      - type: vertical-stack
+        cards:
+
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: UPTIME
+
+          - type: entities
+            entities:
+              - entity: sensor.cisco_wlc_ap06_c3702e_uptime
+                name: Uptime
+
+          - type: custom:uptime-card
+            entity: binary_sensor.uptimekuma_ap06c3702e
+            icon: mdi:access-point-network
+            title_template: AP06-c3702e
+            hours_to_show: 168
+            status_adaptive_color: true
+            alias:
+              ok: online
+              ko: offline
+            color:
+              icon: grey
+              ok: "#32CD32"
+              ko: "#DF1934"
+              none: "#D8D8D8"
+            show:
+              footer: true
+            bar: {}
+
+
+          - type: "custom:button-card"
+            template: header_card_no_link
+            variables:
+              name: LED
+
+          - type: entities
+            entities:
+              - entity: switch.cisco_wlc_ap06_c3702e_led_state
+                name: AP Status LED
+
