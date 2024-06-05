@@ -49,45 +49,45 @@ cards:
                   width: 600
             cards:
 
+              # - type: custom:state-switch
+              #   entity: mediaquery
+              #   states:
+              #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+              #       type: "custom:mushroom-entity-card"
+              #       entity: binary_sensor.uptimekuma_wlc
+              #       name: Cisco WLC ↗
+              #       icon: mdi:access-point-network
+              #       icon_color: pink
+              #       style: "ha-card {background: none;}"
+              #       tap_action:
+              #         action: url
+              #         url_path: !secret cisco_wlc_url
+              #     "(min-width: 800px) and (max-width: 1023.99px)":
+              #       <<: *title-badge-1
+              #       layout: vertical
+
+              # - type: custom:state-switch
+              #   entity: mediaquery
+              #   states:
+              #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+              #       type: "custom:mushroom-entity-card"
+              #       entity: binary_sensor.uptimekuma_ap03c3602e
+              #       name: LibreNMS ↗
+              #       icon: mdi:abacus
+              #       icon_color: pink
+              #       style: "ha-card {background: none;}"
+              #       tap_action:
+              #         action: url
+              #         url_path: !secret librenms_url
+              #     "(min-width: 800px) and (max-width: 1023.99px)":
+              #       <<: *title-badge-2
+              #       layout: vertical
+
+
               - type: custom:state-switch
                 entity: mediaquery
                 states:
                   "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
-                    type: "custom:mushroom-entity-card"
-                    entity: binary_sensor.uptimekuma_wlc
-                    name: Cisco WLC ↗
-                    icon: mdi:access-point-network
-                    icon_color: pink
-                    style: "ha-card {background: none;}"
-                    tap_action:
-                      action: url
-                      url_path: !secret cisco_wlc_url
-                  "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-1
-                    layout: vertical
-
-              - type: custom:state-switch
-                entity: mediaquery
-                states:
-                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
-                    type: "custom:mushroom-entity-card"
-                    entity: binary_sensor.uptimekuma_ap03c3602e
-                    name: LibreNMS ↗
-                    icon: mdi:abacus
-                    icon_color: pink
-                    style: "ha-card {background: none;}"
-                    tap_action:
-                      action: url
-                      url_path: !secret librenms_url
-                  "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-2
-                    layout: vertical
-
-
-              - type: custom:state-switch
-                entity: mediaquery
-                states:
-                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-3
                     type: "custom:mushroom-entity-card"
                     entity: binary_sensor.uptimekuma_ssoauthelia
                     name: Netbox ↗
@@ -98,7 +98,7 @@ cards:
                       action: url
                       url_path: !secret netbox_ap03_url
                   "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-3
+                    <<: *title-badge-1
                     layout: vertical
 
   - type: 'custom:layout-card'

@@ -17,6 +17,7 @@ cards:
       margin: 0
     cards:
 
+      # [Header] Summary
       - type: 'custom:button-card'
         name: AP02-c3602e
         template: title_card_with_icon
@@ -49,47 +50,47 @@ cards:
                   width: 600
             cards:
 
+              # - type: custom:state-switch
+              #   entity: mediaquery
+              #   states:
+              #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+              #       type: "custom:mushroom-entity-card"
+              #       entity: binary_sensor.uptimekuma_wlc
+              #       name: Cisco WLC ↗
+              #       icon: mdi:access-point-network
+              #       icon_color: pink
+              #       style: "ha-card {background: none;}"
+              #       tap_action:
+              #         action: url
+              #         url_path: !secret cisco_wlc_url
+              #     "(min-width: 800px) and (max-width: 1023.99px)":
+              #       <<: *title-badge-1
+              #       layout: vertical
+
+              # - type: custom:state-switch
+              #   entity: mediaquery
+              #   states:
+              #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+              #       type: "custom:mushroom-entity-card"
+              #       entity: binary_sensor.uptimekuma_ap02c3602e
+              #       name: LibreNMS ↗
+              #       icon: mdi:abacus
+              #       icon_color: pink
+              #       style: "ha-card {background: none;}"
+              #       tap_action:
+              #         action: url
+              #         url_path: !secret librenms_url
+              #     "(min-width: 800px) and (max-width: 1023.99px)":
+              #       <<: *title-badge-2
+              #       layout: vertical
+
+
               - type: custom:state-switch
                 entity: mediaquery
                 states:
                   "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
                     type: "custom:mushroom-entity-card"
-                    entity: binary_sensor.uptimekuma_wlc
-                    name: Cisco WLC ↗
-                    icon: mdi:access-point-network
-                    icon_color: pink
-                    style: "ha-card {background: none;}"
-                    tap_action:
-                      action: url
-                      url_path: !secret cisco_wlc_url
-                  "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-1
-                    layout: vertical
-
-              - type: custom:state-switch
-                entity: mediaquery
-                states:
-                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
-                    type: "custom:mushroom-entity-card"
-                    entity: binary_sensor.uptimekuma_ap02c3602e
-                    name: LibreNMS ↗
-                    icon: mdi:abacus
-                    icon_color: pink
-                    style: "ha-card {background: none;}"
-                    tap_action:
-                      action: url
-                      url_path: !secret librenms_url
-                  "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-2
-                    layout: vertical
-
-
-              - type: custom:state-switch
-                entity: mediaquery
-                states:
-                  "(max-width: 799.99px), (min-width: 1024px)": &title-badge-3
-                    type: "custom:mushroom-entity-card"
-                    entity: binary_sensor.uptimekuma_sso_authelia
+                    entity: binary_sensor.uptimekuma_ssoauthelia
                     name: Netbox ↗
                     icon: mdi:ip-network
                     icon_color: pink
@@ -98,7 +99,7 @@ cards:
                       action: url
                       url_path: !secret netbox_ap02_url
                   "(min-width: 800px) and (max-width: 1023.99px)":
-                    <<: *title-badge-3
+                    <<: *title-badge-1
                     layout: vertical
 
   - type: 'custom:layout-card'
@@ -111,6 +112,7 @@ cards:
       margin: 0 -16px
     cards:
 
+      # [Column] Status
       - type: vertical-stack
         cards:
 
@@ -133,7 +135,14 @@ cards:
             detail: 2
             name: MEM
 
+          # - hours_to_show: 24
+          #   graph: line
+          #   type: sensor
+          #   entity: sensor.cisco_wlc_ap02_c3602e_disk_usage
+          #   detail: 2
+          #   name: HDD
 
+      # [Column] throughput
       - type: vertical-stack
         cards:
           - type: 'custom:button-card'
