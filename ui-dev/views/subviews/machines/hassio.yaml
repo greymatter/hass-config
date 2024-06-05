@@ -1,0 +1,9 @@
+# Unison Subview
+# Made by Madelena Mak 2022
+
+path: hassio
+subview: true
+
+type: panel
+cards:
+  - !include ../../machines/hassio-cards.yaml

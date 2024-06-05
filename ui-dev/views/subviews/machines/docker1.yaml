@@ -1,0 +1,9 @@
+# Unison Subview
+# Made by Madelena Mak 2022
+
+path: docker1
+subview: true
+
+type: panel
+cards:
+  - !include ../../machines/docker1-cards.yaml

@@ -2,9 +2,9 @@
 # Unison View
 # Made by Madelena Mak 2022
 
-path: ap02-c3602e
+path: apc7900
 subview: true
 
 type: panel
 cards:
-  - !include ../../ap/ap02-c3602e-cards.yaml
+  - !include ../../devices/apc7900-cards.yaml

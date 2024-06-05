@@ -2,9 +2,9 @@
 # Unison View
 # Made by Madelena Mak 2022
 
-path: ap02-c3602e
+path: wlc
 subview: true
 
 type: panel
 cards:
-  - !include ../../ap/ap02-c3602e-cards.yaml
+  - !include ../../devices/wlc-cards.yaml
