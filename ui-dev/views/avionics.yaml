@@ -1,34 +1,249 @@
-# MAXIMALIST DASHBOARD
-# Avionics View
-# Made by greymatter313 2024
+#### Maximalist Dashboard for Home Assistant ####
+## For use on hassio/GreymatterHQ              ##
+##             greymatter.2024                 ##
+#### https://github.com/greymatter ##############
+##                                             ##
+##     ##  Avionics View  ##                   ##
+##                                             ##
+#################################################
 
-title: Avionics
-path: avionics
+
+title: Avionics-D
+path: avionics-dev
 
 type: "custom:grid-layout"
 layout: !include ../shared/snippets/layout-page-margin.yaml
 
 cards:
-  - type: "custom:layout-card"
-    layout_type: "custom:grid-layout"
-    layout: !include ../shared/snippets/layout-page-columns.yaml
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
     view_layout:
       grid-area: cc
+    layout:
+      grid-template-columns: 'repeat(auto-fill, [col-start] minmax(360px, 1fr) [col-end])'
+      grid-template-rows: auto
+      grid-column-gap: 32px
+      margin: -1px
+      mediaquery:
+        '(min-width: 2320px)':
+          grid-template-columns: 'repeat(auto-fill, [col-start] minmax(720px, 1fr) [col-end])'
+        '(max-width: 800px)':
+          grid-template-columns: 'repeat(auto-fill, [col-start] minmax(256px, 1fr) [col-end])'
 
     cards:
+
       # [Header] Summary
-      - type: markdown
-        style: !include ../shared/snippets/style-markdown-page-title.yaml
+      - type: 'custom:layout-card'
+        layout_type: 'custom:grid-layout'
+        layout: !include ../shared/snippets/layout-page-title-with-3-badges.yaml
         view_layout:
           grid-column: 1/-1
-        content: >
-          # Avionics
+        cards:
 
-          ADS-B Station {{ states('sensor.fr24_feeder') }} [GMHQ] is {{ states('binary_sensor.fr24_feeder_link_connected') }}line{{ iif(
-          is_state('binary_sensor.fr24_feeder_link_connected', 'on'), ' and
-          is currently tracking', '.') }} {{ states('sensor.fr24_feeder_aircraft_tracked') }} Aircraft, {{ states('sensor.fr24_feeder_aircraft_uploaded') }} with coordinates.
+          - type: markdown
+            content: >
+              # Avionics
+
+              ADS-B Station {{ states('sensor.fr24_feeder') }} [GMHQ] is {{ states('binary_sensor.fr24_feeder_link_connected') }}line{{ iif(
+              is_state('binary_sensor.fr24_feeder_link_connected', 'on'), ' and
+              is currently tracking', '.') }} {{ states('sensor.fr24_feeder_aircraft_tracked') }} Aircraft, {{ states('sensor.fr24_feeder_aircraft_uploaded') }} with coordinates.
+            style:
+              .: |
+                ha-card {
+                  background: none;
+                }
+              ha-markdown$: |
+                h1 {
+                  font-size: var(--title-font-size);
+                  font-weight: 500;
+                  line-height: 1.1;
+                  margin-left: -2px;
+                  margin-block-end: -8px;
+                }
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout:
+              margin: 0
+            view_layout:
+              place-self: center start
+            cards:
+
+              - type: 'custom:swipe-card'
+                parameters:
+                  enabled: true
+                  slidesPerView: 2.1
+                  width: 260
+                  breakpoints:
+                    '800':
+                      enabled: false
+                      slidesPerView: 2
+                      width: 260
+                    '1024':
+                      enabled: false
+                      slidesPerView: 2
+                      width: 280
+                cards:
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+                        type: 'custom:mushroom-entity-card'
+                        entity: binary_sensor.ping_loki
+                        name: FlightAirMap ↗
+                        icon: mdi:airplane
+                        icon_color: pink
+                        style: 'ha-card {background: none;}'
+                        layout: vertical
+                        tap_action:
+                          action: url
+                          url_path: !secret fam_map_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-1
+                        layout: vertical
+                        # style: 'ha-card {overflow: hidden;}'
 
 
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+                        type: 'custom:mushroom-entity-card'
+                        entity: binary_sensor.ping_loki
+                        name: FlightAware ↗
+                        icon: 'mdi:cloud'
+                        icon_color: pink
+                        style: 'ha-card {background: none;}'
+                        layout: vertical
+                        tap_action:
+                          action: url
+                          url_path: !secret flightaware_usr_stats
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-2
+                        layout: vertical
+                        # style: 'ha-card {overflow: hidden;}'
+
+                  - type: custom:state-switch
+                    entity: mediaquery
+                    states:
+                      "(max-width: 799.99px), (min-width: 1024px)": &title-badge-3
+                        type: 'custom:mushroom-entity-card'
+                        entity: binary_sensor.ping_loki
+                        name: MAP ↗
+                        icon: 'mdi:map-legend'
+                        icon_color: pink
+                        style: 'ha-card {background: none;}'
+                        layout: vertical
+                        tap_action:
+                          action: url
+                          url_path: !secret adsb_local_map_url
+                      "(min-width: 800px) and (max-width: 1023.99px)":
+                        <<: *title-badge-3
+                        layout: vertical
+                        # style: 'ha-card {overflow: hidden;}'
+
+                  # - type: custom:state-switch
+                  #   entity: mediaquery
+                  #   states:
+                  #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-4
+                  #       type: 'custom:mushroom-entity-card'
+                  #       entity: binary_sensor.ping_loki
+                  #       name: M-Feeder ↗
+                  #       icon: 'mdi:satellite-uplink'
+                  #       icon_color: pink
+                  #       style: 'ha-card {background: none;}'
+                  #       layout: vertical
+                  #       tap_action:
+                  #         action: url
+                  #         url_path: !secret adsb_im_url
+                  #     "(min-width: 800px) and (max-width: 1023.99px)":
+                  #       <<: *title-badge-4
+                  #       layout: vertical
+                        # style: 'ha-card {overflow: hidden;}'
+
+
+
+  # - type: "custom:layout-card"
+  #   layout_type: "custom:grid-layout"
+  #   layout: !include ../shared/snippets/layout-page-columns.yaml
+  #   #layout: !include ../shared/snippets/layout-page-title-with-2-badges.yaml
+  #   view_layout:
+  #     grid-area: cc
+
+  #   cards:
+  #     # [Header] Summary
+  #     - type: markdown
+  #       style: !include ../shared/snippets/style-markdown-page-title.yaml
+  #       #layout: !include ../shared/snippets/layout-page-title-with-2-badges.yaml
+  #       view_layout:
+  #         grid-column: 1/-1
+  #       content: >
+  #         # Avionics
+
+  #         ADS-B Station {{ states('sensor.fr24_feeder') }} [GMHQ] is {{ states('binary_sensor.fr24_feeder_link_connected') }}line{{ iif(
+  #         is_state('binary_sensor.fr24_feeder_link_connected', 'on'), ' and
+  #         is currently tracking', '.') }} {{ states('sensor.fr24_feeder_aircraft_tracked') }} Aircraft, {{ states('sensor.fr24_feeder_aircraft_uploaded') }} with coordinates.
+
+
+      # - type: 'custom:layout-card'
+      #   layout_type: 'custom:grid-layout'
+      #   layout:
+      #     margin: 0
+      #   view_layout:
+      #     place-self: center start
+      #   cards:
+
+      #     - type: 'custom:swipe-card'
+      #       parameters:
+      #         enabled: true
+      #         slidesPerView: 1.66
+      #         width: 480
+      #         breakpoints:
+      #           '800':
+      #             enabled: false
+      #             slidesPerView: 2
+      #             width: 240
+      #           '1024':
+      #             enabled: false
+      #             slidesPerView: 2
+      #             width: 400
+      #       cards:
+
+      #         - type: custom:state-switch
+      #           entity: mediaquery
+      #           states:
+      #             "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+      #               type: 'custom:mushroom-entity-card'
+      #               entity: binary_sensor.ping_loki
+      #               name: SpaceX ↗
+      #               icon: mdi:rocket-launch
+      #               icon_color: pink
+      #               style: 'ha-card {background: none;}'
+      #               tap_action:
+      #                 action: url
+      #                 url_path: 'https://www.spacex.com/launches/'
+      #             "(min-width: 800px) and (max-width: 1023.99px)":
+      #               <<: *title-badge-1
+      #               layout: vertical
+
+
+      #         - type: custom:state-switch
+      #           entity: mediaquery
+      #           states:
+      #             "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+      #               type: 'custom:mushroom-entity-card'
+      #               entity: binary_sensor.ping_loki
+      #               name: Astropheric ↗
+      #               icon: 'mdi:cloud'
+      #               icon_color: pink
+      #               style: 'ha-card {background: none;}'
+      #               tap_action:
+      #                 action: url
+      #                 url_path: 'https://www.astrospheric.com/'
+      #             "(min-width: 800px) and (max-width: 1023.99px)":
+      #               <<: *title-badge-2
+      #               layout: vertical
 
 
       # [Column] My Flight Stats
@@ -38,25 +253,29 @@ cards:
           - type: "custom:button-card"
             template: header_card
             variables:
-              name: FlightAirMap
-              label: FAM
-              arrow: 'mdi:arrow-top-right'
-              action: url
-              link: !secret fam_stats_url
+              name: ADS-B
+              label: STATS
+              arrow: 'mdi:arrow-right'
+              action: navigate
+              link: adsb.stats
             view_layout:
               grid-column: 1/-1
 
-          - !include ../shared/cards/flightairmap-card.yaml
+          #- !include ../shared/cards/flightairmap-card.yaml
+          - !include ../shared/cards/avionics-adsb.yaml
+
+
       # - type: vertical-stack
       #   cards:
           - type: "custom:button-card"
             template: header_card
             variables:
-              name: FR24
-              label: adsb.im
+              name: FlightAirMap
+              label: FAM
               arrow: 'mdi:arrow-top-right'
               action: url
-              link: !secret adsb_im_url
+              link: !secret fam_stats_url
+
             view_layout:
               grid-column: 1/-1
 
@@ -67,8 +286,8 @@ cards:
           #   entity: sensor.fr24_aircraft
           #   sort: track
 
-          - !include ../shared/cards/adsb-lol-card.yaml
-          - !include ../shared/cards/fr24-card.yaml
+          #- !include ../shared/cards/adsb-lol-card.yaml
+          - !include ../shared/cards/avionics-fam.yaml
 
 
 
@@ -113,6 +332,8 @@ cards:
             entity: sensor.fr24_aircraft
             sort: track
             popup: true
+
+          #- !include ../shared/cards/adsb-lol-card.yaml
 
 
 
