@@ -1,0 +1,75 @@
+
+# - type: "custom:decluttering-card"
+#   template: mini_graph_tile
+#   view_layout:
+#     grid-column: span 2
+#   variables:
+#     - entities:
+#         - entity: sensor.apc7900_power
+#     - title: Power Usage
+#     - aspect_ratio: 2/1
+
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_1
+  name: ALL PORTS
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_1
+  name: Port 1
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_2_opnsense_firewall
+  name: Port 2
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_3_dsr_2035
+  name: Port 3
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_4_cable_modem
+  name: Port 4
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_5_gmhqesxi04
+  name: Port 5
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_6_asa_5505
+  name: Port 6
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_7_sw01_c3750g
+  name: Port 7
+
+- type: 'custom:button-card'
+  template: 
+    - live_tile_card
+    - require_confirmation
+  entity: switch.apc7900_port_8_sw01_c3750
+  name: Port 8
+
