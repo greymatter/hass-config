@@ -217,7 +217,7 @@ script:
   iss_overhead_now:
     alias: ISS overhead now
     sequence:
-    - service: notify.mobile_app_mc_hass_app
+    - service: notify.greymatter_iphone
       data:
         title: 🛰 ISS is overhead for {{ states.sensor.iss_duration.state }} minutes
           🛰
