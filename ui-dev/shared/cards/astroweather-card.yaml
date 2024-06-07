@@ -1,0 +1,23 @@
+type: 'custom:astroweather-card'
+entity: weather.astroweather_backyard
+name: 'Stars'
+current: true
+details: true
+deepskydetails: true
+forecast: true
+graph: true
+line_color_condition_night: '#eeffff'
+line_color_condition: '#f07178'
+line_color_cloudless: '#c3e88d'
+line_color_seeing: '#ffcb6b'
+line_color_transparency: '#82aaff'
+line_color_calm: '#ff5370'
+number_of_forecasts: '48'
+graph_cloudless: true
+graph_seeing: false
+graph_transparency: false
+graph_condition: true
+graph_calm: false
+graph_li: false
+tap_action:
+  action: none

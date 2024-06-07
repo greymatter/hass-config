@@ -1,0 +1,130 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: FEEDERS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_round_picture
+        name: CMEs
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/lasco-c3/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85) contrast(2.5)
+        tap_action:
+          action: none
+        view_layout:
+          grid-column: span 2
+          grid-row: span 2
+          margin: 0
+
+
+      - type: 'custom:decluttering-card'
+        template: mini_graph_tile
+        variables:
+          - entities:
+            - entity: sensor.noaa_space_weather_solar_wind_magnetic_fields_bt
+          - title: Magnetic Fields - Bt
+
+      - type: 'custom:decluttering-card'
+        template: mini_graph_tile
+        variables:
+          - entities:
+            - entity: sensor.noaa_space_weather_solar_wind_magnetic_fields_bz
+          - title: Magnetic Fields - Bz
+
+      - type: 'custom:decluttering-card'
+        template: mini_graph_tile
+        variables:
+          - entities:
+            - entity: sensor.noaa_space_weather_solar_wind_speed
+          - title: Solar Wind Speed
+          - aspect_ratio: 2/1
+          - line_width: 2
+        view_layout:
+          grid-column: span 2
+
+      - type: 'custom:decluttering-card'
+        template: mini_graph_tile
+        variables:
+          - entities:
+            - entity: sensor.noaa_space_weather_noon_10_7cm_radio_flux
+          - title: 10.7cm Radio Flux
+
+
+      # - type: vertical-stack
+      #   cards:
+
+      #     - type: 'custom:layout-card'
+      #       layout_type: 'custom:grid-layout'
+      #       layout: !include snippets/layout-live-tile.yaml
+      #       cards:
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_round_picture
+        name: Aurora
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 127% 127%
+              - filter: grayscale(.8) contrast(1)
+        tap_action:
+          action: none
+        view_layout:
+          grid-column: span 2
+          grid-row: span 2
+          margin: 0
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_round_picture
+        name: Visible Light
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/sdo-hmii/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85) contrast(2.5)
+        tap_action:
+          action: none
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_round_picture
+        name: UV Comp
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/suvi/primary/195/latest.png
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85)
+        tap_action:
+          action: none
+
+
+
