@@ -1,0 +1,180 @@
+
+
+
+sensor:
+
+  ## NWS Alerts ########################################################################
+  - platform: nws_alerts
+    zone_id: "MIZ068"
+
+  ## NWS Alerts ########################################################################
+  - platform: feedparser
+    name: NWS Alert RSS Feed
+    feed_url: !secret nws_alert_feed
+    date_format: "%a, %b %d %I:%M %p"
+    inclusions:
+      - title
+      - summary
+      - cap_expires
+
+
+##########################################################################################
+## NWS Alerts via rest replaced with nws_alerts HACS integration  ########################
+##########################################################################################
+
+#  - platform: rest
+#    resource: https://api.weather.gov/alerts/active/count
+#    name: NWS Alert Count
+#    value_template: >
+#      {% if value_json.zones.MIZ068 is defined %}
+#        {{ value_json.zones.MIZ068 }}
+#      {% else %}
+#        0
+#      {% endif %}
+#    headers:
+#      User-Agent: Homeassistant
+#      Accept: application/ld+json
+#    scan_interval: 60
+
+#  - platform: rest
+#    resource: https://api.weather.gov/alerts/active?zone=MIZ068
+#    name: NWS Alert Event
+#    value_template: >
+#      {% if value_json.features[0] is defined %}
+#        {{ value_json['features'][0]['properties'].event }}
+#      {% else %}
+#        None
+#      {% endif %}
+#    json_attributes:
+#      - features
+#    headers:
+#      User-Agent: Homeassistant
+#      Accept: application/geo+json
+#    scan_interval: 60
+
+
+
+
+
+
+binary_sensor:
+
+  - platform: template
+    sensors:
+      nws_alerts_are_active:
+        friendly_name: NWS Alerts Are Active
+        #entity_id: sensor.nws_alerts
+        value_template: >
+          {{ states('sensor.nws_alerts') | int(0) > 0 }}
+        icon_template: >-
+          {% if states('sensor.nws_alerts') | int(0) > 0 %}
+            mdi:weather-lightning
+          {% else %}
+            mdi:weather-sunny
+          {% endif %}
+
+
+
+
+
+
+
+
+
+
+input_boolean:
+
+  nws_multi_alert:
+    name: NWS Multiple Alerts At Once
+    #icon: mdi:alert
+
+
+
+
+
+variable:
+  # added to gui and told to remove the following
+  nws_alerts_event_ids:
+    value: 'none'
+    restore: true
+
+script:
+  nws_popup_on_wx_alert:
+    alias: NWS Weather Alert Pop Up
+    sequence:
+    - service: "{% if states('sensor.nws_alerts') != '0' %}\n  persistent_notification.create\n{%
+        endif %}\n"
+      data_template:
+        notification_id: nwswxalert
+        message: '{{ message }}'
+        title: '{{ title }}'
+    mode: single
+
+
+automation:
+
+  - id: '1677857039175'
+    alias: NWS Update Event ID Variable
+    description: ''
+    trigger:
+    - platform: state
+      entity_id: sensor.nws_alerts
+    action:
+    - service: variable.set_variable
+      data:
+        variable: nws_alerts_event_ids
+        attributes:
+          history_1: '{{ states(''variable.nws_alerts_event_ids'') }}'
+          history_2: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_1'')
+            }}'
+          history_3: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_2'')
+            }}'
+          history_4: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_3'')
+            }}'
+          history_5: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_4'')
+            }}'
+          history_6: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_5'')
+            }}'
+          history_7: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_6'')
+            }}'
+          history_8: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_7'')
+            }}'
+          history_9: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_8'')
+            }}'
+          history_10: '{{ state_attr(''variable.nws_alerts_event_ids'', ''history_9'')
+            }}'
+    - service: variable.set_variable
+      data:
+        variable: nws_alerts_event_ids
+        value: '{{ (trigger.to_state.attributes.event_id).split(''-'')[0] }}'
+    initial_state: true
+
+  - id: '1677856496188'
+    alias: NWS Check for Multi Alerts
+    description: ''
+    trigger:
+    - platform: state
+      entity_id: sensor.nws_alerts
+    condition:
+    - '{{ states(''sensor.nws_alerts'') | int > 0 }}'
+    - '{{ trigger.to_state.state|int > trigger.from_state.state|int }}'
+    action:
+    - choose:
+      - conditions:
+        - '{{ (trigger.to_state.state | int - trigger.from_state.state|int) > 1 }}'
+        sequence:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.nws_multi_alert
+        - delay:
+            seconds: 30
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.nws_multi_alert
+      - conditions:
+        - '{{ (trigger.to_state.state | int - trigger.from_state.state|int) == 1 }}'
+        sequence:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.nws_multi_alert
+    initial_state: true
+
+
+
