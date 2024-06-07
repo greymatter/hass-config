@@ -68,3 +68,15 @@ automation:
               notification_id: unavailable_entities
               title: "Unavailable Entities"
               message: "{{ state_attr('sensor.unavailable_entities', 'entity_id') | join('\n') }}"
+
+
+###############################################################################
+
+recorder:
+  exclude:
+    entities:
+      - sensor.unavailable_entities
+
+
+
+
