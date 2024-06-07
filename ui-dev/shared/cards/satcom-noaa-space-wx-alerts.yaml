@@ -1,0 +1,57 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: ALERTS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    #layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+      - type: entities
+        entities:
+          - &astrometrics-noaa-alert
+            type: 'custom:button-card'
+            entity: sensor.noaa_space_weather_alert_1
+            show_icon: false
+            show_state: true
+            show_label: true
+            name: '[[[ return entity.state + " &bull; " + entity.attributes.summary.split(": ")[0] + " &bull; " + moment(entity.attributes.date).subtract(5, "h").fromNow() ]]]'
+            state_display: '[[[ return entity.attributes.summary.split(": ")[1] ]]]'
+            label: '[[[ return entity.attributes.potential_impacts ]]]'
+            styles:
+              card:
+                - background: none
+                - padding: 8px 0
+              grid:
+                - grid-template-areas: '"n" "s" "l"'
+                - grid-template-rows: min-content min-content min-content
+              name:
+                - font-size: var(--small-font-size)
+                - place-self: center start
+                - padding-bottom: 4px
+              state:
+                - font-size: var(--h5-font-size)
+                - font-weight: 600
+                - place-self: center start
+                - white-space: normal
+                - text-align: left
+                - padding-bottom: 4px
+              label:
+                - font-size: var(--body-font-size)
+                - place-self: center start
+                - white-space: normal
+                - text-align: left
+          - <<: *astrometrics-noaa-alert
+            entity: sensor.noaa_space_weather_alert_2
+          - <<: *astrometrics-noaa-alert
+            entity: sensor.noaa_space_weather_alert_3
+          - <<: *astrometrics-noaa-alert
+            entity: sensor.noaa_space_weather_alert_4
+          - <<: *astrometrics-noaa-alert
+            entity: sensor.noaa_space_weather_alert_5
+        title: NOAA Alerts
+

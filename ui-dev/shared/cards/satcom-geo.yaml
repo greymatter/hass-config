@@ -1,0 +1,272 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: FEEDERS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.piaware_radio_link_connected
+      #   name: Radio Link
+      #   icon: mdi:antenna
+
+
+
+      - type: "custom:button-card"
+        template: live_tile
+        entity: sensor.iss_2
+        name: ISS
+        icon: mdi:space-station
+        show_state: false
+        view_layout:
+          grid-column: span 2
+          grid-row: span 2
+          margin: 0
+        state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+        show_label: true
+        tap_action:
+          action: navigate
+          navigation_path: binary_sensor.iss
+        label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+          #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+          # custom_fields:
+          #  unit: People
+        styles:
+          card:
+            - background: |
+                [[[
+                  return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                ]]]
+            - background-size: 120% 120%
+            - background-position: center center
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_card
+        entity: binary_sensor.international_space_station_iss_10_minute_pass_warning
+        name: ISS Visibility
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_picture
+        name: CMEs
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/lasco-c3/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85) contrast(2.5)
+        tap_action:
+          action: none
+        view_layout:
+          grid-column: span 1
+          grid-row: span 1
+          margin: 0
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile #_with_state_unit
+        entity: sensor.satellites_overhead_now
+        name: Satellites Overhead
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile_card
+      #   entity: binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+      #   name: CSS Visibility
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.noaa_space_weather_solar_wind_magnetic_fields_bz
+        name: Magnetic Fields - Bz
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.noaa_space_weather_noon_10_7cm_radio_flux
+        name: 10.7cm Radio Flux
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_card
+        entity: binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+        name: CSS Visibility
+
+      - type: "custom:button-card"
+        template: live_tile
+        entity: sensor.css
+        name: CSS
+        icon: mdi:space-station
+        show_state: false
+        view_layout:
+          grid-column: span 2
+          grid-row: span 2
+          margin: 0
+        #state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+        show_label: true
+        #label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+          #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+          # custom_fields:
+          #  unit: People
+        styles:
+          card:
+            - background: |
+                [[[
+                  return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                ]]]
+            - background-size: 120% 120%
+            - background-position: center center
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_card
+        entity: binary_sensor.starlink_satellite_group_10_minute_pass_warning
+        name: Starlink Visibility (72k)
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.noaa_space_weather_solar_wind_speed
+        name: Solar Wind Speed
+        variables:
+          aspect_ratio: 2/1
+          line_width: 2
+          graph_height: 80
+        view_layout:
+          grid-column: span 2
+
+      - type: "custom:button-card"
+        template: live_tile
+        entity: sensor.starlink_group
+        name: Starlink
+        icon: mdi:satellite-variant
+        show_state: false
+        view_layout:
+          grid-column: span 1
+          grid-row: span 1
+          margin: 0
+        #state_display: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+        show_label: true
+        #label: "[[[ return entity.attributes.number_of_people_in_space ]]]"
+          #'[[[ return moment(entity.attributes.next_rise).format("HH:mm") ]]]'
+          # custom_fields:
+          #  unit: People
+        styles:
+          card:
+            - background: |
+                [[[
+                  return "url('https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasDark/" + entity.attributes.latitude + "," + entity.attributes.longitude + "/3?mapSize=400,400&format=png&key=i9z14FvInFRPNIFzFaFL~0zR6Nuq43s9sU6K98GE3ag~AkYCOoSLMS9V-FTwfJKO6kkm0MURigjyxKl5AZlfGEAwA54d-WXzikHqT4ye0zCx')"
+                ]]]
+            - background-size: 120% 120%
+            - background-position: center center
+
+      # - type: vertical-stack
+      #   cards:
+
+      #     - type: 'custom:layout-card'
+      #       layout_type: 'custom:grid-layout'
+      #       layout: !include ../shared/snippets/layout-live-tile.yaml
+      #       cards:
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_picture
+        name: Aurora
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 127% 127%
+              - filter: grayscale(.8) contrast(1)
+        tap_action:
+          action: none
+        view_layout:
+          grid-column: span 1
+          grid-row: span 1
+          margin: 0
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_card
+        entity: binary_sensor.aurora_42_83
+        name: Aurora Visibility
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_picture
+        name: Visible Light
+        color_type: icon
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/sdo-hmii/latest.jpg
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85) contrast(2.5)
+        tap_action:
+          action: none
+
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile_card
+      #   entity: binary_sensor.aurora_42_83
+      #   name: Aurora Visibility
+
+
+
+
+
+
+      - type: custom:button-card
+        template:
+          - live_tile_card
+          - live_tile_with_picture
+        name: UV Comp
+        color_type: icon
+        view_layout:
+          grid-column: span 2
+          grid-row: span 2
+          margin: 0
+        variables:
+          picture: https://services.swpc.noaa.gov/images/animations/suvi/primary/195/latest.png
+        styles:
+          custom_fields:
+            picture:
+              - background-size: 110% 110%
+              - filter: grayscale(1) brightness(.85)
+        tap_action:
+          action: none
+
+
+      - !include ../../shared/cards/noaa-space-wx-alerts.yaml
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_sig_noise_lvl
+        name: HF Noise
+
+
+

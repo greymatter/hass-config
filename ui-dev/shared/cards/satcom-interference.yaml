@@ -1,0 +1,86 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: FEEDERS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_sig_noise_lvl
+        name: HF Noise lvl
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_a_index
+        name: Solar A-Index
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_bz
+        name: Solar Bz
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_flux_index
+        name: Solar Flux Index
+        unit: SFZ
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_fof2
+        name: Solar foF2
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_k_index
+        name: Solar K-Index
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_sunspots
+        name: Sunspots
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_wind
+        name: Solar Wind
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_xray
+        name: Solar X-Ray Class
+        
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile_with_graph
+          - live_tile_with_state_unit
+        entity: sensor.ham_radio_propagation_solar_xray_scale
+        name: Solar X-Ray Scale
+

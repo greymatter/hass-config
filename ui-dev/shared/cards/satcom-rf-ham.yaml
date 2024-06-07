@@ -1,0 +1,114 @@
+type: vertical-stack
+cards:
+
+  # - type: 'custom:button-card'
+  #   template: header_card_no_link
+  #   variables:
+  #     name: FEEDERS
+
+  - type: 'custom:layout-card'
+    layout_type: 'custom:grid-layout'
+    layout: !include ../../shared/snippets/layout-live-tile.yaml
+    cards:
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: binary_sensor.piaware_radio_link_connected
+        name: Radio Link
+        icon: mdi:antenna
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: binary_sensor.fr24_feeder_receiver_connected
+        name: Receiver Uplink
+        icon: mdi:satellite-uplink
+
+      - type: 'custom:button-card'
+        template:
+          - live_tile
+        entity: sensor.adsb_fi_daily_stats
+        name: MLAT Peers
+        state_display: '[[[ return entity.attributes.mlat_peer_count ]]]'
+        icon: mdi:hub-outline
+
+      ## fam tiles
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #     - live_tile_with_long_state
+      #   entity: sensor.flightairmap_count_all_tracked_aircraft
+      #   name: Aircraft Tracked
+      #   icon: mdi:airplane-marker
+
+      - type: "custom:decluttering-card"
+        template: mini_graph_tile
+        variables:
+          - entities:
+              - entity: sensor.fr24_feeder_aircraft_tracked
+          - title: Aircraft Tracking
+          - icon: mdi:airplane
+
+      - type: "custom:decluttering-card"
+        template: mini_graph_tile
+        variables:
+          - entities:
+              - entity: sensor.fr24_feeder_aircraft_uploaded
+          - title: Aircraft w/ Coordinates
+          - icon: mdi:airplane-marker
+
+      - type: "custom:decluttering-card"
+        template: mini_graph_tile_2dec
+        variables:
+          - entities:
+              - entity: sensor.adsb_lol_beast_positions_per_second
+          - title: Positions / Second
+          - icon: mdi:airplane-markerspeedometer
+
+
+
+
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: sensor.flightairmap_count_all_helicopters
+      #   name: Helicopters
+      #   icon: mdi:helicopter
+
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #     - live_tile_with_unit
+      #     - live_tile_with_long_state
+      #   entity: sensor.flightairmap_db_size
+      #   name: SQL Database
+      #   icon: mdi:database-alert
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.adsb_fi_feeder_link_connected
+      #   name: adsb.fi
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.adsb_lol_feeder_link_connected
+      #   name: adsb.lol
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.airplanes_live_feeder_link_connected
+      #   name: Airplanes.live
+
+      # - type: 'custom:button-card'
+      #   template:
+      #     - live_tile
+      #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+      #   name: FlyItaly
+
+
