@@ -1,0 +1,76 @@
+
+
+# sensor:
+
+
+
+  ## OpenSky - Flight Tracking #########################################################
+  ## enabled via GUI now
+  #- platform: opensky
+  #  radius: 5
+
+
+
+
+  ## this is disabled on purpose, just here for reference
+  #- platform: eventsensor
+  #  name: OpenSky Callsigns
+  ##  event: opensky_entry
+  #  state: callsign
+
+  #  - platform: sql
+  #   queries:
+  #      - name: Active flights
+  #        query: |
+  #          SELECT
+  #            IFNULL(GROUP_CONCAT(callsign || ' (' || strftime('%H:%M',timestamp_entry) || 'z)',', '),"Clear sky") as flight_list --concatenation into a single sensor string with short entry timestamp in UTC
+  #          FROM
+  #          (
+  #            SELECT
+  #              JSON_EXTRACT(shared_data,'$.callsign') as callsign --extract callsign from json
+  #              ,MIN(CASE WHEN event_type = 'opensky_entry' THEN time_fired ELSE null END) as timestamp_entry --first occurence of this callsign within the defined period
+  #            FROM "events"
+  #            INNER JOIN "event_data" ON event_data.data_id = events.data_id
+  #            WHERE event_type IN ('opensky_entry','opensky_exit')
+  #            AND ((JULIANDAY(CURRENT_TIMESTAMP) - JULIANDAY(time_fired)) * 86400) < 1800 --30 minutes max to get rid of possible missed exit events
+  #            GROUP BY json_extract(shared_data,'$.callsign') --group events per calsign
+  #            HAVING MAX(CASE WHEN event_type = 'opensky_exit' THEN time_fired ELSE null END) IS NULL --only flights which do not have exit events within the time frame
+  #          ) ACTIVE_FLIGHTS --dataset of currently active flights with entry timestamps
+  #        column: "flight_list"
+
+
+automation:
+  - id: '1677633494695'
+    alias: OpenSky-Flight entry notification
+    description: ''
+    trigger:
+    - platform: event
+      event_type: opensky_entry
+    action:
+    - service: notify.greymatter313
+      data:
+        message: Flight entry of {{ trigger.event.data.callsign }}
+        data:
+          actions:
+          - action: URI
+            title: Track the flight
+            uri: https://opensky-network.org/aircraft-profile?icao24={{ trigger.event.data.icao24
+              }}
+    # - service: notify.matrix_ha_status
+    #   data:
+    #     message: Flight entry of  {{ trigger.event.data.callsign }}
+    #     data:
+    #       actions:
+    #       - action: URI
+    #         title: Track the flight
+    #         uri: https://opensky-network.org/aircraft-profile?icao24={{ trigger.event.data.icao24
+    #           }}
+    #   enabled: false
+
+
+
+
+
+
+
+
