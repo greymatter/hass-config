@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recorder:
+  exclude:
+    entities:
+      - binary_sensor.tiangong_space_station_css_10_minute_pass_warning
+      - binary_sensor.1001_registered
+      - binary_sensor.201_registered
+      - binary_sensor.202_registered
+      - binary_sensor.203_registered
+      - binary_sensor.204_registered
+      - binary_sensor.205_registered
+      - binary_sensor.329_registered
+      - binary_sensor.701_registered
+      - binary_sensor.8865_registered
+      - binary_sensor.100_registered
+      - binary_sensor.101_registered
+      - binary_sensor.102_registered
+      # - sensor.css
+      # - sensor.css_altitude
+      # - sensor.latest_dtmf_signal
+    entity_globs:
+      - sensor.obihai_*
+      - sensor.100_*
+      - sensor.101_*
+      - sensor.102_*
+  # include:
+  #   entities: sensor.flightairmap_count_all_tracked_aircraft
+
+
+
+
