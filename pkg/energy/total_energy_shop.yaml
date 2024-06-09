@@ -1,0 +1,265 @@
+
+
+sensor:
+  ## energy mgmt #################################################
+
+
+
+  - platform: integration
+    source: sensor.total_energy_use_shop
+    name: Total Energy Use Over Time Shop
+    scan_interval: 120
+    unit_time: h
+
+
+  - platform: statistics
+    name: "Total Energy Use Shop (Hourly Max)"
+    entity_id: sensor.total_energy_use_shop_hourly
+    state_characteristic: value_max
+    max_age:
+      hours: 1
+    sampling_size: 360
+
+
+
+
+
+
+template:
+
+# Various sensors for use in the Energy tab summary charts.
+
+# Runs every 10 seconds.
+# TODO: This should be rewrote to be triggered by state
+
+
+  - trigger:
+      platform: time_pattern
+      seconds: "/10"
+    sensor:
+
+      # - name: Total Energy Use
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.current_total_energy') 
+      #     | selectattr('attributes.unit_of_measurement', 'equalto', 'W')
+      #     | rejectattr('state', 'in', ['unavailable', 'unknown'])
+      #     | map(attribute='state') | map('float') | sum | round(2) }}
+
+      # - name: Total Energy Use on Fossil Fuel
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ (states('sensor.total_energy_use')|float(0) * states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0) / 100) | round(2) }}
+
+      # - name: Total Energy Use on Renewables
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ (states('sensor.total_energy_use')|float(0) * (100 - states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0)) / 100) | round(2) }}
+
+
+
+      # - name: Total Energy Use House
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.current_total_energy_house') 
+      #     | selectattr('attributes.unit_of_measurement', 'equalto', 'W')
+      #     | rejectattr('state', 'in', ['unavailable', 'unknown'])
+      #     | map(attribute='state') | map('float') | sum | round(2) }}
+
+      # - name: Total Energy Use on Fossil Fuel House
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ (states('sensor.current_total_energy_house')|float(0) * states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0) / 100) | round(2) }}
+
+      # - name: Total Energy Use on Renewables House
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ (states('sensor.current_total_energy_house')|float(0) * (100 - states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0)) / 100) | round(2) }}
+
+
+
+
+      - name: Total Energy Use Shop
+        unit_of_measurement: W
+        state: >
+          {{ expand('group.current_total_energy_shop') 
+          | selectattr('attributes.unit_of_measurement', 'equalto', 'W')
+          | rejectattr('state', 'in', ['unavailable', 'unknown'])
+          | map(attribute='state') | map('float') | sum | round(2) }}
+
+      - name: Total Energy Use on Fossil Fuel Shop
+        unit_of_measurement: W
+        state: >
+          {{ (states('sensor.total_energy_use_shop')|float(0) * states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0) / 100) | round(2) }}
+
+      - name: Total Energy Use on Renewables Shop
+        unit_of_measurement: W
+        state: >
+          {{ (states('sensor.total_energy_use_shop')|float(0) * (100 - states('sensor.electricity_maps_grid_fossil_fuel_percentage')|float(0)) / 100) | round(2) }}
+
+
+
+
+      - name: Total Energy Use Shop (Hourly, Rounded)
+        unit_of_measurement: Wh
+        state: >
+          {{ states('sensor.total_energy_use_shop_hourly') | round }}
+
+      - name: Total Energy Use Shop (Daily, Rounded)
+        unit_of_measurement: kWh
+        state: >
+          {{ states('sensor.total_energy_use_shop_daily') | round (-1) | float / 1000 }}
+
+      # - name: All HVAC Energy Use
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.energy_hvac') | rejectattr('state', 'in', ['unavailable', 'unknown']) | map(attribute='state') | map('float') | sum | round(2) }}
+
+      # - name: All Computers Energy Use
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.energy_all_computers') | rejectattr('state', 'in', ['unavailable', 'unknown']) | map(attribute='state') | map('float') | sum | round(2) }}
+
+      # - name: All Entertainment Energy Use
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.energy_all_entertainement') | rejectattr('state', 'in', ['unavailable', 'unknown']) | map(attribute='state') | map('float') | sum | round(2) }}
+
+      # - name: All Kitchen Energy Use
+      #   unit_of_measurement: W
+      #   state: >
+      #     {{ expand('group.energy_kitchen') | rejectattr('state', 'in', ['unavailable', 'unknown']) | map(attribute='state') | map('float') | sum | round(2) }}
+
+
+
+
+  - trigger:
+      platform: time
+      at: "23:59:59"
+    sensor:
+      # - name: Total Energy Use (Daily Max)
+      #   unit_of_measurement: kWh
+      #   state: >
+      #     {{ states('sensor.total_energy_use_daily') | round (-1) | float / 1000 }}
+      # - name: Total Energy Use (Daily CO2 Max)
+      #   unit_of_measurement: gCO₂
+      #   state: >
+      #     {{ states('sensor.total_energy_use_daily_co2') | round(-1) }}
+ 
+
+      # - name: Total Energy Use House (Daily Max)
+      #   unit_of_measurement: kWh
+      #   state: >
+      #     {{ states('sensor.total_energy_use_house_daily') | round (-1) | float / 1000 }}
+      # - name: Total Energy Use House (Daily CO2 Max)
+      #   unit_of_measurement: gCO₂
+      #   state: >
+      #     {{ states('sensor.total_energy_use_house_daily_co2') | round(-1) }}
+
+
+      - name: Total Energy Use Shop (Daily Max)
+        unit_of_measurement: kWh
+        state: >
+          {{ states('sensor.total_energy_use_shop_daily') | round (-1) | float / 1000 }}
+      - name: Total Energy Use Shop (Daily CO2 Max)
+        unit_of_measurement: gCO₂
+        state: >
+          {{ states('sensor.total_energy_use_shop_daily_co2') | round(-1) }}
+
+
+
+  # Calculate the hourly amount of power usage.
+
+  - trigger:
+      platform: time_pattern
+      minutes: 59
+      seconds: 58
+    sensor:
+      # - name: Total Energy Use (Hourly Max)
+      #   unit_of_measurement: Wh
+      #   state: >
+      #     {{ states('sensor.total_energy_use_hourly') | round (2) }}}}
+      # - name: Total Energy Use (Hourly CO2 Equivalent)
+      #   unit_of_measurement: gCO₂
+      #   state: >
+      #     {{ states('sensor.total_energy_use_hourly')|float(0) / 1000 * states('sensor.electricity_maps_co2_intensity')|int }}
+
+
+      # - name: Total Energy Use House (Hourly Max)
+      #   unit_of_measurement: Wh
+      #   state: >
+      #     {{ states('sensor.total_energy_use_house_hourly') | round (2) }}}}
+      # - name: Total Energy Use (Hourly CO2 Equivalent)
+      #   unit_of_measurement: gCO₂
+      #   state: >
+      #     {{ states('sensor.total_energy_use_house_hourly')|float(0) / 1000 * states('sensor.electricity_maps_co2_intensity')|int }}
+
+
+      - name: Total Energy Use Shop (Hourly Max)
+        unit_of_measurement: Wh
+        state: >
+          {{ states('sensor.total_energy_use_shop_hourly') | round (2) }}}}
+      - name: Total Energy Use Shop (Hourly CO2 Equivalent)
+        unit_of_measurement: gCO₂
+        state: >
+          {{ states('sensor.total_energy_use_shop_hourly')|float(0) / 1000 * states('sensor.electricity_maps_co2_intensity')|int }}
+
+
+
+utility_meter:
+
+  daily_energy_shop:
+    name: Total Energy Use Shop (Daily)
+    source: sensor.total_energy_use_over_time_shop
+    cycle: daily
+
+  quarter_hourly_energy_shop:
+    name: Total Energy Use Shop (Hourly)
+    source: sensor.total_energy_use_over_time_shop
+    cycle: hourly
+
+  daily_co2_shop:
+    name: Total Energy Use Shop (Daily CO₂)
+    source: sensor.total_energy_use_shop_hourly_co2_equivalent
+    cycle: daily
+
+
+
+
+
+
+###############################################################################
+
+# recorder:
+#   exclude:
+#     entities:
+#       # - binary_sensor.iss
+#       # - binary_sensor.fr24_feeder_link_connected
+#       - sensor.sw01_ios_version
+#       - sensor.sw01_memory_util_bytes_unused
+#       # - sensor.
+#       # - sensor.
+#       # - sensor.
+#       # - sensor.
+#       # - sensor.
+#       # - sensor.
+#       # - input_number.uplink_traffic_delta_ap02_in
+#       # - input_number.uplink_traffic_delta_ap02_out
+#       # - input_number.
+#       # - input_number.
+#     entity_globs:
+#       - sensor.sw01_ios_*
+#       - sensor.sw02_ios_*
+#       - sensor.sw03_ios_*
+#     #   - sensor.cisco_wlc_*_location
+#     #   - sensor.cisco_wlc_*_uptime
+#     #   - switch.cisco_wlc_*_led_state
+#     #   - sensor.sw*_ap*_uplink_bytes_*
+#     #   - input_number.uplink_traffic_delta_ap*
+
+#   # include:
+#   #   entities: sensor.flightairmap_count_all_tracked_aircraft
+
+
+
+
