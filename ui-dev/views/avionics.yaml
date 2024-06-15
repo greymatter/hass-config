@@ -8,8 +8,8 @@
 #################################################
 
 
-title: Avionics-D
-path: avionics-dev
+title: Avionics
+path: avionics
 
 type: "custom:grid-layout"
 layout: !include ../shared/snippets/layout-page-margin.yaml
@@ -91,19 +91,37 @@ cards:
                       "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
                         type: 'custom:mushroom-entity-card'
                         entity: binary_sensor.ping_loki
-                        name: FlightAirMap ↗
-                        icon: mdi:airplane
+                        name: adsb.im ↗
+                        icon: mdi:airplane-cog
                         icon_color: pink
                         style: 'ha-card {background: none;}'
                         layout: vertical
                         tap_action:
                           action: url
-                          url_path: !secret fam_map_url
+                          url_path: !secret adsb_im_url
                       "(min-width: 800px) and (max-width: 1023.99px)":
                         <<: *title-badge-1
                         layout: vertical
                         # style: 'ha-card {overflow: hidden;}'
 
+                  # - type: custom:state-switch
+                  #   entity: mediaquery
+                  #   states:
+                  #     "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+                  #       type: 'custom:mushroom-entity-card'
+                  #       entity: binary_sensor.ping_loki
+                  #       name: FlightAirMap ↗
+                  #       icon: mdi:airplane
+                  #       icon_color: pink
+                  #       style: 'ha-card {background: none;}'
+                  #       layout: vertical
+                  #       tap_action:
+                  #         action: url
+                  #         url_path: !secret fam_map_url
+                  #     "(min-width: 800px) and (max-width: 1023.99px)":
+                  #       <<: *title-badge-1
+                  #       layout: vertical
+                  #       # style: 'ha-card {overflow: hidden;}'
 
                   - type: custom:state-switch
                     entity: mediaquery
@@ -131,7 +149,7 @@ cards:
                         type: 'custom:mushroom-entity-card'
                         entity: binary_sensor.ping_loki
                         name: MAP ↗
-                        icon: 'mdi:map-legend'
+                        icon: 'mdi:radar'
                         icon_color: pink
                         style: 'ha-card {background: none;}'
                         layout: vertical
