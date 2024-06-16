@@ -1,0 +1,182 @@
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.piaware_feeder_link_connected
+  name: FlightAware
+  tap_action:
+    action: url
+    url_path: !secret flightaware_usr_stats
+
+
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile_card
+#     #- live_tile_with_last_changed_label
+#   entity: binary_sensor.piaware_adept_feeder_link_connected
+#   name: PiAware Adept
+#   show_name: true
+
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile_card
+#     #- live_tile_with_last_changed_label
+#   entity: binary_sensor.piaware_mlat_feeder_link_connected
+#   name: PiAware MLAT
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.adsb_exchange_feeder_link_connected
+  name: ADSB Exchange
+  tap_action:
+    action: url
+    url_path: !secret adsb_exchange_stats_anywhere
+
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.adsb_fi_feeder_link_connected
+  name: adsb.fi
+  tap_action:
+    action: url
+    url_path: https://adsb.fi/
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.adsb_lol_feeder_link_connected
+  name: adsb.lol
+  tap_action:
+    action: url
+    url_path: https://www.adsb.lol/
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.airplanes_live_feeder_link_connected
+  name: Airplanes.live
+  tap_action:
+    action: url
+    url_path: https://airplanes.live/myfeed/
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+  name: FlyItaly
+  tap_action:
+    action: url
+    url_path: https://my.flyitalyadsb.com/am_i_feeding
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.fr24_feeder_link_connected
+  name: FR24
+  tap_action:
+    action: url
+    url_path: !secret fr24_stats
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.radarplane_feeder_link_connected
+  name: RadarPlane
+  tap_action:
+    action: url
+    url_path: https://radarplane.com/feed
+
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.fr24_feeder_link_connected
+  name: OpenSky
+  tap_action:
+    action: url
+    url_path: !secret opensky_stats
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.radarplane_feeder_link_connected
+  name: HPRadar
+  tap_action:
+    action: url
+    url_path: https://skylink.hpradar.com/
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.radarplane_feeder_link_connected
+  name: Planespotters
+  tap_action:
+    action: url
+    url_path: https://www.planespotters.net/feed/status
+
+- type: 'custom:button-card'
+  template:
+    - live_tile_card
+    #- live_tile_with_last_changed_label
+  entity: binary_sensor.radarplane_feeder_link_connected
+  name: TheAirTraffic
+  tap_action:
+    action: url
+    url_path: https://theairtraffic.com/feed/myip/
+
+
+
+
+
+
+#
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile_card
+#     #- live_tile_with_last_changed_label
+#   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+#   name: FlyItaly
+
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile
+#   entity: binary_sensor.fr24_feeder_link_connected
+#   name: FR24
+
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile
+#   entity: binary_sensor.radarplane_feeder_link_connected
+#   name: RadarrPlane
+
+
+
+
+
+
+# - type: 'custom:button-card'
+#   template:
+#     - live_tile_card
+#     - live_tile_with_last_changed_label
+#   entity: binary_sensor.piaware_radio_link_connected
+#   name: Radio Link
+#   icon: mdi:antenna
+

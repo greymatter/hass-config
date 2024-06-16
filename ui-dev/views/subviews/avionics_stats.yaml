@@ -121,6 +121,21 @@ cards:
           - type: 'custom:button-card'
             template: header_card_no_link
             variables:
+              name: ADSB.im
+
+          - type: 'custom:layout-card'
+            layout_type: 'custom:grid-layout'
+            layout: !include ../../shared/snippets/layout-live-tile.yaml
+            cards:
+
+              !include ../../shared/columns/avionics-feeders-stats.yaml
+
+      # - type: vertical-stack
+      #   cards:
+
+          - type: 'custom:button-card'
+            template: header_card_no_link
+            variables:
               name: FEEDERS
 
           - type: 'custom:layout-card'
@@ -128,132 +143,153 @@ cards:
             layout: !include ../../shared/snippets/layout-live-tile.yaml
             cards:
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.piaware_radio_link_connected
-                name: Radio Link
-                icon: mdi:antenna
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.piaware_feeder_link_connected
-                name: PiAware Beast
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.piaware_adept_feeder_link_connected
-                name: PiAware Adept
-                show_name: true
+              !include ../../shared/columns/avionics-adsm-im-stats.yaml
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.piaware_mlat_feeder_link_connected
-                name: PiAware MLAT
+          # - type: 'custom:button-card'
+          #   template: header_card_no_link
+          #   variables:
+          #     name: FEEDERS
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.adsb_exchange_feeder_link_connected
-                name: ADSB Exchange
+          # - type: 'custom:layout-card'
+          #   layout_type: 'custom:grid-layout'
+          #   layout: !include ../../shared/snippets/layout-live-tile.yaml
+          #   cards:
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.adsb_fi_feeder_link_connected
-                name: adsb.fi
+          #       !include ../../shared/columns/avionics-adsm-im-stats
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.adsb_lol_feeder_link_connected
-                name: adsb.lol
+#           - type: 'custom:layout-card'
+#             layout_type: 'custom:grid-layout'
+#             layout: !include ../../shared/snippets/layout-live-tile.yaml
+#             cards:
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.airplanes_live_feeder_link_connected
-                name: Airplanes.live
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.piaware_radio_link_connected
+#                 name: Radio Link
+#                 icon: mdi:antenna
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.adsb_flyitaly_feeder_link_connected
-                name: FlyItaly
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.piaware_feeder_link_connected
+#                 name: PiAware Beast
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.fr24_feeder_link_connected
-                name: FR24
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.piaware_adept_feeder_link_connected
+#                 name: PiAware Adept
+#                 show_name: true
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile_card
-                  #- live_tile_with_last_changed_label
-                entity: binary_sensor.radarplane_feeder_link_connected
-                name: RadarPlane
-#
-              # - type: 'custom:button-card'
-              #   template:
-              #     - live_tile_card
-              #     #- live_tile_with_last_changed_label
-              #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
-              #   name: FlyItaly
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.piaware_mlat_feeder_link_connected
+#                 name: PiAware MLAT
 
-              # - type: 'custom:button-card'
-              #   template:
-              #     - live_tile
-              #   entity: binary_sensor.fr24_feeder_link_connected
-              #   name: FR24
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.adsb_exchange_feeder_link_connected
+#                 name: ADSB Exchange
 
-              # - type: 'custom:button-card'
-              #   template:
-              #     - live_tile
-              #   entity: binary_sensor.radarplane_feeder_link_connected
-              #   name: RadarrPlane
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.adsb_fi_feeder_link_connected
+#                 name: adsb.fi
 
-              - type: 'custom:button-card'
-                template:
-                  - live_tile
-                entity: sensor.adsb_fi_daily_stats
-                name: MLAT Peers
-                #attribute: mlat_peer_count
-                state_display: "[[[ return entity.attributes.mlat_peer_count ]]]"
-                icon: mdi:hub-outline
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.adsb_lol_feeder_link_connected
+#                 name: adsb.lol
 
-              # - type: "custom:decluttering-card"
-              #   template: metro_bar_card
-              #   variables:
-              #     - entity: binary_sensor.radarplane_feeder_link_connected
-              #     - name: Todd's Light
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.airplanes_live_feeder_link_connected
+#                 name: Airplanes.live
 
-              # - type: 'custom:button-card'
-              #   template:
-              #     - live_tile_card
-              #   entity: binary_sensor.radarplane_feeder_link_connected
-              #   name: RadarrPlane
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+#                 name: FlyItaly
 
-              # - type: 'custom:button-card'
-              #   template:
-              #     - live_tile_card
-              #     - live_tile_with_last_changed_label
-              #   entity: binary_sensor.piaware_radio_link_connected
-              #   name: Radio Link
-              #   icon: mdi:antenna
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.fr24_feeder_link_connected
+#                 name: FR24
+
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile_card
+#                   #- live_tile_with_last_changed_label
+#                 entity: binary_sensor.radarplane_feeder_link_connected
+#                 name: RadarPlane
+# #
+#               # - type: 'custom:button-card'
+#               #   template:
+#               #     - live_tile_card
+#               #     #- live_tile_with_last_changed_label
+#               #   entity: binary_sensor.adsb_flyitaly_feeder_link_connected
+#               #   name: FlyItaly
+
+#               # - type: 'custom:button-card'
+#               #   template:
+#               #     - live_tile
+#               #   entity: binary_sensor.fr24_feeder_link_connected
+#               #   name: FR24
+
+#               # - type: 'custom:button-card'
+#               #   template:
+#               #     - live_tile
+#               #   entity: binary_sensor.radarplane_feeder_link_connected
+#               #   name: RadarrPlane
+
+#               - type: 'custom:button-card'
+#                 template:
+#                   - live_tile
+#                 entity: sensor.adsb_fi_daily_stats
+#                 name: MLAT Peers
+#                 #attribute: mlat_peer_count
+#                 state_display: "[[[ return entity.attributes.mlat_peer_count ]]]"
+#                 icon: mdi:hub-outline
+
+#               # - type: "custom:decluttering-card"
+#               #   template: metro_bar_card
+#               #   variables:
+#               #     - entity: binary_sensor.radarplane_feeder_link_connected
+#               #     - name: Todd's Light
+
+#               # - type: 'custom:button-card'
+#               #   template:
+#               #     - live_tile_card
+#               #   entity: binary_sensor.radarplane_feeder_link_connected
+#               #   name: RadarrPlane
+
+#               # - type: 'custom:button-card'
+#               #   template:
+#               #     - live_tile_card
+#               #     - live_tile_with_last_changed_label
+#               #   entity: binary_sensor.piaware_radio_link_connected
+#               #   name: Radio Link
+#               #   icon: mdi:antenna
 
 
       # - type: vertical-stack
